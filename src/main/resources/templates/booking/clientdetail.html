@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up</title>
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+	<script th:src="@{/js/jquery-3.3.1.js}"></script>
+	<script th:src="@{/js/popper.js}"></script>
+	<script th:src="@{/js/bootstrap.js}"></script>
+	
+	<!-- Custom styles for this template -->
+	<link th:href="@{/css/signup.css}" rel="stylesheet"/>
+	
+	<script>
+	$(document).ready(function() {
+	   $("#btn01").on("click", function() {
+	      location.href="openClientList.do";
+	   });
+	   
+	   $("#btn02").on("click", function() {
+	      var frm = $("#frm")[0];
+	      frm.action = "updateClient.do";
+	      frm.submit();
+	   });
+	   
+	   $("#btn03").on("click", function() {
+	      var frm = $("#frm")[0];
+	      frm.action = "deleteClient.do";
+	      frm.submit();
+	   });
+	});
+	</script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+        <div class="col-lg-10 col-xl-9 mx-auto">
+            <div class="card card-signin flex-row my-5">
+            <div class="card-img-left d-none d-md-flex">
+                <!-- Background image for card set in CSS! -->
+            </div>
+            <div class="card-body">
+                <h5 class="card-title text-center">Client Profile</h5>
+                <form id="frm" class="form-signin" method="POST">
+                
+                    <div class="form-label-group">
+                        <input type="text" id="clientNo" name="clientNo" class="form-control" placeholder="ID" required th:value="${list.clientNo}">
+                        <label for="clientNo">NO.</label>
+                    </div>
+                    
+                	<div class="form-label-group">
+                        <input type="text" id="clientId" name="clientId" class="form-control" placeholder="ID" required th:value="${list.clientId}">
+                        <label for="clientId">ID</label>
+                    </div>
+                    
+                    <div class="form-label-group">
+                        <input type="password" id="clientPwd" name="clientPwd" class="form-control" placeholder="Password" required th:value="${list.clientPwd}">
+                        <label for="clientPwd">Password</label>
+                    </div>
+                    
+                    <div class="form-label-group">
+                        <input type="text" id="firstName" name="firstName" class="form-control" placeholder="First name" required autofocus th:value="${list.firstName}">
+                        <label for="firstName">Fist name</label>
+                    </div>
+
+                    <div class="form-label-group">
+                        <input type="text" id="lastName" name="lastName" class="last_name" placeholder="Last name" required autofocus th:value="${list.lastName}">
+                        <label for="lastName">Last name</label>
+                    </div>
+
+                    <div class="form-label-group">
+                        <input type="text" id="phone" name="phone" class="form-control" placeholder="Phone number" required autofocus th:value="${list.phone}">
+                        <label for="phone">Phone</label>
+                    </div>
+
+                    <div class="form-label-group">
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required th:value="${list.email}">
+                        <label for="email">Email</label>
+                    </div>
+                    
+                    <div class="form-label-group">
+                        <input type="text" id="regDate" name="regDate" class="form-control" placeholder="Resigstered Date" required th:value="${list.regDate}">
+                        <label for="regDate">Registered Date</label>
+                    </div>
+                    
+                    <div class="form-label-group">
+                        <input type="text" id="editDate" name="editDate" class="form-control" placeholder="Edited Date" required th:value="${list.editDate}">
+                        <label for="editDate">Edited Date</label>
+                    </div>
+
+                    <button id="btn01" class="btn btn-lg btn-google btn-block text-uppercase" >To List</button>
+                    <button id="btn02" class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit">Save</button>
+					<button id="btn03" class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit">Deactivate</button>
+                </form>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

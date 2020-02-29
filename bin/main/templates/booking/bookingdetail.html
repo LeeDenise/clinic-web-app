@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Account</title>
+
+    <!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"/>
+
+    <!-- Custom fonts for this template -->
+<!--     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+	<script th:src="@{/js/jquery-3.3.1.js}"></script>
+	<script th:src="@{/js/popper.js}"></script>
+	<script th:src="@{/js/bootstrap.js}"></script>
+	
+	<!-- Custom styles for this template -->
+	<link th:href="@{/css/user.css}" rel="stylesheet"/>
+	
+	<script type="text/javascript" th:inline="javascript">
+	$(document).ready(function() {
+		
+			
+		function loading() {
+// 			var selectedtherapist = /*[[${list.empNo}]]*/;
+			var oristarttime =  /*[[${list.startTime}]]*/
+			
+			var datetmp = oristarttime.split(" ");
+			$("#seldate").append("<option>" + datetmp[0] + "</option>");
+			$("#seltime").append("<option>" + datetmp[1] + "</option>");
+			
+// 			var therapist = new Array();
+// 			therapist = $("#seltherapist>option").val();
+// 			for(i=0; i<therapist.length; i++) {
+// 				if (therapist[i] = seledtedtherapist) {
+// 				    $("#seltherapist").append("<option>" + selectedtherapist +"</option>");
+// 				}
+// 			}
+		}
+		
+		// 수정버튼 눌렀을 때 (reset) 자식 태그 삭제 하는 것(empty) + therapist 정보 들고오는 것
+		// db에서 같은 booking number로 update 하는 것 짜면 됨
+		
+		$("#btn02").on("click", function() {
+			$.ajax({
+				type: "post",
+				url: "/booking/bookingDetail.do",
+				dateType: "json",
+				success: function(data) {
+					
+					alert(data.list[0].empNo);
+					$("#seltherapist").empty();
+					$("#seldate").empty();
+					$("#seltime").empty();
+					
+					$("#seltherapist").append("<option> Therapist </option>");
+					$("#seldate").append("<option> Date </option>");
+					$("#seltime").append("<option> Time </option>");
+					
+					for(var i=0; i < data.list.length; i++) {
+						data.list[i] = $("#seltherapist").append("<option value=" + data.list[i].empNo + ">" + data.list[i].firstName + data.list[i].lastName +" </option>");
+					}
+				}
+			});
+		});
+		
+		$("#seltherapist").on("change", function() {
+			var obj = {};
+			obj.empNo=$("#seltherapist>option:selected").val();
+			
+			$.ajax({
+				type: "post",
+				url: "/booking/newBooking.do",
+				data: obj,
+				dataType:"json",
+				success: function(data) {
+					
+				    var toDate = new Date();
+
+				    toDate = toDate.setMonth(toDate.getMonth() + 1);
+				    toDate = new Date(toDate);
+				    toDate = toDate.setDate(toDate.getDate() - 1);
+				    toDate = new Date(toDate);
+					
+					for(i=0; i<7; i++) {
+					    toDate = toDate.setDate(toDate.getDate() + 1);
+					    toDate = new Date(toDate);
+					    
+					    var days = toDate.getDay();
+					    
+					    if (days == 0) {
+					    	toDate = toDate.setDate(toDate.getDate() + 1);
+						    toDate = new Date(toDate);
+					    }
+					    else if (days == 6) {
+					    	toDate = toDate.setDate(toDate.getDate() + 2);
+						    toDate = new Date(toDate);
+					    }
+
+					    var yyyy = toDate.getFullYear();
+					    var mm = toDate.getMonth();
+					    var dd = toDate.getDate();
+						
+						if(dd<10) {
+							dd= '0' + dd
+						}
+						
+						if(mm<10) {
+							mm = '0' + mm
+						}
+						
+					    $("#seldate").append("<option>" + yyyy + "-" + mm + "-" + dd +"</option>");
+					}
+				}
+			});
+		});
+		
+		$("#seldate").on("change", function() {
+			var obj = {};
+			obj.empNo = $("#seltherapist>option:selected").val();
+			obj.selDate=$("#seldate>option:selected").text();
+			$.ajax({
+				type: "post",
+				url: "/booking/newBookingTime.do",
+				data: obj,
+				dataType:"json",
+				success: function(data) {
+
+					if (data.data[0] == null) {
+						for(var i=9; i<17; i++) {
+							if (i < 10) {
+								$("#seltime").append("<option value=0" + i + ">" + i +":00 ~ " + (i+1) + ":00 </option>")
+							}
+							else {
+								$("#seltime").append("<option value=" + i + ">" + i +":00 ~ " + (i+1) + ":00 </option>")
+							}
+							
+						}
+					}
+					
+					var currTime = [];
+					
+					for (var i = 0; i < 1; i++) {
+						var item = data.data[i];
+						
+						console.log(item.startTime);
+						var dateTime = item.startTime.split(' ');
+						console.log("날짜 : " + dateTime[0]);
+						console.log("시간 : " + dateTime[1]);
+						var times = dateTime[1].split(':');
+						console.log("시 : " + times[0]);
+						console.log("분 : " + times[1]);
+						console.log("초 : " + times[2]);
+						
+						currTime[i] = parseInt(times[0]);
+						
+						for (var j=9; j < 17; j++) {
+							if (currTime[i] != j) {
+								if (currTime[i] < 10) {
+									$("#seltime").append("<option value=0" + j + ">" + j +":00 ~ " + (j+1) + ":00 </option>")
+									break;
+								}
+								else {
+									$("#seltime").append("<option value=" + j + ">" + j +":00 ~ " + (j+1) + ":00 </option>")									
+								}
+							}
+							else if (currTime[i] = j) {
+								$("#seltime").append("<option disabled>" + j +":00 ~ " + (j+1) + ":00 </option>")
+							}
+						}
+					}
+				},
+				error : function() {
+					alert("error");
+				}
+			});
+		});
+		
+		$("#btn01").on("click", function() {
+			var date = $("#seldate>option:selected").text();
+			var time = $("#seltime>option:selected").val();
+// 			if(time < 10) {
+// 				time = "0" + time + ":00:00";
+// 			}
+// 			else {
+				time = time + ":00:00";
+// 			}
+			var startTime = date + " " + time;
+			
+			$("#startTime").val(startTime);
+// 			var empNo = $("#seltherapist>option:selected").val();
+			
+			var frm = $("#frm")[0];
+			frm.action = "/booking/updateBooking.do";
+			frm.submit();
+		});
+		
+		$("#btn03").on("click", function() {
+			var frm = $("#frm")[0];
+			frm.action = "/booking/cancelBooking.do";
+			frm.submit();
+		});
+		
+		loading();
+	});
+	</script>
+</head>
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar-->
+        <ul class="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
+            
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/booking/home.do">
+                <div class="sidebar-brand-icon rotate-n-15">
+                	<i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Barunmom</div>
+            </a>
+    
+            <!-- Divider -->
+            <hr class="sidebar-dibide mt-3">
+
+            <!-- Sidebar User Info -->
+            <li class="nav-item sidebar-brand d-flex align-items-center justify-content-center no-arrow">
+                <a class="nav-link" href="#">
+                    <img class="ml-4" src="/image/brie.jpg" style="width: 120px; height: 120px; justify-content: center" alt="">
+                    <br>
+                    <div class="sidebar-brand-text mx-3 my-5" th:text="|${session.firstName} ${session.lastName}|"></div>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-dibide mt-5">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Appointment
+            </div>
+    
+            <!-- Nav Item - Manage my appointment -->
+            <li class="nav-item">
+                <a class="nav-link" href="/booking/newBooking.do">
+                    <i class="fas fa-clinic-medical"></i>
+                    <span>Book a new appointment</span>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-dibide mt-2">
+    
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Management
+            </div>
+    
+            <!-- Nav Item - Manage my appointment -->
+            <li class="nav-item">
+                <a class="nav-link" href="/booking/openUserBookingList.do">
+                    <i class="fas fa-clinic-medical"></i>
+                    <span>My appointment</span>
+                </a>
+            </li>
+
+            <!-- Nav Item - Edit Profile -->
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-clinic-medical"></i>
+                    <span>My Profile</span>
+                </a>
+            </li>
+    
+            <!-- Nav Item - Delete Account Request -->
+            <!-- <li class="nav-item">
+                <a class="nav-link collapsed" href="clients.html" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+                        <i class="fas fa-burn"></i>
+                        <span>Clients</span>
+                </a>
+            </li> -->
+        </ul>
+        <!-- End of Sidebar -->
+    
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+                <div id="container-fluid">
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between m-4">
+                            <h1 class="display-4 h3 mb-0 text-gray-800">Edit Appointment</h1>
+                    </div>
+        
+                    <!-- Content Row : Cards-->
+                    <div class="row">
+                    <div class="col-lg-10 col-xl-9 mx-auto">
+                        <div class="card card-signin flex-row my-3">
+                        <div class="card-img-left d-none d-md-flex">
+                            <!-- Background image for card set in CSS! -->
+                        </div>
+                        <div class="card-body">
+                            <form id="frm" class="form-signin" method="POST" action="/booking/insertBooking.do">
+                                <div class="form-label-group">
+                                    <input type="text" id="firstName" class="form-control" placeholder="First name" th:value="${session.firstName}" required autofocus>
+                                    <label for="firstName">First Name</label>
+                                </div>
+            
+                                <div class="form-label-group">
+                                    <input type="text" id="lastName" class="form-control" placeholder="Last name" th:value="${session.lastName}" required autofocus>
+                                    <label for="lastName">Last Name</label>
+                                </div>
+            
+                                <div class="form-label-group">
+                                    <input type="text" id="phone" class="form-control" placeholder="Phone number" th:value="${session.phone}" required autofocus>
+                                    <label for="phone">Phone</label>
+                                </div>
+            
+                                <div class="form-label-group">
+                                    <input type="email" id="email" class="form-control" placeholder="Email address" th:value="${session.email}" required>
+                                    <label for="email">Email</label>
+                                </div>
+                                
+                                <hr>
+                    
+							   <div class="form-label-group dropdown row">
+									<div class="col-sm-5">
+	                    				<label for="seltherapist">Select Therapist</label><br>
+								    	<select class="form-control" id="seltherapist" name="empNo">
+											<option th:text="|${th.firstName} ${th.lastName}|" th:value="${list.empNo}"></option>
+								    	</select>
+									</div>
+									<div class="col-sm-4">
+	                    				<label for="seldate">Select Date</label><br>
+									    <select class="form-control" id="seldate" name="seldate">
+									    </select>
+									</div>
+									<div class="col-sm-3">
+	                    				<label for="seltime">Select Time</label><br>
+									    <select class="form-control" id="seltime" name="seltime">
+									    </select>
+									</div>
+									<input type="hidden" id="startTime" name="startTime">
+									<input type="hidden" id="clientId" name="clientId" th:value="${session.clientId}">
+									<input type="hidden" id="bookingNo" name="bookingNo" th:value="${list.bookingNo}">
+							   </div>
+							   
+							    <hr><br>
+							    
+                            </form>
+                            <div class="row">
+                            	<div class="col-sm-4">
+	                                <button type="reset" id="btn02" class="btn btn-lg btn-secondary btn-block text-uppercase">EDIT</button>
+                            	</div>
+                         	    <div class="col-sm-4">
+	                                <button type="button" id="btn03" class="btn btn-lg btn-danger btn-block text-uppercase">DELETE</button>
+                            	</div>
+                            	<div class="col-sm-4">
+	                                <button type="button" id="btn01" class="btn btn-lg btn-primary btn-block text-uppercase">SAVE</button>
+                            	</div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    
+                    <!-- Content Row : Booking List -->
+                    
+
+            </div>
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                  <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Your Website 2019</span>
+                  </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    </div>
+    <!-- End of Page Wrapper -->
+</body>
+</html>

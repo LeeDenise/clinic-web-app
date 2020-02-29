@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script>
+	$(document).ready(function() {
+		setTimeout(function() {
+			history.back();
+		}, 20000);
+	})
+</script>
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+<script th:src="@{/js/jquery-3.3.1.js}"></script>
+<script th:src="@{/js/popper.js}"></script>
+<script th:src="@{/js/bootstrap.js}"></script>
+
+</head>
+<body>
+	<h1>Login failed.</h1>
+</body>
+</html>
