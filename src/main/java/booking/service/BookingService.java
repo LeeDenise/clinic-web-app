@@ -7,20 +7,6 @@ import booking.dto.BookingListDto;
 import booking.dto.ClientDto;
 import booking.dto.TherapistDto;
 
-//CRUD
-
-//select : 반환값 BookingDto
-//	BookingDto selectItem() throws Exception;
-
-//update : void
-//	void updateItem(BookingDto item) throws Exception;
-
-//insert : void
-//	void insertItem(BookingDto item) throws Exception;
-
-//delete : void (pk만 알고 있으면 지울 수 있으므로 매개변수가 int num 하나면 됨)
-//	void deleteItem(int num) throws
-
 public interface BookingService {
 	ClientDto test() throws Exception;
 	
