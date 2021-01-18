@@ -19,11 +19,8 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new LoginCheck())
-//		// 인터셉터가 동잘될 컨트롤러명
 		.addPathPatterns("/booking/*")
-//		// 인터셉트를 제외할 컨트롤러명
 		.excludePathPatterns("/booking/home.do")
 		.excludePathPatterns("/booking/loginCheck.do");
-//		.excludePathPatterns("/booking/newBooking.do");
 	}
 }
