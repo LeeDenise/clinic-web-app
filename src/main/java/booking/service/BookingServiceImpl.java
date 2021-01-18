@@ -19,13 +19,11 @@ import lombok.extern.slf4j.Slf4j;
 public class BookingServiceImpl implements BookingService {
 	@Override
 	public ClientDto selectUserInfoYN(String clientId, String clientPwd) throws Exception {
-		// TODO Auto-generated method stub
 		return bookingMapper.selectUserInfoYN(clientId, clientPwd);
 	}
 
 	@Override
 	public List<BookingDto> selectBookingTime(int empNo, String selStartTime, String selEndTime) throws Exception {
-		// TODO Auto-generated method stub
 		log.debug("--------service selectBookingTime 111");
 		return bookingMapper.selectBookingTime(empNo, selStartTime, selEndTime);
 	}
