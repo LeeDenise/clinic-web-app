@@ -22,7 +22,7 @@
 ## Made with
 
 ![Spring Boot](img.jpg)<br>
-Spring Boot, Bootstrap, AWS, MySQL, JavaScript and ❤️
+Spring Boot, Spring Security 5, Bootstrap, AWS EC2 & RDS, MySQL, JavaScript, AJAX and ❤️
 
 ## Authors
 
