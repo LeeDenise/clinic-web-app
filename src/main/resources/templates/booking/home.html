@@ -60,17 +60,21 @@
             <a href="#" class="navbar-brand"><img src="/image/header-image.jpg " alt="" style="width: 50px"></a>
         </div>
 
-        <form action="/booking/loginCheck.do" method="POST" class="form-inline ml-auto" th:if="${session.clientId} == null">
-          <input type="text" class="form-control mr-2" id="clientId" name="clientId" placeholder="Enter your ID.">
-          <input type="password" class="form-control mr-2" id="clientPwd" name="clientPwd" placeholder="Enter your password.">
-          <button type="submit" class="btn btn-success mr-2">Sign In</button>
-          <button type="button" class="btn btn-danger" href="/booking/signUp.do">Sign Up</button>
-        </form>
-        
-        <form action="/booking/logout.do" method="POST" class="form-inline ml-auto" th:unless="${session.clientId} == null">
-          <label class="text-white mr-3" th:text="| WELCOME ${session.firstName} ${session.lastName} ! |"></label>
-          <button type="submit" class="btn btn-info">Log Out</button>
-        </form>
+        <div>
+            <a class="btn btn-primary" href="/login" role="button">Login</a>
+        </div>
+
+<!--        <form action="/login" method="POST" class="form-inline ml-auto">-->
+<!--          <input type="text" class="form-control mr-2" id="clientId" name="clientId" placeholder="Enter your ID.">-->
+<!--          <input type="password" class="form-control mr-2" id="clientPwd" name="clientPwd" placeholder="Enter your password.">-->
+<!--          <button type="submit" class="btn btn-success mr-2">Sign In</button>-->
+<!--          <button type="button" class="btn btn-danger" href="/booking/signUp.do">Sign Up</button>-->
+<!--        </form>-->
+<!--        -->
+<!--        <form action="/booking/logout.do" method="POST" class="form-inline ml-auto" th:unless="${session.clientId} == null">-->
+<!--          <label class="text-white mr-3" th:text="| WELCOME ${session.firstName} ${session.lastName} ! |"></label>-->
+<!--          <button type="submit" class="btn btn-info">Log Out</button>-->
+<!--        </form>-->
     </nav>
 
     <!-- header -->

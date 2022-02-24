@@ -30,7 +30,17 @@ public class BookingController {
 	
 	@Autowired
 	private BookingService bookingService;
-	
+
+	@RequestMapping(method = RequestMethod.GET, value = "/test")
+	public String firstTest() {
+		return "Hello World!";
+	}
+
+	@RequestMapping("/login")
+	public String login() throws Exception {
+		return "/booking/login";
+	}
+
 	// TEST
 	@RequestMapping("/booking/test.do")
 	public ModelAndView openTest() throws Exception {

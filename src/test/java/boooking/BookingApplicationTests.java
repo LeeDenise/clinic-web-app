@@ -11,17 +11,17 @@ import org.springframework.test.context.junit4.SpringRunner;
 //@RunWith(SpringRunner.class)
 @SpringBootTest
 class BookingApplicationTests {
+//
+//	@Autowired
+//	private SqlSessionTemplate sqlSession;
+//
+//	@Test
+//	void contextLoads() {
+//	}
 	
-	@Autowired
-	private SqlSessionTemplate sqlSession;
-	
-	@Test
-	void contextLoads() {
-	}
-	
-	@Test
-	public void testSqlsession() throws Exception{
-		System.out.println(sqlSession.toString());
-	}
+//	@Test
+//	public void testSqlsession() throws Exception{
+//		System.out.println(sqlSession.toString());
+//	}
 
 }
