@@ -57,11 +57,6 @@ AUTO_INCREMENT = 1;
 -- -----------------------------------------------------
 -- Adding constraints
 -- -----------------------------------------------------
-ALTER TABLE `cwadb`.`clients`
-ADD CONSTRAINT `fk_cli_to_book`
-		FOREIGN KEY (`booking_id`)
-		REFERENCES `cwadb`.`bookings` (`booking_id`);
-        
 ALTER TABLE `cwadb`.`bookings`
 ADD CONSTRAINT `fk_book_to_cli`
 		FOREIGN KEY (`client_id`)
@@ -69,8 +64,3 @@ ADD CONSTRAINT `fk_book_to_cli`
 ADD	CONSTRAINT `fk_book_to_emp`
 		FOREIGN KEY (`emp_id`)
 		REFERENCES `cwadb`.`employees` (`emp_id`);
-        
-ALTER TABLE `cwadb`.`employees`
-ADD CONSTRAINT `fk_emp_to_book`
-		FOREIGN KEY (`booking_id`)
-		REFERENCES `cwadb`.`bookings` (`booking_id`);
