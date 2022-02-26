@@ -6,21 +6,17 @@
 
 	<!-- test.do -->
 	<select id="test" resultType="booking.dto.ClientDto">
-		<![CDATA[
 			SELECT
-				client_no, 
-				client_id, 
-				first_name, 
-				last_name, 
-				email, 
-				client_pwd, 
-				phone, 
+				client_id,
+				email,
+				first_name,
+				last_name,
+				phone,
 				reg_date, 
 				edit_date
 			FROM
-				client
+				clients
 			WHERE client_no = '1'
-		]]>
 	</select>
 	
 	
@@ -36,19 +32,16 @@
 	<!-- newBooking.do -->
 	<!-- selectTherapistList -->
 	<select id="selectTherapistList" resultType="booking.dto.TherapistDto">
-		<![CDATA[
 			SELECT
 				first_name,
 				last_name,
 				emp_no
 			FROM
 				therapist
-		]]>
 	</select>
 	
 	<!-- selectBookingTherapist -->
 	<select id="selectTherapist" parameterType="int" resultType="booking.dto.BookingDto">
-		<![CDATA[
 			SELECT
 				start_time
 			FROM
@@ -57,15 +50,13 @@
 				emp_no = #{empNo}
 			AND
 				start_time >= date(NOW())
-			AND 
-				start_time < date_add(NOW(), INTERVAL + 7 DAY)
+			AND
+				(start_time, isLessThan(date_add(NOW(), INTERVAL + 7 DAY)))
 			ORDER BY start_time ASC 
-		]]>
 	</select>
 	
 	<!-- selectBookingTime -->
 	<select id="selectBookingTime" parameterType="map" resultType="booking.dto.BookingDto">
-		<![CDATA[
 			SELECT
 				start_time
 			FROM
@@ -74,37 +65,31 @@
 				emp_no = #{empNo}
 			AND
 				start_time >= #{selStartTime}
-			AND 
-				start_time < #{selEndTime}
+			AND
+				(start_time, isLessThan(#{selEndTime}))
 			ORDER BY start_time
-		]]>
 	</select>
 	
 	<!-- insertBooking.do -->
 	<insert id="insertBooking" parameterType="booking.dto.BookingDto">
-		<![CDATA[
 		INSERT INTO
 			appointment (booking_no, emp_no, start_time, reg_time, client_id)
 		VALUES 
 			(
 			#{bookingNo}, #{empNo}, #{startTime}, NOW(), #{clientId}
 			)
-		]]>
 	</insert>
 	
 	<select id="openUserBookingList" parameterType="String" resultType="booking.dto.BookingListDto">
-		<![CDATA[
 		SELECT a.booking_no as booking_no, a.emp_no as emp_no, a.start_time as start_time, b.first_name as first_name, b.last_name as last_name
 		FROM appointment as a
 		JOIN therapist as b
 		ON a.emp_no = b.emp_no
 		AND a.client_id = #{clientId}
 		ORDER BY start_time DESC
-		]]>
 	</select>
 	
 	<select id="bookingDetail" parameterType="String" resultType="booking.dto.BookingDto">
-		<![CDATA[
 			SELECT
 				booking_no, 
 				emp_no, 
@@ -113,11 +98,9 @@
 				appointment
 			WHERE 
 				booking_no = #{bookingNo}
-		]]>
 	</select>
 	
 	<select id="bookingTherapist" parameterType="String" resultType="booking.dto.TherapistDto">
-		<![CDATA[
 			SELECT
 				first_name,
 				last_name
@@ -125,11 +108,9 @@
 				therapist
 			WHERE 
 				emp_no = #{empNo}
-		]]>
 	</select>
 	
 	<update id="updateBooking" parameterType="booking.dto.BookingDto">
-		<![CDATA[
 			UPDATE
 				appointment
 			SET
@@ -138,16 +119,13 @@
 				edit_time = NOW()
 			WHERE
 				booking_no = #{bookingNo}
-		]]>
 	</update>
 	
 	<delete id="cancelBooking" parameterType="String">
-		<![CDATA[
 			DELETE FROM
 				appointment
 			WHERE 
 				booking_no = #{bookingNo}
-		]]>
 	</delete>
 	
 	
