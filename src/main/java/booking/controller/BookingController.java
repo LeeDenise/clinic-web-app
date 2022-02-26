@@ -42,7 +42,7 @@ public class BookingController {
 	}
 
 	// TEST
-	@RequestMapping("/booking/test.do")
+	@RequestMapping("/booking/test")
 	public ModelAndView openTest() throws Exception {
 		ModelAndView mv = new ModelAndView("test");
 		ClientDto client = bookingService.test();
@@ -52,13 +52,13 @@ public class BookingController {
 	}
 	
 	// HOME
-	@RequestMapping("/booking/home.do")
+	@RequestMapping("/booking/home")
 	public String home() throws Exception {
 		return "/booking/home";
 	}
 	
 	// USER DASHBOARD
-	@RequestMapping("/booking/user.do")
+	@RequestMapping("/booking/user")
 	public String user() throws Exception {
 		return "/booking/user";
 	}
