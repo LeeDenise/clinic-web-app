@@ -26,7 +26,7 @@ public class ClientController {
 		ModelAndView mv = new ModelAndView("booking/clientlist");
 		
 		log.debug("------1111-------");
-		List<ClientDto> list = bookingService.selectClientList();
+		List<ClientDto> list = bookingService.getAllClients();
 		log.debug("------2222-------");
 		mv.addObject("list", list);
 		

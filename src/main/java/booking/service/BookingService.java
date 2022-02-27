@@ -8,10 +8,8 @@ import booking.dto.ClientDto;
 import booking.dto.EmployeeDto;
 
 public interface BookingService {
-	List<ClientDto> test() throws Exception;
-	
 	// CLIENT
-	List<ClientDto> selectClientList() throws Exception;
+	List<ClientDto> getAllClients() throws Exception;
 	void insertClient(ClientDto client) throws Exception;
 	void updateClient(ClientDto client) throws Exception;
 	ClientDto clientDetail(int clientNo) throws Exception;

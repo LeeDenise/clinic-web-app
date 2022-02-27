@@ -4,8 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="booking.mapper.ClientMapper">
 
-    <!-- test -->
-    <select id="test" resultType="booking.dto.ClientDto">
+    <select id="getAllClients" resultType="booking.dto.ClientDto">
         SELECT
             client_id,
             email,
@@ -14,24 +13,6 @@
             phone
         FROM
             clients
-    </select>
-
-    <select id="getAllClients" resultType="booking.dto.ClientDto">
-		<![CDATA[
-        SELECT
-            client_no,
-            client_id,
-            first_name,
-            last_name,
-            email,
-            client_pwd,
-            phone,
-            reg_date,
-            edit_date
-        FROM
-            client
-        ORDER BY client_no DESC
-        ]]>
 	</select>
 
     <!-- insertClient.do -->

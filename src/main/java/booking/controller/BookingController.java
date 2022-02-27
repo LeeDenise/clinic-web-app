@@ -25,13 +25,11 @@ public class BookingController {
 		return "/booking/login";
 	}
 
-	// TEST
 	@RequestMapping("/booking/test")
 	public ModelAndView openTest() throws Exception {
 		ModelAndView mv = new ModelAndView("/booking/test");
-		List<ClientDto> clients = bookingService.test();
+		List<ClientDto> clients = bookingService.getAllClients();
 		mv.addObject("lists", clients);
-		
 		return mv;
 	}
 	
