@@ -3,6 +3,8 @@ package booking.service;
 import java.util.List;
 
 import booking.dto.EmployeeDto;
+import booking.mapper.ClientMapper;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +17,14 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@AllArgsConstructor
 public class BookingServiceImpl implements BookingService {
+	@Autowired
+	private final BookingMapper bookingMapper;
+
+	@Autowired
+	private final ClientMapper clientMapper;
+
 	@Override
 	public ClientDto selectUserInfoYN(String clientId, String clientPwd) throws Exception {
 		return bookingMapper.selectUserInfoYN(clientId, clientPwd);
@@ -27,9 +36,6 @@ public class BookingServiceImpl implements BookingService {
 		return bookingMapper.selectBookingTime(empNo, selStartTime, selEndTime);
 	}
 
-	@Autowired
-	private BookingMapper bookingMapper;
-	
 	@Override
 	public List<ClientDto> test() throws Exception {
 		return bookingMapper.test();
@@ -87,7 +93,7 @@ public class BookingServiceImpl implements BookingService {
 	// CLIENT
 	@Override
 	public List<ClientDto> selectClientList() throws Exception {
-		return bookingMapper.selectClientList();
+		return clientMapper.getAllClients();
 	}
 
 	@Override

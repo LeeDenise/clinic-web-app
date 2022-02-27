@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-public class BookingControllerTherapist {
+public class EmployeeController {
 	
 	@Autowired
 	private BookingService bookingService;

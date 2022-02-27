@@ -1,4 +1,5 @@
 package booking.dto;
+
 import lombok.Data;
 
 @Data

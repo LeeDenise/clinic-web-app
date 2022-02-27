@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="booking.mapper.BookingMapper">
+    
+    <!-- openTherapistList.do -->
+    <select id="openTherapistList" resultType="booking.dto.EmployeeDto">
+		<![CDATA[
+        SELECT
+            emp_no,
+            emp_pwd,
+            first_name,
+            last_name,
+            email,
+            phone,
+            address,
+            birthday,
+            from_date,
+            to_date,
+            employed_yn
+        FROM
+            therapist
+        ORDER BY emp_no DESC
+        ]]>
+	</select>
+
+    <!-- insertTherapist.do -->
+    <insert id="insertTherapist" parameterType="booking.dto.EmployeeDto">
+		<![CDATA[
+        INSERT INTO
+            therapist
+        (emp_no, emp_pwd, first_name, last_name,
+         email, phone, address, birthday,
+         from_date, to_date)
+        VALUES
+            ( #{empNo}, #{empPwd}, #{firstName}, #{lastName},
+              #{email}, #{phone}, #{address}, #{birthday},
+              NOW(), NOW() )
+        ]]>
+	</insert>
+
+
+    <!-- therapistDetail.do -->
+    <select id="therapistDetail" parameterType="int" resultType="booking.dto.EmployeeDto">
+		<![CDATA[
+        SELECT
+            emp_no,
+            emp_pwd,
+            first_name,
+            last_name,
+            email,
+            phone,
+            address,
+            birthday,
+            from_date,
+            to_date,
+            employed_yn
+        FROM
+            therapist
+        WHERE
+            emp_no = #{empNo}
+        ]]>
+	</select>
+
+    <!-- updateTherapist.do -->
+    <update id="updateTherapist" parameterType="booking.dto.EmployeeDto">
+		<![CDATA[
+        UPDATE
+            therapist
+        SET
+            emp_no = #{empNo},
+            emp_pwd = #{empPwd},
+            first_name = #{firstName},
+            last_name = #{lastName},
+            email = #{email},
+            phone = #{phone},
+            address = #{address},
+            birthday = #{birthday},
+            from_date = NOW(),
+            to_date = NOW()
+        WHERE
+            emp_no = #{empNo}
+        ]]>
+	</update>
+
+    <!-- deleteTherapist.do -->
+    <update id="deleteTherapist" parameterType="booking.dto.EmployeeDto">
+		<![CDATA[
+        UPDATE
+            therapist
+        SET
+            employed_yn = 'N'
+        WHERE
+            emp_no = #{empNo}
+        ]]>
+	</update>
+
+    <select id="selectUserInfoYN" resultType="booking.dto.ClientDto">
+		<![CDATA[
+        SELECT
+            client_id, first_name, last_name, phone, email
+        FROM
+            client
+        WHERE
+            client_id = #{clientId}
+          AND
+            client_pwd = #{clientPwd}
+            LIMIT 1
+        ]]>
+	</select>
+
+</mapper>

@@ -35,7 +35,4 @@ public interface BookingService {
 	List<BookingDto> selectTherapist(int empNo) throws Exception;
 	List<EmployeeDto> selectTherapistList() throws Exception;
 	List<BookingDto> selectBookingTime(int empNo, String selStartTime, String selEndTime) throws Exception;
-	
-	// LOGIN
-	ClientDto selectUserInfoYN(String clientId, String clientPwd) throws Exception;
 }
