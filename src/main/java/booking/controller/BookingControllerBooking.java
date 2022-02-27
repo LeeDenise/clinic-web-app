@@ -1,29 +1,22 @@
 package booking.controller;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import booking.dto.BookingDto;
 import booking.dto.BookingListDto;
-import booking.dto.ClientDto;
-import booking.dto.TherapistDto;
+import booking.dto.EmployeeDto;
 import booking.service.BookingService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
@@ -55,7 +48,7 @@ public class BookingControllerBooking {
 	public ModelAndView openNewBooking(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("booking/bookingnew");
 		log.debug("-------------------------------");
-		List<TherapistDto> list = bookingService.selectTherapistList();
+		List<EmployeeDto> list = bookingService.selectTherapistList();
 		mv.addObject("list", list);
 		
 		return mv;
@@ -97,14 +90,13 @@ public class BookingControllerBooking {
 	public String insertBooking(BookingDto booking) throws Exception {
 		
 		log.debug("----insertBooking----");
-		log.debug("booking: " + booking.getStartTime());
-		log.debug(booking.getEmpNo());
+		log.debug(booking.getEmpId());
 		
 		Date dateNow = new Date();
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyMMddHHmmssSSS");
 		String stringNow = transFormat.format(dateNow);
-		booking.setBookingNo(stringNow);
-		
+		booking.setBookingId(123L);
+
 		bookingService.insertBooking(booking);
 		return "redirect:/booking/openUserBookingList.do";
 	}
@@ -120,7 +112,7 @@ public class BookingControllerBooking {
 		ModelAndView mv = new ModelAndView("booking/bookingdetail");
 		
 		BookingDto list = bookingService.bookingDetail(bookingNo);
-		TherapistDto th = bookingService.bookingTherapist(list.getEmpNo());
+		EmployeeDto th = bookingService.bookingTherapist(list.getEmpId());
 		
 		mv.addObject("list", list);
 		mv.addObject("th", th);
@@ -132,7 +124,7 @@ public class BookingControllerBooking {
 	public ModelAndView detailNewBooking(HttpServletRequest request) throws Exception {
 		log.debug("-----therapist----");
 		ModelAndView mv = new ModelAndView("jsonView");
-		List<TherapistDto> list = bookingService.selectTherapistList();
+		List<EmployeeDto> list = bookingService.selectTherapistList();
 		mv.addObject("list", list);
 		
 		return mv;

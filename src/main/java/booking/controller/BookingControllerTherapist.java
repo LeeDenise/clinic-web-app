@@ -1,25 +1,14 @@
 package booking.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import booking.dto.BookingDto;
-import booking.dto.ClientDto;
-import booking.dto.TherapistDto;
+import booking.dto.EmployeeDto;
 import booking.service.BookingService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
@@ -36,25 +25,25 @@ public class BookingControllerTherapist {
 	public ModelAndView openTherapistList() throws Exception {
 		ModelAndView mv = new ModelAndView("booking/therapistlist");
 		
-		List<TherapistDto> list = bookingService.openTherapistList();
+		List<EmployeeDto> list = bookingService.openTherapistList();
 		mv.addObject("list", list);
 		
 		return mv;
 	}
 	
 	@RequestMapping("/booking/therapistSignUp.do")
-	public String therapistSignUp() throws Exception {
+	public String therapistSignUp() {
 		return "/booking/therapistsignup";
 	}
 	
 	@RequestMapping("/booking/insertTherapist.do")
-	public String insertTherapist(TherapistDto therapist) throws Exception {
+	public String insertTherapist(EmployeeDto therapist) throws Exception {
 		bookingService.insertTherapist(therapist);
 		return "redirect:/booking/openTherapistList.do";
 	}
 	
 	@RequestMapping("/booking/updateTherapist.do")
-	public String updateTherapist(TherapistDto therapist) throws Exception {
+	public String updateTherapist(EmployeeDto therapist) throws Exception {
 		bookingService.updateTherapist(therapist);
 		return "redirect:/booking/openTherapistList.do";
 	}
@@ -62,7 +51,7 @@ public class BookingControllerTherapist {
 	@RequestMapping("/booking/therapistDetail.do")
 	public ModelAndView therapistDetail(@RequestParam int empNo) throws Exception {
 		ModelAndView mv = new ModelAndView("/booking/therapistdetail");
-		TherapistDto therapist = bookingService.therapistDetail(empNo);
+		EmployeeDto therapist = bookingService.therapistDetail(empNo);
 		mv.addObject("list", therapist);
 		return mv;
 	}

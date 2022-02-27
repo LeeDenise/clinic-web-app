@@ -2,14 +2,13 @@ package booking.service;
 
 import java.util.List;
 
+import booking.dto.EmployeeDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import booking.controller.BookingController;
 import booking.dto.BookingDto;
 import booking.dto.BookingListDto;
 import booking.dto.ClientDto;
-import booking.dto.TherapistDto;
 import booking.mapper.BookingMapper;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,7 +31,7 @@ public class BookingServiceImpl implements BookingService {
 	private BookingMapper bookingMapper;
 	
 	@Override
-	public ClientDto test() throws Exception {
+	public List<ClientDto> test() throws Exception {
 		return bookingMapper.test();
 	}
 	
@@ -65,8 +64,8 @@ public class BookingServiceImpl implements BookingService {
 	
 
 	@Override
-	public TherapistDto bookingTherapist(String empNo) throws Exception {
-		TherapistDto therapist = bookingMapper.bookingTherapist(empNo);
+	public EmployeeDto bookingTherapist(String empNo) throws Exception {
+		EmployeeDto therapist = bookingMapper.bookingTherapist(empNo);
 		return therapist;
 	}
 
@@ -76,7 +75,7 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public List<TherapistDto> selectTherapistList() throws Exception {
+	public List<EmployeeDto> selectTherapistList() throws Exception {
 		return bookingMapper.selectTherapistList();
 	}
 
@@ -117,24 +116,24 @@ public class BookingServiceImpl implements BookingService {
 
 	// THERAPIST
 	@Override
-	public List<TherapistDto> openTherapistList() throws Exception {
+	public List<EmployeeDto> openTherapistList() throws Exception {
 		return bookingMapper.openTherapistList();
 	}
 
 	@Override
-	public void insertTherapist(TherapistDto therapist) throws Exception {
+	public void insertTherapist(EmployeeDto therapist) throws Exception {
 		bookingMapper.insertTherapist(therapist);
 		
 	}
 
 	@Override
-	public void updateTherapist(TherapistDto therapist) throws Exception {
+	public void updateTherapist(EmployeeDto therapist) throws Exception {
 		bookingMapper.updateTherapist(therapist);
 	}
 
 	@Override
-	public TherapistDto therapistDetail(int empNo) throws Exception {
-		TherapistDto therapist = bookingMapper.therapistDetail(empNo);
+	public EmployeeDto therapistDetail(int empNo) throws Exception {
+		EmployeeDto therapist = bookingMapper.therapistDetail(empNo);
 		return therapist;
 	}
 

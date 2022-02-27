@@ -34,7 +34,7 @@
 	
 	<!-- newBooking.do -->
 	<!-- selectTherapistList -->
-	<select id="selectTherapistList" resultType="booking.dto.TherapistDto">
+	<select id="selectTherapistList" resultType="booking.dto.EmployeeDto">
 		<![CDATA[
 			SELECT
 				first_name,
@@ -115,7 +115,7 @@
 		]]>
 	</select>
 	
-	<select id="bookingTherapist" parameterType="String" resultType="booking.dto.TherapistDto">
+	<select id="bookingTherapist" parameterType="String" resultType="booking.dto.EmployeeDto">
 		<![CDATA[
 			SELECT
 				first_name,
@@ -241,7 +241,7 @@
 	</delete>
 	
 	<!-- openTherapistList.do -->
-	<select id="openTherapistList" resultType="booking.dto.TherapistDto">
+	<select id="openTherapistList" resultType="booking.dto.EmployeeDto">
 		<![CDATA[
 			SELECT
 				emp_no, 
@@ -262,7 +262,7 @@
 	</select>
 	
 	<!-- insertTherapist.do -->
-	<insert id="insertTherapist" parameterType="booking.dto.TherapistDto">
+	<insert id="insertTherapist" parameterType="booking.dto.EmployeeDto">
 		<![CDATA[
 		INSERT INTO
 			therapist
@@ -278,7 +278,7 @@
 	
 	
 	<!-- therapistDetail.do -->
-	<select id="therapistDetail" parameterType="int" resultType="booking.dto.TherapistDto">
+	<select id="therapistDetail" parameterType="int" resultType="booking.dto.EmployeeDto">
 		<![CDATA[
 			SELECT
 				emp_no, 
@@ -300,7 +300,7 @@
 	</select>
 	
 	<!-- updateTherapist.do -->
-	<update id="updateTherapist" parameterType="booking.dto.TherapistDto">
+	<update id="updateTherapist" parameterType="booking.dto.EmployeeDto">
 		<![CDATA[
 			UPDATE
 				therapist
@@ -321,7 +321,7 @@
 	</update>
 	
 	<!-- deleteTherapist.do -->
-	<update id="deleteTherapist" parameterType="booking.dto.TherapistDto">
+	<update id="deleteTherapist" parameterType="booking.dto.EmployeeDto">
 		<![CDATA[
 			UPDATE
 				therapist

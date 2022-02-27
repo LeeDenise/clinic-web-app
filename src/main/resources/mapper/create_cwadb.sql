@@ -16,7 +16,6 @@ CREATE TABLE IF NOT EXISTS `cwadb`.`clients` (
     `first_name` VARCHAR(50) NOT NULL,
 	`last_name` VARCHAR(50) NOT NULL,
     `phone` VARCHAR(15) NULL DEFAULT NULL,
-    `booking_id` BIGINT NULL DEFAULT NULL,
     
     PRIMARY KEY (`client_id`))
 AUTO_INCREMENT = 1;
@@ -48,7 +47,6 @@ CREATE TABLE IF NOT EXISTS `cwadb`.`employees` (
     `pwd` VARCHAR(255) NOT NULL,
     `first_name` VARCHAR(50) NOT NULL,
 	`last_name` VARCHAR(50) NOT NULL,
-    `booking_id` BIGINT NULL DEFAULT NULL,
     
     PRIMARY KEY (`emp_id`))
 AUTO_INCREMENT = 1;

@@ -4,12 +4,10 @@ import lombok.Data;
 
 @Data
 public class BookingDto {
-	private String bookingNo;
-	private String startTime;
-	private String endTime;
-	private String regTime;
-	private String editTime;
+	private Long bookingId;
+	private String sessionStart;
+	private String sessionEnd;
 	private String status;
-	private String empNo;
+	private String empId;
 	private String clientId;
 }
