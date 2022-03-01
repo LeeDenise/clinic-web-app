@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,28 +53,15 @@
                         <a class="nav-link" href="#">How Can We Help?</a>
                     </li> 
                 </ul>
-            </div> 
+            </div>
 
-        <div class="ml-3">
-            <!-- logo -->
-            <a href="#" class="navbar-brand"><img src="/image/header-image.jpg " alt="" style="width: 50px"></a>
-        </div>
-
-        <div>
+        <div sec:authorize="isAnonymous()">
             <a class="btn btn-primary" href="/login" role="button">Login</a>
         </div>
 
-<!--        <form action="/login" method="POST" class="form-inline ml-auto">-->
-<!--          <input type="text" class="form-control mr-2" id="clientId" name="clientId" placeholder="Enter your ID.">-->
-<!--          <input type="password" class="form-control mr-2" id="clientPwd" name="clientPwd" placeholder="Enter your password.">-->
-<!--          <button type="submit" class="btn btn-success mr-2">Sign In</button>-->
-<!--          <button type="button" class="btn btn-danger" href="/booking/signUp.do">Sign Up</button>-->
-<!--        </form>-->
-<!--        -->
-<!--        <form action="/booking/logout.do" method="POST" class="form-inline ml-auto" th:unless="${session.clientId} == null">-->
-<!--          <label class="text-white mr-3" th:text="| WELCOME ${session.firstName} ${session.lastName} ! |"></label>-->
-<!--          <button type="submit" class="btn btn-info">Log Out</button>-->
-<!--        </form>-->
+        <div sec:authorize="isAuthenticated()">
+            <a class="btn btn-primary" href="/logout" role="button">Logout</a>
+        </div>
     </nav>
 
     <!-- header -->
