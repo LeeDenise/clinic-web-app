@@ -36,7 +36,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
+                .csrf().disable() //Will use JWT so it can be disabled.
                 .authorizeRequests()
                 .antMatchers("/css/*", "/js/*", "/image/*").permitAll()
                 .antMatchers("/", "/booking/home", "/login").permitAll()
@@ -62,35 +62,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login");
 
     }
-
-
-//            http
-//                    .csrf().disable()
-//                .authorizeRequests()
-//                .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
-//                .antMatchers("/api/**").hasRole(STUDENT.name())
-//            .anyRequest()
-//                .authenticated()
-//                .and()
-//                .formLogin()
-//                    .loginPage("/login")
-//                    .permitAll()
-//                    .defaultSuccessUrl("/courses", true)
-//                    .passwordParameter("password")
-//                    .usernameParameter("username")
-//                .and()
-//                .rememberMe()
-//                    .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21))
-//            .key("somethingverysecured")
-//                    .rememberMeParameter("remember-me")
-//                .and()
-//                .logout()
-//                    .logoutUrl("/logout")
-//                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")) // https://docs.spring.io/spring-security/site/docs/4.2.12.RELEASE/apidocs/org/springframework/security/config/annotation/web/configurers/LogoutConfigurer.html
-//            .clearAuthentication(true)
-//                    .invalidateHttpSession(true)
-//                    .deleteCookies("JSESSIONID", "remember-me")
-//                    .logoutSuccessUrl("/login");
 
 //    @Override
 //    @Bean
