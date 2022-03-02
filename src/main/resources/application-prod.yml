@@ -1,0 +1,13 @@
+logging:
+  level:
+    root: warn
+    booking: info
+  logback:
+    rollingpolicy:
+      max-history: 7
+  file:
+    path: /home/ec2-user/api/log
+spring:
+  config:
+    activate:
+      on-profile: prod

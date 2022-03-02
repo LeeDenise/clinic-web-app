@@ -1,0 +1,8 @@
+logging:
+  level:
+    root: warn
+    booking: debug
+spring:
+  config:
+    activate:
+      on-profile: dev
