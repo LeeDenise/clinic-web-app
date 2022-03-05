@@ -16,7 +16,6 @@ import booking.mapper.BookingMapper;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Service
 @AllArgsConstructor
 public class BookingServiceImpl implements BookingService {
@@ -31,7 +30,6 @@ public class BookingServiceImpl implements BookingService {
 
 	@Override
 	public List<BookingDto> selectBookingTime(int empNo, String selStartTime, String selEndTime) throws Exception {
-		log.debug("--------service selectBookingTime 111");
 		return bookingMapper.selectBookingTime(empNo, selStartTime, selEndTime);
 	}
 	
@@ -100,8 +98,6 @@ public class BookingServiceImpl implements BookingService {
 
 	@Override
 	public ClientDto clientDetail(int clientNo) throws Exception {
-		log.debug("--------------service----------------");
-		log.debug(Integer.toString(clientNo));
 		return clientMapper.clientDetail(clientNo);
 	}
 

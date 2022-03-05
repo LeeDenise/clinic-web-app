@@ -30,14 +30,9 @@ public class BookingController {
 	
 	@RequestMapping("/booking/openUserBookingList.do")
 	public ModelAndView openUserBookingList(HttpServletRequest request) throws Exception {
-		
-		log.debug("----openUserBookingList.do----");
 		ModelAndView mv = new ModelAndView("booking/bookinglistuser");
-		
 		HttpSession session = request.getSession();
-		
 		List<BookingListDto> list = bookingService.openUserBookingList((String)session.getAttribute("clientId"));
-
 		mv.addObject("list", list);
 		
 		return mv;

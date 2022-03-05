@@ -34,7 +34,6 @@ public class TemplateController {
 		return mv;
 	}
 	
-	// HOME
 	@RequestMapping("/booking/home")
 	public String home() throws Exception {
 		return "/booking/home";
