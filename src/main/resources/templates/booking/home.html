@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Barunmom Rehabilitation Medicine</title>
+
+<!--    favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="../../static/image/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../static/image/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../static/image/favicon_io/favicon-16x16.png">
     
     <!-- font awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
@@ -46,22 +51,28 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav">
                         <!--left aligned navbar-->
-                        <!--<ul class="navbar-nav me-auto mb-2 mb-md-0">-->
-                        <!--                            <li class="nav-item">-->
-                        <!--                                <a class="nav-link" href="#picLinks">Testing</a>-->
-                        <!--                            </li>-->
                         <li class="nav-item">
                             <a class="nav-link" >About Us</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" >Contact Us</a>
                         </li>
+
                         <div sec:authorize="isAnonymous()">
-                            <a class="nav-link" href="/login" role="button">Login</a>
+                            <a class="nav-link" href="/login" role="button">Sign in</a>
                         </div>
-                        <div sec:authorize="isAuthenticated()">
-                            <a class="nav-link" href="/logout" role="button">Logout</a>
-                        </div>
+
+                        <li class="nav-item dropdown">
+                            <div sec:authorize="isAuthenticated()">
+                                <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">#username</a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdown03">
+                                    <li><a class="dropdown-item" href="#">My appointments</a></li>
+                                    <li><a class="dropdown-item" href="#">My profile</a></li>
+                                    <li><a class="dropdown-item" href="/logout" role="button">Sign out</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
                     </ul>
                 </div>
             </div>
