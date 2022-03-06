@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
 public class ClientController {
 	
@@ -24,27 +23,14 @@ public class ClientController {
 	@RequestMapping("/booking/openClientList.do")
 	public ModelAndView openClientList() throws Exception {
 		ModelAndView mv = new ModelAndView("booking/clientlist");
-		
-		log.debug("------1111-------");
 		List<ClientDto> list = bookingService.getAllClients();
-		log.debug("------2222-------");
 		mv.addObject("list", list);
 		
 		return mv;
 	}
 	
-	@RequestMapping("/booking/clientSignUp.do")
-	public String signUp() throws Exception {
-		return "/booking/clientsignup";
-	}
-	
 	@RequestMapping("/booking/insertClient.do")
 	public String insertClient(ClientDto client) throws Exception {
-		
-		//log.debug("-------openInsert.do----");
-		//log.debug(Integer.toString(board2.getNum()));
-		//log.debug("-------openInsert.do----");
-
 		bookingService.insertClient(client);
 		return "redirect:/booking/openClientList.do";
 	}
