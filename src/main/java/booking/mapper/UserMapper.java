@@ -9,8 +9,7 @@ import java.util.Optional;
 
 @Mapper
 public interface UserMapper {
-    List<SecurityUser> getAllClients() throws Exception;
-
+    List<UserDto> selectAllUsers() throws Exception;
     Optional<UserDto> selectUserByUserId(String email);
     void insertClient(UserDto client);
     void updateClient(SecurityUser client) throws Exception;
