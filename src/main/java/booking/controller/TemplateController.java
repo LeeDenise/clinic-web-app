@@ -1,13 +1,12 @@
 package booking.controller;
 
-import booking.dto.ClientDto;
+import booking.models.SecurityUser;
 import booking.service.BookingService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +28,7 @@ public class TemplateController {
 	@RequestMapping("/booking/test")
 	public ModelAndView openTest() throws Exception {
 		ModelAndView mv = new ModelAndView("/booking/test");
-		List<ClientDto> clients = bookingService.getAllClients();
+		List<SecurityUser> clients = bookingService.getAllClients();
 		mv.addObject("lists", clients);
 		return mv;
 	}

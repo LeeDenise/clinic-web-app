@@ -2,13 +2,12 @@ package booking.mapper;
 
 import java.util.List;
 
-import booking.dto.EmployeeDto;
+import booking.models.EmployeeDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import booking.dto.BookingDto;
-import booking.dto.BookingListDto;
-import booking.dto.ClientDto;
+import booking.models.BookingDto;
+import booking.models.BookingListDto;
 
 @Mapper
 public interface BookingMapper {

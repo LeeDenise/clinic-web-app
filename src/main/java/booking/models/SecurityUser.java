@@ -1,52 +1,61 @@
-package booking.dto;
+package booking.models;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
-public class ClientDto implements UserDetails {
+public class SecurityUser implements UserDetails {
 	private Long clientId;
 	private String email;
-	private String pwd;
+	private String password;
+	private Set<SimpleGrantedAuthority> grantedAuthorities;
 	private String firstName;
 	private String lastName;
 	private String phone;
 
+	public void setAuthorities(String role) {
+		grantedAuthorities = new HashSet<SimpleGrantedAuthority>();
+		grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + role));
+	}
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
+		return grantedAuthorities;
 	}
 
 	@Override
 	public String getPassword() {
-		return null;
+		return this.password;
 	}
 
 	@Override
 	public String getUsername() {
-		return null;
+		return this.email;
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		return false;
+		return true;
 	}
 }

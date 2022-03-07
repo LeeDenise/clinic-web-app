@@ -5,7 +5,7 @@
 <mapper namespace="booking.mapper.EmployeeMapper">
 
     <!-- openTherapistList.do -->
-    <select id="openTherapistList" resultType="booking.dto.EmployeeDto">
+    <select id="openTherapistList" resultType="booking.models.EmployeeDto">
 		<![CDATA[
         SELECT
             emp_no,
@@ -26,7 +26,7 @@
 	</select>
 
     <!-- insertTherapist.do -->
-    <insert id="insertTherapist" parameterType="booking.dto.EmployeeDto">
+    <insert id="insertTherapist" parameterType="booking.models.EmployeeDto">
 		<![CDATA[
         INSERT INTO
             therapist
@@ -42,7 +42,7 @@
 
 
     <!-- therapistDetail.do -->
-    <select id="therapistDetail" parameterType="int" resultType="booking.dto.EmployeeDto">
+    <select id="therapistDetail" parameterType="int" resultType="booking.models.EmployeeDto">
 		<![CDATA[
         SELECT
             emp_no,
@@ -64,7 +64,7 @@
 	</select>
 
     <!-- updateTherapist.do -->
-    <update id="updateTherapist" parameterType="booking.dto.EmployeeDto">
+    <update id="updateTherapist" parameterType="booking.models.EmployeeDto">
 		<![CDATA[
         UPDATE
             therapist
@@ -85,7 +85,7 @@
 	</update>
 
     <!-- deleteTherapist.do -->
-    <update id="deleteTherapist" parameterType="booking.dto.EmployeeDto">
+    <update id="deleteTherapist" parameterType="booking.models.EmployeeDto">
 		<![CDATA[
         UPDATE
             therapist
@@ -96,7 +96,7 @@
         ]]>
 	</update>
 
-    <select id="selectUserInfoYN" resultType="booking.dto.ClientDto">
+    <select id="selectUserInfoYN" resultType="booking.models.SecurityUser">
 		<![CDATA[
         SELECT
             client_id, first_name, last_name, phone, email

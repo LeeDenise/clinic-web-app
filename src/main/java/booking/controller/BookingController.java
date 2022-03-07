@@ -7,9 +7,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import booking.dto.BookingDto;
-import booking.dto.BookingListDto;
-import booking.dto.EmployeeDto;
+import booking.models.BookingDto;
+import booking.models.BookingListDto;
+import booking.models.EmployeeDto;
 import booking.service.BookingService;
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,17 +2,16 @@ package booking.service;
 
 import java.util.List;
 
-import booking.dto.BookingDto;
-import booking.dto.BookingListDto;
-import booking.dto.ClientDto;
-import booking.dto.EmployeeDto;
+import booking.models.BookingDto;
+import booking.models.BookingListDto;
+import booking.models.SecurityUser;
+import booking.models.EmployeeDto;
 
 public interface BookingService {
 	// CLIENT
-	List<ClientDto> getAllClients() throws Exception;
-	void insertClient(ClientDto client) throws Exception;
-	void updateClient(ClientDto client) throws Exception;
-	ClientDto clientDetail(int clientNo) throws Exception;
+	List<SecurityUser> getAllClients() throws Exception;
+	void updateClient(SecurityUser client) throws Exception;
+	SecurityUser clientDetail(int clientNo) throws Exception;
 	void deleteClient(int clientNo) throws Exception;
 	
 	// THERAPIST
