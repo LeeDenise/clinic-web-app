@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,6 +20,10 @@ public class UserService implements UserDetailsService {
 
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
+
+    public List<UserDto> selectAllUsers() throws Exception {
+        return userMapper.selectAllUsers();
+    }
 
     public void insertUser(UserDto userDto){
         // TODO: add a logic to separate client and admin & change it to builder pattern.

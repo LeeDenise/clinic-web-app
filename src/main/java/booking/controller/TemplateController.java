@@ -1,8 +1,10 @@
 package booking.controller;
 
 import booking.models.SecurityUser;
+import booking.models.UserDto;
 import booking.service.BookingService;
 
+import booking.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,27 +17,12 @@ import java.util.List;
 
 @Slf4j
 @Controller
+@RequestMapping("")
 public class TemplateController {
-	
-	@Autowired
-	private BookingService bookingService;
 
-	@GetMapping("/login")
-	public String login() throws Exception {
-		return "/login";
-	}
-
-	@RequestMapping("/booking/test")
-	public ModelAndView openTest() throws Exception {
-		ModelAndView mv = new ModelAndView("/booking/test");
-		List<SecurityUser> clients = bookingService.getAllClients();
-		mv.addObject("lists", clients);
-		return mv;
-	}
-	
-	@RequestMapping("/booking/home")
+	@RequestMapping("")
 	public String home() throws Exception {
-		return "/booking/home";
+		return "/home";
 	}
 	
 	// USER DASHBOARD

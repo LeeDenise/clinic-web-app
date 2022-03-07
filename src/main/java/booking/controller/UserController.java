@@ -8,13 +8,14 @@ import booking.service.BookingService;
 
 import booking.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
 	
 	@Autowired
@@ -23,20 +24,25 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping("/booking/openClientList")
-	public ModelAndView openClientList() throws Exception {
-		ModelAndView mv = new ModelAndView("admin/clientlist");
-		List<SecurityUser> list = bookingService.getAllClients();
+	@GetMapping("/login")
+	public String login() throws Exception {
+		return "/user/login";
+	}
+
+	@RequestMapping("/list")
+	public ModelAndView openUserList() throws Exception {
+		ModelAndView mv = new ModelAndView("/user/userlist");
+		List<UserDto> list = userService.selectAllUsers();
 		mv.addObject("list", list);
 		
 		return mv;
 	}
 	
-	@RequestMapping("/booking/insertUser")
+	@RequestMapping("/insert")
 	public String insertClient(UserDto userDto) throws Exception {
 		userService.insertUser(userDto);
-		return "success!";
-//		return "redirect:/booking/openClientList";
+		return "redirect:/user/list";
+
 	}
 	
 	@RequestMapping("/booking/updateClient")

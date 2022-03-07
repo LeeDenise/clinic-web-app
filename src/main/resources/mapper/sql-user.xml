@@ -4,14 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="booking.mapper.UserMapper">
 
-    <select id="getAllClients" resultType="booking.models.UserDto">
+    <select id="selectAllUsers" resultType="booking.models.UserDto">
         SELECT
             user_id,
             email,
             first_name,
             last_name,
             phone,
-            authorities
+            role
         FROM
             users
 	</select>

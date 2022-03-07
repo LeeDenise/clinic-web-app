@@ -77,12 +77,6 @@ public class BookingServiceImpl implements BookingService {
 	public void cancelBooking(String bookingNo) throws Exception {
 		bookingMapper.cancelBooking(bookingNo);
 	}
-	
-	// CLIENT
-	@Override
-	public List<SecurityUser> getAllClients() throws Exception {
-		return clientMapper.getAllClients();
-	}
 
 	@Override
 	public void updateClient(SecurityUser client) throws Exception {
