@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Barunmom Rehabilitation Medicine</title>
+
+<!--    favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="../../static/image/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../static/image/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../static/image/favicon_io/favicon-16x16.png">
     
     <!-- font awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
@@ -23,48 +28,98 @@
 	
 	<!-- Custom styles for this template -->
 	<link th:href="@{/css/home.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../static/css/home.css">
 
+    <!-- bootstrap cdn -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<!--        refreshing-->
+    <script>
+        history.scrollRestoration = 'manual';
+    </script>
 </head>
 <body>
 
     <!-- navbar -->
-    <nav class="navbar bg-dark navbar-dark">
-            <!-- Toggler/collapsibe Button -->
-            <button class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <!-- Navbar links -->
-            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">My Appointment</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Make an appointment now</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Doctors</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Therapists</a>
-                    </li> 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">How Can We Help?</a>
-                    </li> 
-                </ul>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container-fluid justify-content-md-center">
+                <a class="navbar-brand" href="#">Clinic Web App</a>
+                <!-- Toggler/collapsibe Button -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav">
+                        <!--left aligned navbar-->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#services">About us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact-us">Contact us</a>
+                        </li>
+
+                        <div sec:authorize="isAnonymous()">
+                            <a class="nav-link" href="/login" role="button">Sign in</a>
+                        </div>
+
+                        <li class="nav-item dropdown">
+                            <div sec:authorize="isAuthenticated()">
+                                <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">#username</a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdown03">
+                                    <li><a class="dropdown-item" href="#">My appointments</a></li>
+                                    <li><a class="dropdown-item" href="#">My profile</a></li>
+                                    <li><a class="dropdown-item" href="/logout" role="button">Sign out</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
             </div>
+        </nav>
+    </header>
 
-        <div sec:authorize="isAnonymous()">
-            <a class="btn btn-primary" href="/login" role="button">Login</a>
-        </div>
+<!--    <nav class="navbar bg-dark navbar-dark">-->
 
-        <div sec:authorize="isAuthenticated()">
-            <a class="btn btn-primary" href="/logout" role="button">Logout</a>
-        </div>
-    </nav>
+<!--            <button class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">-->
+<!--                <span class="navbar-toggler-icon"></span>-->
+<!--            </button>-->
+<!--            -->
+<!--            &lt;!&ndash; Navbar links &ndash;&gt;-->
+<!--            <div class="collapse navbar-collapse" id="collapsibleNavbar">-->
+<!--                <ul class="navbar-nav">-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="#">My Appointment</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="#">Make an appointment now</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="#">Doctors</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="#">Therapists</a>-->
+<!--                    </li> -->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="#">How Can We Help?</a>-->
+<!--                    </li> -->
+<!--                </ul>-->
+<!--            </div>-->
 
-    <!-- header -->
+<!--        <div sec:authorize="isAnonymous()">-->
+<!--            <a class="btn btn-primary" href="/login" role="button">Login</a>-->
+<!--        </div>-->
+
+<!--        <div sec:authorize="isAuthenticated()">-->
+<!--            <a class="btn btn-primary" href="/logout" role="button">Logout</a>-->
+<!--        </div>-->
+<!--    </nav>-->
+
+    <!-- header & book now -->
     <header class="masterhead">
         <div class="container">
             <div class="intro-text">
@@ -80,7 +135,7 @@
         <div class="container">
             <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading text-uppercase">Services</h2>
+                <h2 class="section-heading text-uppercase">Why Barunmom Rehabilitation Medicine?</h2>
                 <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>
             </div>
@@ -113,17 +168,17 @@
         </div>
     </section>
         
-    <!-- Why Barunmom -->
-    <section class="bg-light page-section" id="portfolio">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading text-uppercase">Why Barunmom Rehabilitation Medicine?</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-                </div>
-            </div>
-        </div>
-    </section>
+<!--    &lt;!&ndash; Why Barunmom &ndash;&gt;-->
+<!--    <section class="bg-light page-section" id="portfolio">-->
+<!--        <div class="container">-->
+<!--            <div class="row">-->
+<!--                <div class="col-lg-12 text-center">-->
+<!--                    <h2 class="section-heading text-uppercase">Why Barunmom Rehabilitation Medicine?</h2>-->
+<!--                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
 
     <!-- Therapist -->
     <section class="bg-light page-section" id="portfolio">
@@ -142,7 +197,7 @@
                     <i class="fas fa-plus fa-3x"></i>
                   </div>
                 </div>
-                <img class="img-fluid" src="/image/jane3.jpg" alt="">
+                <img class="img-fluid" src="../../static/image/modal-cover/jane3.jpg" alt="">
               </a>
               <div class="portfolio-caption">
                 <h4>Jane Doe</h4>
@@ -156,7 +211,7 @@
                     <i class="fas fa-plus fa-3x"></i>
                   </div>
                 </div>
-                <img class="img-fluid" src="/image/brie2.jpg" alt="">
+                <img class="img-fluid" src="../../static/image/modal-cover/brie2.jpg" alt="">
               </a>
               <div class="portfolio-caption">
                 <h4>Brie Gibson</h4>
@@ -170,7 +225,7 @@
                     <i class="fas fa-plus fa-3x"></i>
                   </div>
                 </div>
-                <img class="img-fluid" src="/image/paul.jpg" alt="">
+                <img class="img-fluid" src="../../static/image/modal-cover/paul.jpg" alt="">
               </a>
               <div class="portfolio-caption">
                 <h4>Paul Onile</h4>
@@ -184,7 +239,7 @@
                     <i class="fas fa-plus fa-3x"></i>
                   </div>
                 </div>
-                <img class="img-fluid" src="/image/zola.jpg" alt="">
+                <img class="img-fluid" src="../../static/image/modal-cover/zola.jpg" alt="">
               </a>
               <div class="portfolio-caption">
                 <h4>Zola Bronson</h4>
@@ -198,7 +253,7 @@
                     <i class="fas fa-plus fa-3x"></i>
                   </div>
                 </div>
-                <img class="img-fluid" src="/image/david.jpg" alt="">
+                <img class="img-fluid" src="../../static/image/modal-cover/david.jpg" alt="">
               </a>
               <div class="portfolio-caption">
                 <h4>David McDevitt</h4>
@@ -212,7 +267,7 @@
                     <i class="fas fa-plus fa-3x"></i>
                   </div>
                 </div>
-                <img class="img-fluid" src="/image/christine.jpg" alt="">
+                <img class="img-fluid" src="../../static/image/modal-cover/christine.jpg" alt="">
               </a>
               <div class="portfolio-caption">
                 <h4>Christine Belle</h4>
@@ -269,7 +324,7 @@
       </section>
     
       <!-- Footer -->
-      <footer class="footer">
+      <footer class="footer" id="contact-us">
         <div class="container">
           <div class="row">
             <div class="col-md-4">
@@ -324,18 +379,14 @@
                 <div class="col-lg-8 mx-auto">
                   <div class="modal-body">
                     <!-- Project Details Go Here -->
-                    <h2 class="text-uppercase">Project Name</h2>
-                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                    <h2 class="text-uppercase">Jane Doe</h2>
+                    <p class="item-intro text-muted">Head Therapist</p>
                     <img class="img-fluid d-block mx-auto" src="img/portfolio/01-full.jpg" alt="">
-                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                    <p>Therapist bio goes here</p>
                     <ul class="list-inline">
-                      <li>Date: January 2017</li>
-                      <li>Client: Threads</li>
-                      <li>Category: Illustration</li>
+                      <li>Spoken Languages: English</li>
                     </ul>
-                    <button class="btn btn-primary" data-dismiss="modal" type="button">
-                      <i class="fas fa-times"></i>
-                      Close Project</button>
+                    <button class="btn btn-primary" data-dismiss="modal" type="button">Book Appointment</button>
                   </div>
                 </div>
               </div>
@@ -358,18 +409,14 @@
                 <div class="col-lg-8 mx-auto">
                   <div class="modal-body">
                     <!-- Project Details Go Here -->
-                    <h2 class="text-uppercase">Project Name</h2>
-                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                    <h2 class="text-uppercase">Brie Gibson</h2>
+                    <p class="item-intro text-muted">Therapist</p>
                     <img class="img-fluid d-block mx-auto" src="img/portfolio/02-full.jpg" alt="">
-                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                    <ul class="list-inline">
-                      <li>Date: January 2017</li>
-                      <li>Client: Explore</li>
-                      <li>Category: Graphic Design</li>
+                      <p>Therapist bio goes here</p>
+                      <ul class="list-inline">
+                        <li>Spoken Languages: English</li>
                     </ul>
-                    <button class="btn btn-primary" data-dismiss="modal" type="button">
-                      <i class="fas fa-times"></i>
-                      Close Project</button>
+                    <button class="btn btn-primary" data-dismiss="modal" type="button">Book Appointment</button>
                   </div>
                 </div>
               </div>
@@ -392,18 +439,14 @@
                 <div class="col-lg-8 mx-auto">
                   <div class="modal-body">
                     <!-- Project Details Go Here -->
-                    <h2 class="text-uppercase">Project Name</h2>
-                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                    <h2 class="text-uppercase">Paul Onile</h2>
+                    <p class="item-intro text-muted">Therapist</p>
                     <img class="img-fluid d-block mx-auto" src="img/portfolio/03-full.jpg" alt="">
-                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                    <ul class="list-inline">
-                      <li>Date: January 2017</li>
-                      <li>Client: Finish</li>
-                      <li>Category: Identity</li>
+                      <p>Therapist bio goes here</p>
+                      <ul class="list-inline">
+                        <li>Spoken Languages: English</li>
                     </ul>
-                    <button class="btn btn-primary" data-dismiss="modal" type="button">
-                      <i class="fas fa-times"></i>
-                      Close Project</button>
+                      <button class="btn btn-primary" data-dismiss="modal" type="button">Book Appointment</button>
                   </div>
                 </div>
               </div>
@@ -426,18 +469,14 @@
                 <div class="col-lg-8 mx-auto">
                   <div class="modal-body">
                     <!-- Project Details Go Here -->
-                    <h2 class="text-uppercase">Project Name</h2>
-                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                    <h2 class="text-uppercase">Zola Bronson</h2>
+                    <p class="item-intro text-muted">Therapist</p>
                     <img class="img-fluid d-block mx-auto" src="img/portfolio/04-full.jpg" alt="">
-                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                    <ul class="list-inline">
-                      <li>Date: January 2017</li>
-                      <li>Client: Lines</li>
-                      <li>Category: Branding</li>
+                      <p>Therapist bio goes here</p>
+                      <ul class="list-inline">
+                        <li>Spoken Languages: English</li>
                     </ul>
-                    <button class="btn btn-primary" data-dismiss="modal" type="button">
-                      <i class="fas fa-times"></i>
-                      Close Project</button>
+                      <button class="btn btn-primary" data-dismiss="modal" type="button">Book Appointment</button>
                   </div>
                 </div>
               </div>
@@ -460,18 +499,14 @@
                 <div class="col-lg-8 mx-auto">
                   <div class="modal-body">
                     <!-- Project Details Go Here -->
-                    <h2 class="text-uppercase">Project Name</h2>
-                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                    <h2 class="text-uppercase">David McDevitt</h2>
+                    <p class="item-intro text-muted">Therapist</p>
                     <img class="img-fluid d-block mx-auto" src="img/portfolio/05-full.jpg" alt="">
-                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                    <ul class="list-inline">
-                      <li>Date: January 2017</li>
-                      <li>Client: Southwest</li>
-                      <li>Category: Website Design</li>
+                      <p>Therapist bio goes here</p>
+                      <ul class="list-inline">
+                        <li>Spoken Languages: English</li>
                     </ul>
-                    <button class="btn btn-primary" data-dismiss="modal" type="button">
-                      <i class="fas fa-times"></i>
-                      Close Project</button>
+                      <button class="btn btn-primary" data-dismiss="modal" type="button">Book Appointment</button>
                   </div>
                 </div>
               </div>
@@ -494,18 +529,14 @@
                 <div class="col-lg-8 mx-auto">
                   <div class="modal-body">
                     <!-- Project Details Go Here -->
-                    <h2 class="text-uppercase">Project Name</h2>
-                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                    <h2 class="text-uppercase">Christine Belle</h2>
+                    <p class="item-intro text-muted">Therapist</p>
                     <img class="img-fluid d-block mx-auto" src="img/portfolio/06-full.jpg" alt="">
-                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                    <ul class="list-inline">
-                      <li>Date: January 2017</li>
-                      <li>Client: Window</li>
-                      <li>Category: Photography</li>
+                      <p>Therapist bio goes here</p>
+                      <ul class="list-inline">
+                        <li>Spoken Languages: English</li>
                     </ul>
-                    <button class="btn btn-primary" data-dismiss="modal" type="button">
-                      <i class="fas fa-times"></i>
-                      Close Project</button>
+                      <button class="btn btn-primary" data-dismiss="modal" type="button">Book Appointment</button>
                   </div>
                 </div>
               </div>
