@@ -1,6 +1,6 @@
 package booking.mapper;
 
-import booking.dto.EmployeeDto;
+import booking.models.EmployeeDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

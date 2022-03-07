@@ -2,7 +2,7 @@ package booking.controller;
 
 import java.util.List;
 
-import booking.dto.EmployeeDto;
+import booking.models.EmployeeDto;
 import booking.service.BookingService;
 
 import org.springframework.beans.factory.annotation.Autowired;

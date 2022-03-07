@@ -6,7 +6,7 @@
 <mapper namespace="booking.mapper.BookingMapper">
 
 	<!-- test.do -->
-	<select id="test" resultType="booking.dto.ClientDto">
+	<select id="test" resultType="booking.models.SecurityUser">
 		<![CDATA[
 			SELECT
 				client_no, 
@@ -36,7 +36,7 @@
 	
 	<!-- newBooking.do -->
 	<!-- selectTherapistList -->
-	<select id="selectTherapistList" resultType="booking.dto.EmployeeDto">
+	<select id="selectTherapistList" resultType="booking.models.EmployeeDto">
 		<![CDATA[
 			SELECT
 				first_name,
@@ -48,7 +48,7 @@
 	</select>
 	
 	<!-- selectBookingTherapist -->
-	<select id="selectTherapist" parameterType="int" resultType="booking.dto.BookingDto">
+	<select id="selectTherapist" parameterType="int" resultType="booking.models.BookingDto">
 		<![CDATA[
 			SELECT
 				start_time
@@ -65,7 +65,7 @@
 	</select>
 	
 	<!-- selectBookingTime -->
-	<select id="selectBookingTime" parameterType="map" resultType="booking.dto.BookingDto">
+	<select id="selectBookingTime" parameterType="map" resultType="booking.models.BookingDto">
 		<![CDATA[
 			SELECT
 				start_time
@@ -82,7 +82,7 @@
 	</select>
 	
 	<!-- insertBooking.do -->
-	<insert id="insertBooking" parameterType="booking.dto.BookingDto">
+	<insert id="insertBooking" parameterType="booking.models.BookingDto">
 		<![CDATA[
 		INSERT INTO
 			appointment (booking_no, emp_no, start_time, reg_time, client_id)
@@ -93,7 +93,7 @@
 		]]>
 	</insert>
 	
-	<select id="openUserBookingList" parameterType="String" resultType="booking.dto.BookingListDto">
+	<select id="openUserBookingList" parameterType="String" resultType="booking.models.BookingListDto">
 		<![CDATA[
 		SELECT a.booking_no as booking_no, a.emp_no as emp_no, a.start_time as start_time, b.first_name as first_name, b.last_name as last_name
 		FROM appointment as a
@@ -104,7 +104,7 @@
 		]]>
 	</select>
 	
-	<select id="bookingDetail" parameterType="String" resultType="booking.dto.BookingDto">
+	<select id="bookingDetail" parameterType="String" resultType="booking.models.BookingDto">
 		<![CDATA[
 			SELECT
 				booking_no, 
@@ -117,7 +117,7 @@
 		]]>
 	</select>
 	
-	<select id="bookingTherapist" parameterType="String" resultType="booking.dto.EmployeeDto">
+	<select id="bookingTherapist" parameterType="String" resultType="booking.models.EmployeeDto">
 		<![CDATA[
 			SELECT
 				first_name,
@@ -129,7 +129,7 @@
 		]]>
 	</select>
 	
-	<update id="updateBooking" parameterType="booking.dto.BookingDto">
+	<update id="updateBooking" parameterType="booking.models.BookingDto">
 		<![CDATA[
 			UPDATE
 				appointment
@@ -160,7 +160,7 @@
 	
 	
 	<!-- openClientList.do -->
-	<select id="selectClientList" resultType="booking.dto.ClientDto">
+	<select id="selectClientList" resultType="booking.models.SecurityUser">
 		<![CDATA[
 			SELECT
 				client_no, 
@@ -179,7 +179,7 @@
 	</select>
 	
 	<!-- insertClient.do -->
-	<insert id="insertClient" parameterType="booking.dto.ClientDto">
+	<insert id="insertClient" parameterType="booking.models.SecurityUser">
 		<![CDATA[
 		INSERT INTO
 			client (client_id, first_name, last_name, email, client_pwd, 
@@ -194,7 +194,7 @@
 	
 	
 	<!-- clientDetail.do -->
-	<select id="clientDetail" parameterType="int" resultType="booking.dto.ClientDto">
+	<select id="clientDetail" parameterType="int" resultType="booking.models.SecurityUser">
 		<![CDATA[
 			SELECT
 				client_no, 
@@ -214,7 +214,7 @@
 	</select>
 	
 	<!-- updateClient.do -->
-	<update id="updateClient" parameterType="booking.dto.ClientDto">
+	<update id="updateClient" parameterType="booking.models.SecurityUser">
 		<![CDATA[
 			UPDATE
 				client
@@ -243,7 +243,7 @@
 	</delete>
 	
 	<!-- openTherapistList.do -->
-	<select id="openTherapistList" resultType="booking.dto.EmployeeDto">
+	<select id="openTherapistList" resultType="booking.models.EmployeeDto">
 		<![CDATA[
 			SELECT
 				emp_no, 
@@ -264,7 +264,7 @@
 	</select>
 	
 	<!-- insertTherapist.do -->
-	<insert id="insertTherapist" parameterType="booking.dto.EmployeeDto">
+	<insert id="insertTherapist" parameterType="booking.models.EmployeeDto">
 		<![CDATA[
 		INSERT INTO
 			therapist
@@ -280,7 +280,7 @@
 	
 	
 	<!-- therapistDetail.do -->
-	<select id="therapistDetail" parameterType="int" resultType="booking.dto.EmployeeDto">
+	<select id="therapistDetail" parameterType="int" resultType="booking.models.EmployeeDto">
 		<![CDATA[
 			SELECT
 				emp_no, 
@@ -302,7 +302,7 @@
 	</select>
 	
 	<!-- updateTherapist.do -->
-	<update id="updateTherapist" parameterType="booking.dto.EmployeeDto">
+	<update id="updateTherapist" parameterType="booking.models.EmployeeDto">
 		<![CDATA[
 			UPDATE
 				therapist
@@ -323,7 +323,7 @@
 	</update>
 	
 	<!-- deleteTherapist.do -->
-	<update id="deleteTherapist" parameterType="booking.dto.EmployeeDto">
+	<update id="deleteTherapist" parameterType="booking.models.EmployeeDto">
 		<![CDATA[
 			UPDATE
 				therapist
@@ -334,7 +334,7 @@
 		]]>
 	</update>
 	
-	<select id="selectUserInfoYN" resultType="booking.dto.ClientDto">
+	<select id="selectUserInfoYN" resultType="booking.models.SecurityUser">
 		<![CDATA[
 			SELECT
 				client_id, first_name, last_name, phone, email

@@ -2,36 +2,53 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="booking.mapper.ClientMapper">
+<mapper namespace="booking.mapper.UserMapper">
 
-    <select id="getAllClients" resultType="booking.dto.ClientDto">
+    <select id="getAllClients" resultType="booking.models.UserDto">
         SELECT
-            client_id,
+            user_id,
             email,
             first_name,
             last_name,
-            phone
+            phone,
+            authorities
         FROM
-            clients
+            users
 	</select>
 
-    <!-- insertClient.do -->
-    <insert id="insertClient" parameterType="booking.dto.ClientDto">
-		<![CDATA[
-        INSERT INTO
-            client (client_id, first_name, last_name, email, client_pwd,
-                    phone, reg_date)
-        VALUES
-            (
-                #{clientId}, #{firstName}, #{lastName}, #{email},
-                #{clientPwd}, #{phone}, NOW()
-            )
-        ]]>
-	</insert>
+    <select id="selectUserByUserId" parameterType="String" resultType="booking.models.UserDto">
+        SELECT
+            user_id,
+            email,
+            password,
+            first_name,
+            last_name,
+            phone,
+            role
+        FROM
+            users
+        WHERE
+            email = #{email}
+    </select>
+
+    <insert id="insertClient" parameterType="booking.models.UserDto">
+        INSERT INTO users (password,
+                            email,
+                            first_name,
+                            last_name,
+                            phone,
+                            role)
+        VALUES (#{password},
+                #{email},
+                #{firstName},
+                #{lastName},
+                #{phone},
+                #{role})
+    </insert>
 
 
     <!-- clientDetail.do -->
-    <select id="clientDetail" parameterType="int" resultType="booking.dto.ClientDto">
+    <select id="clientDetail" parameterType="int" resultType="booking.models.SecurityUser">
 		<![CDATA[
         SELECT
             client_no,
@@ -51,7 +68,7 @@
 	</select>
 
     <!-- updateClient.do -->
-    <update id="updateClient" parameterType="booking.dto.ClientDto">
+    <update id="updateClient" parameterType="booking.models.SecurityUser">
 		<![CDATA[
         UPDATE
             client

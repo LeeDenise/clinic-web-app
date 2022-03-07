@@ -5,7 +5,7 @@
 <mapper namespace="booking.mapper.BookingMapper">
 
 	<!-- test -->
-	<select id="test" resultType="booking.dto.ClientDto">
+	<select id="test" resultType="booking.models.SecurityUser">
 			SELECT
 				client_id,
 				email,
@@ -20,7 +20,7 @@
 	
 	<!-- newBooking.do -->
 	<!-- selectTherapistList -->
-	<select id="selectTherapistList" resultType="booking.dto.EmployeeDto">
+	<select id="selectTherapistList" resultType="booking.models.EmployeeDto">
 			SELECT
 				first_name,
 				last_name,
@@ -30,7 +30,7 @@
 	</select>
 	
 	<!-- selectBookingTherapist -->
-	<select id="selectTherapist" parameterType="int" resultType="booking.dto.BookingDto">
+	<select id="selectTherapist" parameterType="int" resultType="booking.models.BookingDto">
 			SELECT
 				start_time
 			FROM
@@ -45,7 +45,7 @@
 	</select>
 	
 	<!-- selectBookingTime -->
-	<select id="selectBookingTime" parameterType="map" resultType="booking.dto.BookingDto">
+	<select id="selectBookingTime" parameterType="map" resultType="booking.models.BookingDto">
 			SELECT
 				start_time
 			FROM
@@ -60,7 +60,7 @@
 	</select>
 	
 	<!-- insertBooking.do -->
-	<insert id="insertBooking" parameterType="booking.dto.BookingDto">
+	<insert id="insertBooking" parameterType="booking.models.BookingDto">
 		INSERT INTO
 			appointment (booking_no, emp_no, start_time, reg_time, client_id)
 		VALUES 
@@ -69,7 +69,7 @@
 			)
 	</insert>
 	
-	<select id="openUserBookingList" parameterType="String" resultType="booking.dto.BookingListDto">
+	<select id="openUserBookingList" parameterType="String" resultType="booking.models.BookingListDto">
 		SELECT a.booking_no as booking_no, a.emp_no as emp_no, a.start_time as start_time, b.first_name as first_name, b.last_name as last_name
 		FROM appointment as a
 		JOIN therapist as b
@@ -78,7 +78,7 @@
 		ORDER BY start_time DESC
 	</select>
 	
-	<select id="bookingDetail" parameterType="String" resultType="booking.dto.BookingDto">
+	<select id="bookingDetail" parameterType="String" resultType="booking.models.BookingDto">
 			SELECT
 				booking_no, 
 				emp_no, 
@@ -89,7 +89,7 @@
 				booking_no = #{bookingNo}
 	</select>
 	
-	<select id="bookingTherapist" parameterType="String" resultType="booking.dto.EmployeeDto">
+	<select id="bookingTherapist" parameterType="String" resultType="booking.models.EmployeeDto">
 			SELECT
 				first_name,
 				last_name
@@ -99,7 +99,7 @@
 				emp_no = #{empNo}
 	</select>
 	
-	<update id="updateBooking" parameterType="booking.dto.BookingDto">
+	<update id="updateBooking" parameterType="booking.models.BookingDto">
 			UPDATE
 				appointment
 			SET

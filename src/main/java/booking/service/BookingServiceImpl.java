@@ -2,19 +2,17 @@ package booking.service;
 
 import java.util.List;
 
-import booking.dto.EmployeeDto;
-import booking.mapper.ClientMapper;
+import booking.models.EmployeeDto;
+import booking.mapper.UserMapper;
 import booking.mapper.EmployeeMapper;
+import booking.models.SecurityUser;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import booking.dto.BookingDto;
-import booking.dto.BookingListDto;
-import booking.dto.ClientDto;
+import booking.models.BookingDto;
+import booking.models.BookingListDto;
 import booking.mapper.BookingMapper;
-
-import lombok.extern.slf4j.Slf4j;
 
 @Service
 @AllArgsConstructor
@@ -23,7 +21,7 @@ public class BookingServiceImpl implements BookingService {
 	private final BookingMapper bookingMapper;
 
 	@Autowired
-	private final ClientMapper clientMapper;
+	private final UserMapper clientMapper;
 
 	@Autowired
 	private final EmployeeMapper employeeMapper;
@@ -82,22 +80,17 @@ public class BookingServiceImpl implements BookingService {
 	
 	// CLIENT
 	@Override
-	public List<ClientDto> getAllClients() throws Exception {
+	public List<SecurityUser> getAllClients() throws Exception {
 		return clientMapper.getAllClients();
 	}
 
 	@Override
-	public void insertClient(ClientDto client) throws Exception {
-		clientMapper.insertClient(client);
-	}
-
-	@Override
-	public void updateClient(ClientDto client) throws Exception {
+	public void updateClient(SecurityUser client) throws Exception {
 		clientMapper.updateClient(client);
 	}
 
 	@Override
-	public ClientDto clientDetail(int clientNo) throws Exception {
+	public SecurityUser clientDetail(int clientNo) throws Exception {
 		return clientMapper.clientDetail(clientNo);
 	}
 

@@ -1,4 +1,4 @@
-package booking.dto;
+package booking.models;
 
 import lombok.Data;
 
