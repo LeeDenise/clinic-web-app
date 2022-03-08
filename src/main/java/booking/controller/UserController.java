@@ -2,14 +2,14 @@ package booking.controller;
 
 import java.util.List;
 
-import booking.models.SecurityUser;
-import booking.models.UserDto;
+import booking.models.*;
 import booking.service.BookingService;
 
 import booking.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,11 +39,24 @@ public class UserController {
 		return "redirect:/user/list";
 
 	}
+
+	@RequestMapping("/profile")
+	public ModelAndView openMyProfile() throws Exception {
+		ModelAndView mv = new ModelAndView("/user/profile");
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String currentPrincipalEmail = authentication.getName();
+
+		UserDto loggedInUser = userService.selectUserByUserEmail(currentPrincipalEmail).orElseThrow(Exception::new);
+		mv.addObject("userInfo", loggedInUser);
+
+		return mv;
+	}
 	
-	@RequestMapping("/booking/updateClient")
-	public String updateClient(SecurityUser client) throws Exception {
-		bookingService.updateClient(client);
-		return "redirect:/booking/openClientList";
+	@RequestMapping("/update")
+	public String updateMyProfile(UpdateUserDto updateUserDto) throws Exception {
+		userService.updateUser(updateUserDto);
+		return "redirect:/user/profile";
 	}
 	
 	@RequestMapping("/booking/clientDetail")

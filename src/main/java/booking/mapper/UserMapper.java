@@ -1,6 +1,6 @@
 package booking.mapper;
 
-import booking.models.SecurityUser;
+import booking.models.*;
 import booking.models.UserDto;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -11,8 +11,8 @@ import java.util.Optional;
 public interface UserMapper {
     List<UserDto> selectAllUsers() throws Exception;
     Optional<UserDto> selectUserByUserId(String email);
-    void insertClient(UserDto client);
-    void updateClient(SecurityUser client) throws Exception;
+    void insertUser(UserDto userDto);
+    void updateUser(UpdateUserDto updateUserDto) throws Exception;
     SecurityUser clientDetail(int clientNo) throws Exception;
     void deleteClient(int clientNo) throws Exception;
 }

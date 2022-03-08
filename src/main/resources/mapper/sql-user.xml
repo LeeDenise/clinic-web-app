@@ -31,7 +31,7 @@
             email = #{email}
     </select>
 
-    <insert id="insertClient" parameterType="booking.models.UserDto">
+    <insert id="insertUser" parameterType="booking.models.UserDto">
         INSERT INTO users (password,
                             email,
                             first_name,
@@ -67,23 +67,16 @@
         ]]>
 	</select>
 
-    <!-- updateClient.do -->
-    <update id="updateClient" parameterType="booking.models.SecurityUser">
-		<![CDATA[
+    <update id="updateUser" parameterType="booking.models.UpdateUserDto">
         UPDATE
-            client
+            users
         SET
-            client_no = #{clientNo},
-            client_id = #{clientId},
             first_name = #{firstName},
             last_name = #{lastName},
             email = #{email},
-            client_pwd = #{clientPwd},
-            phone = #{phone},
-            edit_date = NOW()
+            phone = #{phone}
         WHERE
-            client_no = #{clientNo}
-        ]]>
+            email = #{email}
 	</update>
 
     <!-- deleteClient.do -->

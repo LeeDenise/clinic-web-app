@@ -9,7 +9,6 @@ import booking.models.EmployeeDto;
 
 public interface BookingService {
 	// CLIENT
-	void updateClient(SecurityUser client) throws Exception;
 	SecurityUser clientDetail(int clientNo) throws Exception;
 	void deleteClient(int clientNo) throws Exception;
 	
