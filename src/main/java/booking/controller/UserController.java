@@ -24,11 +24,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@GetMapping("/login")
-	public String login() throws Exception {
-		return "/user/login";
-	}
-
 	@RequestMapping("/list")
 	public ModelAndView openUserList() throws Exception {
 		ModelAndView mv = new ModelAndView("/user/userlist");

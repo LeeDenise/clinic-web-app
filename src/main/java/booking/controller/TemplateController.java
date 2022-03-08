@@ -24,6 +24,16 @@ public class TemplateController {
 	public String home() throws Exception {
 		return "/home";
 	}
+
+	@GetMapping("/login")
+	public String login() throws Exception {
+		return "/user/login";
+	}
+
+	@GetMapping("/signup")
+	public String singup() throws Exception {
+		return "/user/clientsignup";
+	}
 	
 	// USER DASHBOARD
 	@RequestMapping("/booking/user")
