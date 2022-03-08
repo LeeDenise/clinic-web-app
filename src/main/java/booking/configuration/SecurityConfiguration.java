@@ -47,7 +47,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username")
                 .passwordParameter("password")
 //                .loginPage("/login")
-                .defaultSuccessUrl("/booking/home", true)
+                .defaultSuccessUrl("/", true)
                 .and()
                 .rememberMe()
                 .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21))
@@ -59,7 +59,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID", "remember-me")
-                .logoutSuccessUrl("/login");
+                .logoutSuccessUrl("/");
 
     }
 
