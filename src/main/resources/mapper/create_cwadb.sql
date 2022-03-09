@@ -62,3 +62,25 @@ ADD CONSTRAINT `fk_book_to_cli`
 ADD	CONSTRAINT `fk_book_to_emp`
 		FOREIGN KEY (`emp_id`)
 		REFERENCES `cwadb`.`employees` (`emp_id`);
+
+-- -----------------------------------------------------
+-- Inserting employees
+-- -----------------------------------------------------
+
+INSERT INTO employees (email, first_name, last_name)
+VALUES ('jane.doe@clinic.ca', 'Jane', 'Doe');
+
+INSERT INTO employees (email, first_name, last_name)
+VALUES ('brie.gibson@clinic.ca', 'Brie', 'Gibson');
+
+INSERT INTO employees (email, first_name, last_name)
+VALUES ('paul.onile@clinic.ca', 'Paul', 'Onile');
+
+INSERT INTO employees (email, first_name, last_name)
+VALUES ('zola.bronson@clinic.ca', 'Zola', 'Bronson');
+
+INSERT INTO employees (email, first_name, last_name)
+VALUES ('david.mcdevitt@clinic.ca', 'David', 'McDevitt');
+
+INSERT INTO employees (email, first_name, last_name)
+VALUES ('christine.belle@clinic.ca', 'Christine', 'Belle');
