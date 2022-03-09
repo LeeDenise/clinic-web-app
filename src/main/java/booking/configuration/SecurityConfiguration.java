@@ -39,7 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrf().disable() //Will use JWT so it can be disabled.
                 .authorizeRequests()
                 .antMatchers("/css/*", "/js/*", "/image/*").permitAll()
-                .antMatchers("/", "/login","/signup").permitAll()
+                .antMatchers("/", "/login","/signup", "/user/insert").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
