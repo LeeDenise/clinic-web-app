@@ -36,6 +36,10 @@ public class UserService implements UserDetailsService {
         userMapper.updateUser(updateUserDto);
     }
 
+    public void deleteUser(long id) throws Exception {
+        userMapper.deleteUser(id);
+    }
+
 
     public Optional<UserDto> selectUserByUserEmail(String email) {
         return userMapper.selectUserByUserId(email);
