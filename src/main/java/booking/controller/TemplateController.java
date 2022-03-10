@@ -23,7 +23,7 @@ public class TemplateController {
 
 	@GetMapping("/signup")
 	public String singup() throws Exception {
-		return "signup";
+		return "/user/signup";
 	}
 	
 	// USER DASHBOARD
