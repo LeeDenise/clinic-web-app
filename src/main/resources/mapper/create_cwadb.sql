@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS `cwadb`.`users` ;
 
 CREATE TABLE IF NOT EXISTS `cwadb`.`users` (
 	`user_id` BIGINT NOT NULL AUTO_INCREMENT,
-    `email` VARCHAR(50) NOT NULL,
+    `email` VARCHAR(50) NOT NULL UNIQUE,
     `password` VARCHAR(255) NOT NULL,
     `first_name` VARCHAR(50) NOT NULL,
 	`last_name` VARCHAR(50) NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `cwadb`.`bookings` (
     `session_start` DATETIME NOT NULL,
     `session_end` DATETIME NOT NULL,
     `status` VARCHAR(10) NOT NULL,
-    `user_id` BIGINT NULL DEFAULT NULL,
+    `user_email` VARCHAR(50) NULL,
     `emp_id` BIGINT NULL DEFAULT NULL,
     
     PRIMARY KEY (`booking_id`))
@@ -55,10 +55,5 @@ AUTO_INCREMENT = 1;
 -- -----------------------------------------------------
 -- Adding constraints
 -- -----------------------------------------------------
-ALTER TABLE `cwadb`.`bookings`
-ADD CONSTRAINT `fk_book_to_cli`
-		FOREIGN KEY (`user_id`)
-		REFERENCES `cwadb`.`users` (`user_id`),
-ADD	CONSTRAINT `fk_book_to_emp`
-		FOREIGN KEY (`emp_id`)
-		REFERENCES `cwadb`.`employees` (`emp_id`);
+ALTER TABLE `cwadb`.`bookings` ADD CONSTRAINT `fk_book_to_cli` FOREIGN KEY (`user_email`) REFERENCES `cwadb`.`users` (`email`);
+ALTER TABLE `cwadb`.`bookings` ADD CONSTRAINT `fk_book_to_emp` FOREIGN KEY (`emp_id`) REFERENCES `cwadb`.`employees` (`emp_id`);
