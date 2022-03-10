@@ -26,48 +26,24 @@
 	
 	<script type="text/javascript">
 	$(document).ready(function() {
-// 		$("#t01").on("click", function() {
-// 		    $.ajax({
-// 		      type:"post",
-// 		      url:"/booking/newBooking.do",
-// 	//		      contentType: "application/json; charset=utf-8",
-// 	//		  data: {"key":"value"},
-// 		      dataType:"text",
-// 		      data: {"id":"asdfghj"},
-// 		      success:function(data){
-// 		      },
-// 		      error: function() {
-// 		    	  /* 일반적인 에러랑 좀 다른 개념이라서 잘 안씀 */
-// 		      }
-// 		    });
-// 		 });
-		
 		$("#seltherapist").on("change", function() {
 			var obj = {};
 			obj.empNo=$("#seltherapist>option:selected").val();
 			
-			//alert(obj.firstName + obj.lastName);
 			$.ajax({
 				type: "post",
 				url: "/booking/newBooking.do",
 				data: obj,
 				dataType:"json",
 				success: function(data) {
-					// alert(data)
-					
-					// 현재 날짜 및 시간 (1개월 느림)
 				    var toDate = new Date();
-				    // 현재 날짜에 맞도록 1개월 추가
 				    toDate = toDate.setMonth(toDate.getMonth() + 1);
 				    toDate = new Date(toDate);
 				    toDate = toDate.setDate(toDate.getDate() - 1);
-				    // 변경된 날짜를 기반으로 Date객체 새로 생성
 				    toDate = new Date(toDate);
 					
 					for(i=0; i<7; i++) {
-					    // 현재 날짜에 7일 추가
 					    toDate = toDate.setDate(toDate.getDate() + 1);
-					    // 7일 추가된 날짜를 기반으로 Date객체 새로 생성
 					    toDate = new Date(toDate);
 					    
 					    var days = toDate.getDay();
@@ -95,9 +71,6 @@
 						
 					    $("#seldate").append("<option>" + yyyy + "-" + mm + "-" + dd +"</option>");
 					}
-// 					obj.startTime = 현재 날짜부터 일주일동안 --> for문으로 append 해가지고 
-// 					currDate랑 비교해서 currDate들고 오고
-// 					currTime이랑 같은 것은 disabled
 				}
 			});
 // 			$.ajax({
@@ -214,9 +187,6 @@
 		});
 		
 	});
-	
-	// var i = 0;
-	// for 문으로 jQuery Add (w3school) 에 나온 태그 써서, size로 길이 읽기 
 	</script>
 </head>
 <body id="page-top">
@@ -341,20 +311,20 @@
                     
 							   <div class="form-label-group dropdown row">
 									<div class="col-sm-5">
-	                    				<label for="inputEmail">Select Therapist</label><br>
+	                    				<label>Select Therapist</label><br>
 									    <select class="form-control" id="seltherapist" name="empNo">
 									      <option selected="selected">Therapist</option>
 									      <option th:if="${#lists.size(list)} > 0" th:each="list : ${list}" th:text="|${list.firstName} ${list.lastName}|" th:value="${list.empNo}"></option>
 									    </select>
 									</div>
 									<div class="col-sm-4">
-	                    				<label for="inputEmail">Select Date</label><br>
+	                    				<label>Select Date</label><br>
 									    <select class="form-control" id="seldate" name="seldate">
 									    	<option selected="selected">Date</option>
 									    </select>
 									</div>
 									<div class="col-sm-3">
-	                    				<label for="inputEmail">Select Time</label><br>
+	                    				<label>Select Time</label><br>
 									    <select class="form-control" id="seltime" name="seltime">
 									    	<option selected="selected">Time</option>
 									    </select>

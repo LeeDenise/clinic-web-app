@@ -17,6 +17,10 @@ public class EmployeeService {
     @Autowired
     private final EmployeeMapper employeeMapper;
 
+    public List<EmployeeDto> selectTherapistList() throws Exception {
+        return employeeMapper.selectTherapistList();
+    }
+
     // THERAPIST
     public List<EmployeeDto> openTherapistList() throws Exception {
         return employeeMapper.openTherapistList();

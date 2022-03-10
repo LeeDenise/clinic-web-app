@@ -52,10 +52,6 @@ public class BookingService {
 		return bookingMapper.selectTherapist(empNo);
 	}
 
-	public List<EmployeeDto> selectTherapistList() throws Exception {
-		return bookingMapper.selectTherapistList();
-	}
-
 	public void cancelBooking(String bookingNo) throws Exception {
 		bookingMapper.cancelBooking(bookingNo);
 	}

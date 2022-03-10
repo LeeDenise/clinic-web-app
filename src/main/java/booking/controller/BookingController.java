@@ -11,6 +11,7 @@ import booking.models.BookingListDto;
 import booking.models.EmployeeDto;
 
 import booking.service.BookingService;
+import booking.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,6 +28,8 @@ public class BookingController {
 	
 	@Autowired
 	private BookingService bookingService;
+	@Autowired
+	private EmployeeService employeeService;
 	
 	@RequestMapping("/booking/openUserBookingList.do")
 	public ModelAndView openUserBookingList(HttpServletRequest request) throws Exception {
@@ -45,7 +48,7 @@ public class BookingController {
 	@RequestMapping(value="/booking/newBooking.do", method=RequestMethod.GET)
 	public ModelAndView openNewBooking(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("booking/newbooking");
-		List<EmployeeDto> list = bookingService.selectTherapistList();
+		List<EmployeeDto> list = employeeService.selectTherapistList();
 		mv.addObject("list", list);
 		
 		return mv;
@@ -69,7 +72,6 @@ public class BookingController {
 		mv.addObject("data", list);
 		
 		return mv;
-		
 	}
 	
 	@RequestMapping("/booking/insertBooking.do")
@@ -105,9 +107,10 @@ public class BookingController {
 	@RequestMapping(value="/booking/bookingDetail.do", method=RequestMethod.POST)
 	public ModelAndView detailNewBooking(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("jsonView");
-		List<EmployeeDto> list = bookingService.selectTherapistList();
+
+		List<EmployeeDto> list = employeeService.selectTherapistList();
 		mv.addObject("list", list);
-		
+
 		return mv;
 	}
 	

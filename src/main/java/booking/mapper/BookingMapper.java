@@ -21,7 +21,6 @@ public interface BookingMapper {
 	EmployeeDto bookingTherapist(@Param("empNo")String empNo) throws Exception;
 	void cancelBooking(@Param("bookingNo") String bookingNo) throws Exception;
 	List<BookingDto> selectTherapist(int empNo) throws Exception;
-	List<EmployeeDto> selectTherapistList() throws Exception;
 	List<BookingDto> selectBookingTime(@Param("empNo") int empNo, @Param("selStartTime") String selStartTime, @Param("selEndTime") String selEndTime) throws Exception;
 	
 }

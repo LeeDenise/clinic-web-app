@@ -7,6 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface EmployeeMapper {
+    List<EmployeeDto> selectTherapistList() throws Exception;
     List<EmployeeDto> openTherapistList() throws Exception;
     void insertTherapist(EmployeeDto therapist) throws Exception;
     void updateTherapist(EmployeeDto therapist) throws Exception;

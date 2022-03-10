@@ -3,31 +3,21 @@
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="booking.mapper.BookingMapper">
-
-	<!-- test -->
-	<select id="test" resultType="booking.models.SecurityUser">
-			SELECT
-				client_id,
-				email,
-				first_name,
-				last_name,
-				phone
-			FROM
-				clients
+	<select id="selectUserBookingList" parameterType="String" resultType="booking.models.BookingListDto">
+		SELECT booking.booking_id as booking_id,
+			   booking.emp_id as emp_id,
+			   booking.session_start as session_start,
+			   booking.session_end as session_end,
+			   employees.first_name as first_name,
+			   employees.last_name as last_name
+		FROM bookings as booking
+				 JOIN employees as employees
+					  ON booking.emp_id = employees.emp_id
+		WHERE booking.user_email = #{userEmail}
+		ORDER BY session_start DESC
 	</select>
-
-	<!-- BOOKING -->
 	
 	<!-- newBooking.do -->
-	<!-- selectTherapistList -->
-	<select id="selectTherapistList" resultType="booking.models.EmployeeDto">
-			SELECT
-				first_name,
-				last_name,
-				emp_no
-			FROM
-				therapist
-	</select>
 	
 	<!-- selectBookingTherapist -->
 	<select id="selectTherapist" parameterType="int" resultType="booking.models.BookingDto">
@@ -69,19 +59,7 @@
 			)
 	</insert>
 	
-	<select id="selectUserBookingList" parameterType="String" resultType="booking.models.BookingListDto">
-		SELECT booking.booking_id as booking_id,
-			   booking.emp_id as emp_id,
-			   booking.session_start as session_start,
-			   booking.session_end as session_end,
-			   employees.first_name as first_name,
-			   employees.last_name as last_name
-		FROM bookings as booking
-				 JOIN employees as employees
-					  ON booking.emp_id = employees.emp_id
-		WHERE booking.user_email = #{userEmail}
-		ORDER BY session_start DESC
-	</select>
+
 	
 	<select id="bookingDetail" parameterType="String" resultType="booking.models.BookingDto">
 			SELECT

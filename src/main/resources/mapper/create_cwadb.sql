@@ -57,3 +57,33 @@ AUTO_INCREMENT = 1;
 -- -----------------------------------------------------
 ALTER TABLE `cwadb`.`bookings` ADD CONSTRAINT `fk_book_to_cli` FOREIGN KEY (`user_email`) REFERENCES `cwadb`.`users` (`email`);
 ALTER TABLE `cwadb`.`bookings` ADD CONSTRAINT `fk_book_to_emp` FOREIGN KEY (`emp_id`) REFERENCES `cwadb`.`employees` (`emp_id`);
+
+
+-- -----------------------------------------------------
+-- Inserting employees
+-- -----------------------------------------------------
+
+INSERT INTO employees (email, first_name, last_name)
+VALUES ('jane.doe@clinic.ca', 'Jane', 'Doe');
+
+INSERT INTO employees (email, first_name, last_name)
+VALUES ('brie.gibson@clinic.ca', 'Brie', 'Gibson');
+
+INSERT INTO employees (email, first_name, last_name)
+VALUES ('paul.onile@clinic.ca', 'Paul', 'Onile');
+
+INSERT INTO employees (email, first_name, last_name)
+VALUES ('zola.bronson@clinic.ca', 'Zola', 'Bronson');
+
+INSERT INTO employees (email, first_name, last_name)
+VALUES ('david.mcdevitt@clinic.ca', 'David', 'McDevitt');
+
+INSERT INTO employees (email, first_name, last_name)
+VALUES ('christine.belle@clinic.ca', 'Christine', 'Belle');
+
+-- -----------------------------------------------------
+-- Inserting bookings
+-- -----------------------------------------------------
+
+INSERT INTO bookings (session_start, session_end, status, user_email, emp_id)
+VALUES (NOW()+1, NOW()+2, 'scheduled', 'john@test.com', 1);
