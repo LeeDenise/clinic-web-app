@@ -35,11 +35,11 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title text-center">Register</h5>
-                <form class="form-signin" method="POST" action="/booking/insertClient.do">
-                
-                	<div class="form-label-group">
-                        <input type="text" id="clientId" name="clientId" class="form-control" placeholder="ID" required>
-                        <label for="clientId">ID</label>
+                <form class="form-signin" method="post" action="user/insert">
+
+                    <div class="form-label-group">
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required>
+                        <label for="email">Email</label>
                     </div>
                     
                     <div class="form-label-group">
@@ -56,30 +56,22 @@
                         <input type="text" id="phone" name="phone" class="form-control" placeholder="Phone number" required autofocus>
                         <label for="phone">Phone</label>
                     </div>
-
-                    <div class="form-label-group">
-                        <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required>
-                        <label for="email">Email</label>
-                    </div>
                     
                     <hr>
         
                     <div class="form-label-group">
-                        <input type="password" id="clientPwd" name="clientPwd" class="form-control" placeholder="Password" required>
-                        <label for="clientPwd">Password</label>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                        <label for="password">Password</label>
                     </div>
                     
                     <div class="form-label-group">
-                        <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Password" required>
-                        <label for="inputConfirmPassword">Confirm password</label>
+                        <input type="password" id="ConfirmPassword" class="form-control" placeholder="ConfirmPassword" required>
+                        <label for="ConfirmPassword">Confirm password</label>
                     </div>
         
                     <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
-                    <p>Already have an account?</p>
-                    <a class="d-block text-center mt-2 small" href="#">Sign In</a>
-                    <hr class="my-4">
-                    <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign up with Google</button>
-                    <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign up with Facebook</button>
+                    <div class="mt-4 text-center text-muted">Already have an account?</div>
+                    <div class="text-center"><button class="btn btn-sm mt-2 btn-outline-secondary w-50 text-uppercase"><a href="/login">Sign in</a></button></div>
                 </form>
             </div>
             </div>

@@ -32,7 +32,7 @@ public class UserController {
 	@RequestMapping("/insert")
 	public String insertClient(UserDto userDto) throws Exception {
 		userService.insertUser(userDto);
-		return "redirect:/user/list";
+		return "redirect:/";
 
 	}
 
