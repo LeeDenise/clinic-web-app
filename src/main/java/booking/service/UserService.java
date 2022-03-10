@@ -26,6 +26,8 @@ public class UserService implements UserDetailsService {
 
     public void insertUser(UserDto userDto){
         // TODO: add a logic to separate client and admin & change it to builder pattern.
+        userDto.setRole("USER");
+        // TODO: confirm password
         userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
         userMapper.insertUser(userDto);
     }
