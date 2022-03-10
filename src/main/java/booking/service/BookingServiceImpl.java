@@ -79,11 +79,6 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public void updateClient(SecurityUser client) throws Exception {
-		clientMapper.updateClient(client);
-	}
-
-	@Override
 	public SecurityUser clientDetail(int clientNo) throws Exception {
 		return clientMapper.clientDetail(clientNo);
 	}

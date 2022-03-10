@@ -2,9 +2,8 @@ package booking.service;
 
 import booking.models.SecurityUser;
 import booking.mapper.UserMapper;
-import booking.models.UserDto;
+import booking.models.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,16 +27,21 @@ public class UserService implements UserDetailsService {
     public void insertUser(UserDto userDto){
         // TODO: add a logic to separate client and admin & change it to builder pattern.
         userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        userMapper.insertClient(userDto);
+        userMapper.insertUser(userDto);
     }
 
-    public Optional<UserDto> selectUserByUserId(String email) {
+    public void updateUser(UpdateUserDto updateUserDto) throws Exception {
+        userMapper.updateUser(updateUserDto);
+    }
+
+
+    public Optional<UserDto> selectUserByUserEmail(String email) {
         return userMapper.selectUserByUserId(email);
     }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return selectUserByUserId(email)
+        return selectUserByUserEmail(email)
                 .map(
                         userDto -> {
                             SecurityUser securityUser = new SecurityUser();
