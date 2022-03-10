@@ -3,8 +3,9 @@ package booking.controller;
 import java.util.List;
 
 import booking.models.EmployeeDto;
-import booking.service.BookingService;
 
+import booking.service.BookingService;
+import booking.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 public class EmployeeController {
 	
 	@Autowired
-	private BookingService bookingService;
+	private EmployeeService bookingService;
 	
 	
 	@RequestMapping("/booking/openTherapistList.do")

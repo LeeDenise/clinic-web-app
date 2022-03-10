@@ -69,13 +69,18 @@
 			)
 	</insert>
 	
-	<select id="openUserBookingList" parameterType="String" resultType="booking.models.BookingListDto">
-		SELECT a.booking_no as booking_no, a.emp_no as emp_no, a.start_time as start_time, b.first_name as first_name, b.last_name as last_name
-		FROM appointment as a
-		JOIN therapist as b
-		ON a.emp_no = b.emp_no
-		AND a.client_id = #{clientId}
-		ORDER BY start_time DESC
+	<select id="selectUserBookingList" parameterType="String" resultType="booking.models.BookingListDto">
+		SELECT booking.booking_id as booking_id,
+			   booking.emp_id as emp_id,
+			   booking.session_start as session_start,
+			   booking.session_end as session_end,
+			   employees.first_name as first_name,
+			   employees.last_name as last_name
+		FROM bookings as booking
+				 JOIN employees as employees
+					  ON booking.emp_id = employees.emp_id
+		WHERE booking.user_email = #{userEmail}
+		ORDER BY session_start DESC
 	</select>
 	
 	<select id="bookingDetail" parameterType="String" resultType="booking.models.BookingDto">

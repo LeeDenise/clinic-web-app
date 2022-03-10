@@ -3,7 +3,6 @@ package booking.controller;
 import java.util.List;
 
 import booking.models.*;
-import booking.service.BookingService;
 
 import booking.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-	
-	@Autowired
-	private BookingService bookingService;
 
 	@Autowired
 	private UserService userService;
@@ -59,17 +55,9 @@ public class UserController {
 		return "redirect:/user/profile";
 	}
 	
-	@RequestMapping("/booking/clientDetail")
-	public ModelAndView clientDetail(@RequestParam int clientNo) throws Exception {
-		ModelAndView mv = new ModelAndView("/booking/clientdetail");
-		SecurityUser client = bookingService.clientDetail(clientNo);
-		mv.addObject("list", client);
-		return mv;
-	}
-	
-	@RequestMapping("/booking/deleteClient")
-	public String deleteClient(@RequestParam int clientNo) throws Exception {
-		bookingService.deleteClient(clientNo);
-		return "redirect:/booking/openClientList";
-	}
+//	@RequestMapping("/booking/deleteClient")
+//	public String deleteClient(@RequestParam int clientNo) throws Exception {
+//		bookingService.deleteClient(clientNo);
+//		return "redirect:/booking/openClientList";
+//	}
 }

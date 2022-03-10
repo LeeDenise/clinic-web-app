@@ -2,17 +2,18 @@ package booking.mapper;
 
 import java.util.List;
 
+import booking.models.BookingListDto;
 import booking.models.EmployeeDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import booking.models.BookingDto;
-import booking.models.BookingListDto;
 
 @Mapper
 public interface BookingMapper {
 
-	List<BookingListDto> openUserBookingList(@Param("clientId") String clientId) throws Exception;
+	List<BookingListDto> selectUserBookingList(String userEmail) throws Exception;
+
 	List<BookingDto> openAdminBookingList() throws Exception;
 	void insertBooking(BookingDto booking) throws Exception;
 	void updateBooking(BookingDto booking) throws Exception;

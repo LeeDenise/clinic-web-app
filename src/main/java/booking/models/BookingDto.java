@@ -9,5 +9,5 @@ public class BookingDto {
 	private String sessionEnd;
 	private String status;
 	private String empId;
-	private String clientId;
+	private String userEmail;
 }

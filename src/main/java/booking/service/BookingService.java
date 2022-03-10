@@ -2,32 +2,63 @@ package booking.service;
 
 import java.util.List;
 
-import booking.models.BookingDto;
 import booking.models.BookingListDto;
-import booking.models.SecurityUser;
 import booking.models.EmployeeDto;
+import booking.mapper.UserMapper;
+import booking.mapper.EmployeeMapper;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public interface BookingService {
-	// CLIENT
-	SecurityUser clientDetail(int clientNo) throws Exception;
-	void deleteClient(int clientNo) throws Exception;
+import booking.models.BookingDto;
+import booking.mapper.BookingMapper;
+
+@Service
+@AllArgsConstructor
+public class BookingService {
+	@Autowired
+	private final BookingMapper bookingMapper;
+
+	public List<BookingListDto> selectUserBookingList(String currentPrincipalEmail) throws Exception {
+		return bookingMapper.selectUserBookingList(currentPrincipalEmail);
+	}
+
+
+	public List<BookingDto> selectBookingTime(int empNo, String selStartTime, String selEndTime) throws Exception {
+		return bookingMapper.selectBookingTime(empNo, selStartTime, selEndTime);
+	}
 	
-	// THERAPIST
-	List<EmployeeDto> openTherapistList() throws Exception;
-	void insertTherapist(EmployeeDto therapist) throws Exception;
-	void updateTherapist(EmployeeDto therapist) throws Exception;
-	EmployeeDto therapistDetail(int empNo) throws Exception;
-	void deleteTherapist(int empNo) throws Exception;
+	public List<BookingDto> openAdminBookingList() throws Exception {
+		return bookingMapper.openAdminBookingList();
+	}
 	
-	// BOOKING
-	List<BookingListDto> openUserBookingList(String clientId) throws Exception;
-	List<BookingDto> openAdminBookingList() throws Exception;
-	void insertBooking(BookingDto booking) throws Exception;
-	void updateBooking(BookingDto booking) throws Exception;
-	BookingDto bookingDetail(String bookingNo) throws Exception;
-	EmployeeDto bookingTherapist(String empNo) throws Exception;
-	void cancelBooking(String bookingNo) throws Exception;
-	List<BookingDto> selectTherapist(int empNo) throws Exception;
-	List<EmployeeDto> selectTherapistList() throws Exception;
-	List<BookingDto> selectBookingTime(int empNo, String selStartTime, String selEndTime) throws Exception;
+	public void insertBooking(BookingDto booking) throws Exception {
+		bookingMapper.insertBooking(booking);
+	}
+	
+	public void updateBooking(BookingDto booking) throws Exception {
+		bookingMapper.updateBooking(booking);
+	}
+	
+	public BookingDto bookingDetail(String bookingNo) throws Exception {
+		return bookingMapper.bookingDetail(bookingNo);
+	}
+
+	public EmployeeDto bookingTherapist(String empNo) throws Exception {
+		return bookingMapper.bookingTherapist(empNo);
+	}
+
+	public List<BookingDto> selectTherapist(int empNo) throws Exception {
+		return bookingMapper.selectTherapist(empNo);
+	}
+
+	public List<EmployeeDto> selectTherapistList() throws Exception {
+		return bookingMapper.selectTherapistList();
+	}
+
+	public void cancelBooking(String bookingNo) throws Exception {
+		bookingMapper.cancelBooking(bookingNo);
+	}
+
+
 }
