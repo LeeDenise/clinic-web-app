@@ -135,7 +135,7 @@
                             <tbody>
                                 <tr th:if="${#lists.size(list)} > 0" th:each="list : ${list}">
                                     <td>
-                                    	<a href="/booking/bookingDetail.do?bookingNo=" th:attrappend="href=${list.bookingId}" th:text="${list.bookingId}"></a>
+                                    	<a href="/booking/bookingDetail?bookingId=" th:attrappend="href=${list.bookingId}" th:text="${list.bookingId}"></a>
                                     </td>
                                     <td th:text="|${list.firstName} ${list.lastName}|"></td>
                                     <td th:text="${list.sessionStart}"></td>
@@ -146,8 +146,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <a href="#" class="btn btn-primary">Save</a>
-                        <a href="/booking/newBooking.do" class="btn btn-info">New</a>
+                        <a href="/booking/newBooking" class="btn btn-info">New</a>
                     </div>
                     
                     <!-- Content Row : Booking List -->

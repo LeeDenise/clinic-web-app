@@ -1,6 +1,8 @@
 package booking.controller;
 
+import java.awt.print.Book;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,11 +21,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
+@RequestMapping("/booking")
 public class BookingController {
 	
 	@Autowired
@@ -31,7 +36,7 @@ public class BookingController {
 	@Autowired
 	private EmployeeService employeeService;
 	
-	@RequestMapping("/booking/openUserBookingList.do")
+	@RequestMapping("/openUserBookingList")
 	public ModelAndView openUserBookingList(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("booking/myappointments");
 
@@ -44,80 +49,62 @@ public class BookingController {
 		return mv;
 	}
 	
-	// AJAX 
-	@RequestMapping(value="/booking/newBooking.do", method=RequestMethod.GET)
+	@RequestMapping(value="/newBooking", method=RequestMethod.GET)
 	public ModelAndView openNewBooking(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("booking/newbooking");
+
 		List<EmployeeDto> list = employeeService.selectTherapistList();
 		mv.addObject("list", list);
 		
 		return mv;
 	}
 	
-	@RequestMapping(value="/booking/newBooking.do", method=RequestMethod.POST)
-	public ModelAndView newBooking(@RequestParam String empNo) throws Exception {
+	@RequestMapping(value="/getAvailableTimes", method=RequestMethod.POST)
+	public ModelAndView newBookingTime(@RequestParam String empId, @RequestParam String selDate) throws Exception {
 		ModelAndView mv = new ModelAndView("jsonView");
-		List<BookingDto> list = bookingService.selectTherapist(Integer.parseInt(empNo)); //load the employee id
-
-		mv.addObject("data", list);
+		
+		List<String> list = bookingService.selectBookingTime(Integer.parseInt(empId), selDate);
+		mv.addObject("bookingList", list);
 		
 		return mv;
 	}
 	
-	@RequestMapping(value="/booking/newBookingTime.do", method=RequestMethod.POST)
-	public ModelAndView newBookingTime(@RequestParam String empNo, @RequestParam String selDate) throws Exception {
-		ModelAndView mv = new ModelAndView("jsonView");
-		
-		List<BookingDto> list = bookingService.selectBookingTime(Integer.parseInt(empNo), selDate + " 00:00:00", selDate + " 23:59:59");
-		mv.addObject("data", list);
-		
-		return mv;
-	}
-	
-	@RequestMapping("/booking/insertBooking.do")
+	@RequestMapping("/insertBooking")
 	public String insertBooking(BookingDto booking) throws Exception {
-		Date dateNow = new Date();
-		SimpleDateFormat transFormat = new SimpleDateFormat("yyMMddHHmmssSSS");
-		String stringNow = transFormat.format(dateNow);
-		booking.setBookingId(123L);
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String currentPrincipalEmail = authentication.getName();
+		booking.setUserEmail(currentPrincipalEmail);
 
-		bookingService.insertBooking(booking);
-		return "redirect:/booking/openUserBookingList.do";
+		booking.setSessionStart(booking.getSessionStart());
+
+		if (booking.getBookingId() == null) {
+			// TODO: what will be the logic of booking status?
+			booking.setStatus("scheduled");
+			bookingService.insertBooking(booking);
+		} else {
+			booking.setStatus("updated");
+			bookingService.updateBooking(booking);
+		}
+
+		return "redirect:/booking/openUserBookingList";
 	}
 	
-	@RequestMapping("/booking/updateBooking.do")
-	public String updateBooking(BookingDto booking) throws Exception {
-		bookingService.updateBooking(booking);
-		return "redirect:/booking/openUserBookingList.do";
-	}
-	
-	@RequestMapping(value="/booking/bookingDetail.do", method=RequestMethod.GET)  
-	public ModelAndView bookingDetail(@RequestParam String bookingNo) throws Exception {
-		ModelAndView mv = new ModelAndView("booking/bookingdetail");
-		
-		BookingDto list = bookingService.bookingDetail(bookingNo);
-		EmployeeDto th = bookingService.bookingTherapist(list.getEmpId());
-		
-		mv.addObject("list", list);
-		mv.addObject("th", th);
-		
-		return mv;
-	}
-	
-	@RequestMapping(value="/booking/bookingDetail.do", method=RequestMethod.POST)
-	public ModelAndView detailNewBooking(HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("jsonView");
+	@RequestMapping(value="/bookingDetail")
+	public ModelAndView bookingDetail(@RequestParam String bookingId) throws Exception {
+		ModelAndView mv = new ModelAndView("booking/newbooking");
 
 		List<EmployeeDto> list = employeeService.selectTherapistList();
 		mv.addObject("list", list);
 
+		BookingDto existingBooking = bookingService.selectBooking(Long.parseLong(bookingId));
+		mv.addObject("booking", existingBooking);
+
 		return mv;
 	}
-	
-	@RequestMapping("/booking/cancelBooking.do")
-	public String cancelBooking(@RequestParam String bookingNo) throws Exception {
-		bookingService.cancelBooking(bookingNo);
-		return "redirect:/booking/openUserBookingList.do";
-	}
 
+	@RequestMapping("/cancelBooking")
+	public String cancelBooking(String bookingId) throws Exception {
+		bookingService.cancelBooking(Long.parseLong(bookingId));
+		return "redirect:/booking/openUserBookingList";
+	}
 }

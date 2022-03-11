@@ -29,7 +29,6 @@ DROP TABLE IF EXISTS `cwadb`.`bookings` ;
 CREATE TABLE IF NOT EXISTS `cwadb`.`bookings` (
 	`booking_id` BIGINT NOT NULL AUTO_INCREMENT,
     `session_start` DATETIME NOT NULL,
-    `session_end` DATETIME NOT NULL,
     `status` VARCHAR(10) NOT NULL,
     `user_email` VARCHAR(50) NULL,
     `emp_id` BIGINT NULL DEFAULT NULL,
@@ -84,6 +83,9 @@ VALUES ('christine.belle@clinic.ca', 'Christine', 'Belle');
 -- -----------------------------------------------------
 -- Inserting bookings
 -- -----------------------------------------------------
-
-INSERT INTO bookings (session_start, session_end, status, user_email, emp_id)
-VALUES (NOW()+1, NOW()+2, 'scheduled', 'john@test.com', 1);
+#
+# INSERT INTO bookings (session_start, session_end, status, user_email, emp_id)
+# VALUES (NOW()+ INTERVAL 1 day, NOW()+ INTERVAL 1 day + INTERVAL 1 hour , 'scheduled', 'john@test.com', 1);
+#
+# INSERT INTO bookings (session_start, session_end, status, user_email, emp_id)
+# VALUES (NOW()+ INTERVAL 1 day, NOW()+ INTERVAL 1 day + INTERVAL 1 hour , 'scheduled', 'john@test.com', 1);

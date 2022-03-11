@@ -6,7 +6,6 @@ import lombok.Data;
 public class BookingListDto {
     private Long bookingId;
     private String sessionStart;
-    private String sessionEnd;
     private String status;
     private String empId;
     private String userEmail;

@@ -3,11 +3,15 @@
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="booking.mapper.BookingMapper">
+	<select id="selectABooking" parameterType="Long" resultType="booking.models.BookingDto">
+		SELECT *
+		FROM bookings
+		WHERE booking_id = #{bookingId}
+	</select>
 	<select id="selectUserBookingList" parameterType="String" resultType="booking.models.BookingListDto">
 		SELECT booking.booking_id as booking_id,
 			   booking.emp_id as emp_id,
 			   booking.session_start as session_start,
-			   booking.session_end as session_end,
 			   employees.first_name as first_name,
 			   employees.last_name as last_name
 		FROM bookings as booking
@@ -16,87 +20,43 @@
 		WHERE booking.user_email = #{userEmail}
 		ORDER BY session_start DESC
 	</select>
-	
-	<!-- newBooking.do -->
-	
-	<!-- selectBookingTherapist -->
-	<select id="selectTherapist" parameterType="int" resultType="booking.models.BookingDto">
+
+	<select id="selectBookingTime" parameterType="map" resultType="string">
 			SELECT
-				start_time
+				Hour(session_start)
 			FROM
-				appointment
+				bookings
 			WHERE 
-				emp_no = #{empNo}
+				emp_id = #{empId}
 			AND
-				start_time >= date(NOW())
-			AND
-				(start_time, isLessThan(date_add(NOW(), INTERVAL + 7 DAY)))
-			ORDER BY start_time ASC 
+				DATE(session_start) = #{selDate}
+			ORDER BY session_start
 	</select>
 	
-	<!-- selectBookingTime -->
-	<select id="selectBookingTime" parameterType="map" resultType="booking.models.BookingDto">
-			SELECT
-				start_time
-			FROM
-				appointment
-			WHERE 
-				emp_no = #{empNo}
-			AND
-				start_time >= #{selStartTime}
-			AND
-				(start_time, isLessThan(#{selEndTime}))
-			ORDER BY start_time
-	</select>
-	
-	<!-- insertBooking.do -->
 	<insert id="insertBooking" parameterType="booking.models.BookingDto">
 		INSERT INTO
-			appointment (booking_no, emp_no, start_time, reg_time, client_id)
+			bookings (emp_id, session_start, status, user_email)
 		VALUES 
 			(
-			#{bookingNo}, #{empNo}, #{startTime}, NOW(), #{clientId}
+				#{empId}, #{sessionStart}, #{status}, #{userEmail}
 			)
 	</insert>
 	
-
-	
-	<select id="bookingDetail" parameterType="String" resultType="booking.models.BookingDto">
-			SELECT
-				booking_no, 
-				emp_no, 
-				start_time
-			FROM
-				appointment
-			WHERE 
-				booking_no = #{bookingNo}
-	</select>
-	
-	<select id="bookingTherapist" parameterType="String" resultType="booking.models.EmployeeDto">
-			SELECT
-				first_name,
-				last_name
-			FROM
-				therapist
-			WHERE 
-				emp_no = #{empNo}
-	</select>
-	
 	<update id="updateBooking" parameterType="booking.models.BookingDto">
 			UPDATE
-				appointment
+				bookings
 			SET
-				emp_no = #{empNo},
-				start_time = #{startTime},
-				edit_time = NOW()
+				emp_Id = #{empId},
+				session_start = #{sessionStart},
+				status = #{status}
 			WHERE
-				booking_no = #{bookingNo}
+				booking_Id = #{bookingId}
 	</update>
 	
-	<delete id="cancelBooking" parameterType="String">
+	<delete id="cancelBooking" parameterType="Long">
 			DELETE FROM
-				appointment
+				bookings
 			WHERE 
-				booking_no = #{bookingNo}
+				booking_id = #{bookingId}
 	</delete>
 </mapper>

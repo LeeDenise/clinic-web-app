@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import java.util.concurrent.TimeUnit;
 
@@ -74,5 +75,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         provider.setPasswordEncoder(passwordEncoder);
         provider.setUserDetailsService(userService);
         return provider;
+    }
+
+    @Bean
+    MappingJackson2JsonView jsonView(){
+        return new MappingJackson2JsonView();
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,165 +27,98 @@
 	<script type="text/javascript">
 	$(document).ready(function() {
 		$("#seltherapist").on("change", function() {
-			var obj = {};
-			obj.empNo=$("#seltherapist>option:selected").val();
-			
-			$.ajax({
-				type: "post",
-				url: "/booking/newBooking.do",
-				data: obj,
-				dataType:"json",
-				success: function(data) {
-				    var toDate = new Date();
-				    toDate = toDate.setMonth(toDate.getMonth() + 1);
-				    toDate = new Date(toDate);
-				    toDate = toDate.setDate(toDate.getDate() - 1);
-				    toDate = new Date(toDate);
-					
-					for(i=0; i<7; i++) {
-					    toDate = toDate.setDate(toDate.getDate() + 1);
-					    toDate = new Date(toDate);
-					    
-					    var days = toDate.getDay();
-					    
-					    if (days == 0) {
-					    	toDate = toDate.setDate(toDate.getDate() + 1);
-						    toDate = new Date(toDate);
-					    }
-					    else if (days == 6) {
-					    	toDate = toDate.setDate(toDate.getDate() + 2);
-						    toDate = new Date(toDate);
-					    }
+			let obj = {};
+			obj.empId=$("#seltherapist>option:selected").val();
 
-					    var yyyy = toDate.getFullYear();
-					    var mm = toDate.getMonth();
-					    var dd = toDate.getDate();
-						
-						if(dd<10) {
-							dd= '0' + dd
-						}
-						
-						if(mm<10) {
-							mm = '0' + mm
-						}
-						
-					    $("#seldate").append("<option>" + yyyy + "-" + mm + "-" + dd +"</option>");
-					}
-				}
-			});
-// 			$.ajax({
-// 				type:"post",
-// 				url:"/booking/newBooking.do",
-// 				data: obj,
-// 				dataType: "json",
-// 		         contentType: "application/json; charset=utf-8",
-// 				success:function(data){
-// 					alert(data)
-// // 					var schedule1 = ["09:00", "10:00"~~~~];r
-// // 					var schedule2 = [data];
-// // 					var count = 0;
-// // 					for(i=0; i<7; i++) {
-// // 						if (schedule1[i] == schedule2[count]) {
-// // 							$("#sc").append("<option disabled='disabled'">" + schedule1[i] + "</option>")
-// // 							disabled 걸기
-// // 							count++
-// // 						}
-// // 						else {
-// // 							$("#sc").append("<option>" + schedule1[i] + "</option>")
-// // 						}
-// // 					}
-// 				},
-// 				error:function() {
-// 					alert("error");
-// 				}
-// 			});
-		});
-		
+            let toDate = new Date();
+            toDate = toDate.setMonth(toDate.getMonth() + 1);
+            toDate = new Date(toDate);
+            toDate = toDate.setDate(toDate.getDate() - 1);
+            toDate = new Date(toDate);
+
+            for(let i=0; i<7; i++) {
+                toDate = toDate.setDate(toDate.getDate() + 1);
+                toDate = new Date(toDate);
+
+                let days = toDate.getDay();
+
+                if (days == 0) {
+                    toDate = toDate.setDate(toDate.getDate() + 1);
+                    toDate = new Date(toDate);
+                }
+                else if (days == 6) {
+                    toDate = toDate.setDate(toDate.getDate() + 2);
+                    toDate = new Date(toDate);
+                }
+
+                let yyyy = toDate.getFullYear();
+                let mm = toDate.getMonth();
+                let dd = toDate.getDate();
+
+                if(dd<10) { dd= '0' + dd }
+                if(mm<10) { mm = '0' + mm }
+
+                $("#seldate").append("<option>" + yyyy + "-" + mm + "-" + dd +"</option>");
+                }
+            });
+
 		$("#seldate").on("change", function() {
-			var obj = {};
-			obj.empNo = $("#seltherapist>option:selected").val();
+			let obj = {};
+			obj.empId = $("#seltherapist>option:selected").val();
 			obj.selDate=$("#seldate>option:selected").text();
 			$.ajax({
 				type: "post",
-				url: "/booking/newBookingTime.do",
+				url: "/booking/getAvailableTimes",
 				data: obj,
 				dataType:"json",
-				success: function(data) {
-// 					alert(data)
-					
-					/* json 타입의 데이터를 문자열로 변환 */
-// 					alert(JSON.stringify(data));
-// 					alert(data.data[0].startTime)	
+				success: function(bookingList) {
+                    $("#seltime option").remove();
 
-					if (data.data[0] == null) {
-						for(var i=9; i<17; i++) {
-							if (i < 10) {
-								$("#seltime").append("<option value=0" + i + ">" + i +":00 ~ " + (i+1) + ":00 </option>")
-							}
-							else {
-								$("#seltime").append("<option value=" + i + ">" + i +":00 ~ " + (i+1) + ":00 </option>")
-							}
-							
-						}
-					}
-					
-					var currTime = [];
-					
-					for (var i = 0; i < 1; i++) {
-						var item = data.data[i];
-						
-						console.log(item.startTime);
-						var dateTime = item.startTime.split(' ');
-						console.log("날짜 : " + dateTime[0]);
-						console.log("시간 : " + dateTime[1]);
-						var times = dateTime[1].split(':');
-						console.log("시 : " + times[0]);
-						console.log("분 : " + times[1]);
-						console.log("초 : " + times[2]);
-						
-						currTime[i] = parseInt(times[0]);
-						
-						for (var j=9; j < 17; j++) {
-							if (currTime[i] != j) {
-								if (currTime[i] < 10) {
-									$("#seltime").append("<option value=0" + j + ">" + j +":00 ~ " + (j+1) + ":00 </option>")
-									break;
-								}
-								else {
-									$("#seltime").append("<option value=" + j + ">" + j +":00 ~ " + (j+1) + ":00 </option>")									
-								}
-							}
-							else if (currTime[i] = j) {
-								$("#seltime").append("<option disabled>" + j +":00 ~ " + (j+1) + ":00 </option>")
-							}
-						}
-					}
+                    let unavailableHours = bookingList.bookingList;
+                    let availableHours = [9, 10, 11, 12, 13, 14, 15, 16, 17];
+
+                    for(let time=9; time <17; time++) {
+                        unavailableHours.forEach(hour => {
+                            if (parseInt(hour) == time) {
+                                availableHours.splice(availableHours.indexOf(time), 1);
+                            }
+                        })
+                    }
+
+                    availableHours.forEach(hour => {
+                        if (hour < 10) {
+                            $("#seltime").append("<option value=0" + hour + ">" + hour +":00 ~ " + (hour+1) + ":00 </option>")
+                        }
+                        else {
+                            $("#seltime").append("<option value=" + hour + ">" + hour +":00 ~ " + (hour+1) + ":00 </option>")
+                        }
+                    })
 				},
 				error : function() {
 					alert("error");
 				}
 			});
 		});
-		
-		$("#btn01").on("click", function() {
-			var date = $("#seldate>option:selected").text();
-			var time = $("#seltime>option:selected").val();
-			if(time < 10) {
-				time = "0" + time + ":00:00";
-			}
-			else {
-				time = time + ":00:00";
-			}
-			var startTime = date + " " + time;
-			
-			$("#startTime").val(startTime);
-			var empNo = $("#seltherapist>option:selected").val();
-			
-			var frm = $("#frm")[0];
-			frm.action = "/booking/insertBooking.do";
-			frm.submit();
+
+        $("#btn01").on("click", function() {
+			let date = $("#seldate>option:selected").text();
+			let time = $("#seltime>option:selected").val();
+
+            $("#sessionStart").val(date + " " + time + ":00:00");
+
+            let frm = $("#frm")[0];
+            frm.action = "/booking/insertBooking";
+            frm.submit();
 		});
-		
+
+        $("#btn03").on("click", function() {
+            let obj = {};
+            obj.bookingId = $("#bookingId").val();
+
+            let frm = $("#frm")[0];
+            frm.action = "/booking/cancelBooking";
+            frm.submit();
+        });
 	});
 	</script>
 </head>
@@ -198,7 +131,7 @@
         <ul class="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
             
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/booking/home.do">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon rotate-n-15">
                 	<i class="fas fa-laugh-wink"></i>
                 </div>
@@ -209,30 +142,13 @@
             <hr class="sidebar-dibide mt-3">
 
             <!-- Sidebar User Info -->
-            <li class="nav-item sidebar-brand d-flex align-items-center justify-content-center no-arrow">
-                <a class="nav-link" href="#">
-                    <img class="ml-4" src="/image/brie.jpg" style="width: 120px; height: 120px; justify-content: center" alt="">
-                    <br>
-                    <div class="sidebar-brand-text mx-3 my-5" th:text="|${session.firstName} ${session.lastName}|"></div>
-                </a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-dibide mt-5">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Appointment
-            </div>
+<!--            <li class="nav-item sidebar-brand d-flex align-items-center justify-content-center no-arrow">-->
+<!--                <a class="nav-link" href="#">-->
+<!--                    <img class="ml-4" src="/image/brie.jpg" style="width: 120px; height: 120px; justify-content: center" alt="">-->
+<!--                    <br>-->
+<!--                </a>-->
+<!--            </li>-->
     
-            <!-- Nav Item - Manage my appointment -->
-            <li class="nav-item">
-                <a class="nav-link" href="/booking/newBooking.do">
-                    <i class="fas fa-clinic-medical"></i>
-                    <span>Book a new appointment</span>
-                </a>
-            </li>
-
             <!-- Divider -->
             <hr class="sidebar-dibide mt-2">
     
@@ -243,7 +159,7 @@
     
             <!-- Nav Item - Manage my appointment -->
             <li class="nav-item">
-                <a class="nav-link" href="/booking/openUserBookingList.do">
+                <a class="nav-link" href="/booking/openUserBookingList">
                     <i class="fas fa-clinic-medical"></i>
                     <span>My appointment</span>
                 </a>
@@ -251,21 +167,12 @@
 
             <!-- Nav Item - Edit Profile -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/user/profile">
                     <i class="fas fa-clinic-medical"></i>
                     <span>My Profile</span>
                 </a>
             </li>
-    
-            <!-- Nav Item - Delete Account Request -->
-            <!-- <li class="nav-item">
-                <a class="nav-link collapsed" href="clients.html" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                        <i class="fas fa-burn"></i>
-                        <span>Clients</span>
-                </a>
-            </li> -->
-        </ul>
-        <!-- End of Sidebar -->
+        </ul> <!-- End of Sidebar -->
     
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -275,7 +182,12 @@
                 <div id="container-fluid">
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between m-4">
+                        <div th:if="${param.bookingId} ne null">
+                            <h1 class="display-4 h3 mb-0 text-gray-800">Update your appointment</h1>
+                        </div>
+                        <div th:if="${param.bookingId == null}">
                             <h1 class="display-4 h3 mb-0 text-gray-800">New Appointment</h1>
+                        </div>
                     </div>
         
                     <!-- Content Row : Cards-->
@@ -286,41 +198,19 @@
                             <!-- Background image for card set in CSS! -->
                         </div>
                         <div class="card-body">
-                            <form id="frm" class="form-signin" method="POST" action="/booking/insertBooking.do">
-                                <div class="form-label-group">
-                                    <input type="text" id="firstName" class="form-control" placeholder="First name" th:value="${session.firstName}" required autofocus>
-                                    <label for="firstName">First Name</label>
-                                </div>
-            
-                                <div class="form-label-group">
-                                    <input type="text" id="lastName" class="form-control" placeholder="Last name" th:value="${session.lastName}" required autofocus>
-                                    <label for="lastName">Last Name</label>
-                                </div>
-            
-                                <div class="form-label-group">
-                                    <input type="text" id="phone" class="form-control" placeholder="Phone number" th:value="${session.phone}" required autofocus>
-                                    <label for="phone">Phone</label>
-                                </div>
-            
-                                <div class="form-label-group">
-                                    <input type="email" id="email" class="form-control" placeholder="Email address" th:value="${session.email}" required>
-                                    <label for="email">Email</label>
-                                </div>
-                                
-                                <hr>
-                    
+                            <form id="frm" class="form-signin" method="POST" action="/booking/insertBooking">
 							   <div class="form-label-group dropdown row">
 									<div class="col-sm-5">
 	                    				<label>Select Therapist</label><br>
-									    <select class="form-control" id="seltherapist" name="empNo">
-									      <option selected="selected">Therapist</option>
-									      <option th:if="${#lists.size(list)} > 0" th:each="list : ${list}" th:text="|${list.firstName} ${list.lastName}|" th:value="${list.empNo}"></option>
+									    <select class="form-control" id="seltherapist" name="empId">
+                                            <option selected="selected">Therapist</option>
+                                            <option th:if="${#lists.size(list)} > 0" th:each="list : ${list}" th:text="|${list.firstName} ${list.lastName}|" th:value="${list.empId}"></option>
 									    </select>
 									</div>
 									<div class="col-sm-4">
 	                    				<label>Select Date</label><br>
 									    <select class="form-control" id="seldate" name="seldate">
-									    	<option selected="selected">Date</option>
+                                            <option selected="selected">Date</option>
 									    </select>
 									</div>
 									<div class="col-sm-3">
@@ -329,29 +219,29 @@
 									    	<option selected="selected">Time</option>
 									    </select>
 									</div>
-									<input type="hidden" id="startTime" name="startTime">
-									<input type="hidden" id="clientId" name="clientId" th:value="${session.clientId}">
+									<input type="hidden" id="sessionStart" name="sessionStart">
+                                    <div th:if="${param.bookingId} ne null">
+                                        <input type="hidden" id="bookingId" name="bookingId" th:value="${param.bookingId}" >
+                                    </div>
 							   </div>
-							   
-							    <hr><br>
-							    
+
                             <div class="row">
                             	<div class="col-sm-6">
 	                                <button type="reset" id="btn02" class="btn btn-lg btn-secondary btn-block text-uppercase">Reset</button>
                             	</div>
                             	<div class="col-sm-6">
-	                                <button type="button" id="btn01" class="btn btn-lg btn-primary btn-block text-uppercase">Save</button>
+	                                <button type="submit" id="btn01" class="btn btn-lg btn-primary btn-block text-uppercase">Save</button>
                             	</div>
+                                <div th:if="${param.bookingId} ne null" class="col-sm-6">
+                                    <button type="submit" id="btn03" class="btn btn-lg btn-primary btn-block text-uppercase">Delete</button>
+                                </div>
                             </div>
                             </form>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                    
-                    <!-- Content Row : Booking List -->
-                    
 
+                        </div>
+                        </div>
+                    </div>
+                    </div>
             </div>
             <!-- Footer -->
             <footer class="sticky-footer bg-white">

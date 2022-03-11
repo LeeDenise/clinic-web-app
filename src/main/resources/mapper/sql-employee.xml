@@ -7,7 +7,8 @@
 		SELECT
 			first_name,
 			last_name,
-			emp_no
+			emp_id,
+		       email
 		FROM
 			employees
 	</select>
