@@ -20,26 +20,4 @@ public class EmployeeService {
     public List<EmployeeDto> selectTherapistList() throws Exception {
         return employeeMapper.selectTherapistList();
     }
-
-    // THERAPIST
-    public List<EmployeeDto> openTherapistList() throws Exception {
-        return employeeMapper.openTherapistList();
-    }
-
-    public void insertTherapist(EmployeeDto therapist) throws Exception {
-        employeeMapper.insertTherapist(therapist);
-
-    }
-
-    public void updateTherapist(EmployeeDto therapist) throws Exception {
-        employeeMapper.updateTherapist(therapist);
-    }
-
-    public EmployeeDto therapistDetail(int empNo) throws Exception {
-        return employeeMapper.therapistDetail(empNo);
-    }
-
-    public void deleteTherapist(int empNo) throws Exception {
-        employeeMapper.deleteTherapist(empNo);
-    }
 }
