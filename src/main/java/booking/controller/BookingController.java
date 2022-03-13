@@ -78,7 +78,6 @@ public class BookingController {
 		booking.setSessionStart(booking.getSessionStart());
 
 		if (booking.getBookingId() == null) {
-			// TODO: what will be the logic of booking status?
 			booking.setStatus("scheduled");
 			bookingService.insertBooking(booking);
 		} else {

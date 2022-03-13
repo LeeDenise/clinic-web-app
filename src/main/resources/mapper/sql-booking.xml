@@ -7,11 +7,13 @@
 		SELECT *
 		FROM bookings
 		WHERE booking_id = #{bookingId}
+		AND status != "cancelled"
 	</select>
 	<select id="selectUserBookingList" parameterType="String" resultType="booking.models.BookingListDto">
 		SELECT booking.booking_id as booking_id,
 			   booking.emp_id as emp_id,
 			   booking.session_start as session_start,
+		       booking.status as status,
 			   employees.first_name as first_name,
 			   employees.last_name as last_name
 		FROM bookings as booking
@@ -30,6 +32,7 @@
 				emp_id = #{empId}
 			AND
 				DATE(session_start) = #{selDate}
+			AND status != "cancelled"
 			ORDER BY session_start
 	</select>
 	
@@ -54,8 +57,10 @@
 	</update>
 	
 	<delete id="cancelBooking" parameterType="Long">
-			DELETE FROM
+			UPDATE
 				bookings
+			SET
+			    status = 'cancelled'
 			WHERE 
 				booking_id = #{bookingId}
 	</delete>

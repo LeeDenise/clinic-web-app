@@ -199,6 +199,16 @@
                         </div>
                         <div class="card-body">
                             <form id="frm" class="form-signin" method="POST" action="/booking/insertBooking">
+                                <div th:if="${param.bookingId} ne null" class="col-sm-3">
+                                    <div class="form-label-group">
+                                        <label>Booking No.</label>
+                                        <p th:text="${booking.bookingId}"></p>
+                                    </div>
+                                    <div class="form-label-group">
+                                        <label>Status</label>
+                                        <p th:text="${booking.status}"></p>
+                                    </div>
+                                </div>
 							   <div class="form-label-group dropdown row">
 									<div class="col-sm-5">
 	                    				<label>Select Therapist</label><br>
@@ -224,18 +234,17 @@
                                         <input type="hidden" id="bookingId" name="bookingId" th:value="${param.bookingId}" >
                                     </div>
 							   </div>
-
-                            <div class="row">
-                            	<div class="col-sm-6">
-	                                <button type="reset" id="btn02" class="btn btn-lg btn-secondary btn-block text-uppercase">Reset</button>
-                            	</div>
-                            	<div class="col-sm-6">
-	                                <button type="submit" id="btn01" class="btn btn-lg btn-primary btn-block text-uppercase">Save</button>
-                            	</div>
-                                <div th:if="${param.bookingId} ne null" class="col-sm-6">
-                                    <button type="submit" id="btn03" class="btn btn-lg btn-primary btn-block text-uppercase">Delete</button>
+                                <div class="row mt-lg-3">
+                                    <div class="col-sm-4">
+                                        <button type="submit" id="btn01" class="btn btn-lg btn-primary btn-block text-uppercase">Save</button>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button type="reset" id="btn02" class="btn btn-lg btn-secondary btn-block text-uppercase">Reset</button>
+                                    </div>
+                                    <div th:if="${param.bookingId} ne null" class="col-sm-4">
+                                        <button type="submit" id="btn03" class="btn btn-lg btn-warning btn-block text-uppercase">Delete</button>
+                                    </div>
                                 </div>
-                            </div>
                             </form>
 
                         </div>

@@ -37,6 +37,6 @@ public class BookingService {
 	}
 
 	public void cancelBooking(Long bookingId) throws Exception {
-		bookingMapper.cancelBooking(bookingId);
+bookingMapper.cancelBooking(bookingId);
 	}
 }

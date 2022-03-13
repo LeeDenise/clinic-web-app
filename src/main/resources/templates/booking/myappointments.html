@@ -129,7 +129,8 @@
                                     <th scope="col">Booking No.</th>
                                     <th scope="col">Therapist</th>
                                     <th scope="col">Date</th>
-<!--                                     <th scope="col">Start Time</th> -->
+                                    <th scope="col">Status</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -139,7 +140,7 @@
                                     </td>
                                     <td th:text="|${list.firstName} ${list.lastName}|"></td>
                                     <td th:text="${list.sessionStart}"></td>
-<!--                                     <td th:text="${list.toDate}"></td> -->
+                                    <td th:text="${list.status}"></td>
                                 </tr>
                                 <tr th:unless="${#lists.size(list)} > 0">
                                 	<td colspan="4">No Result</td>
