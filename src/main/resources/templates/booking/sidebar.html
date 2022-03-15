@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+<ul class="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/booking/openUserBookingList">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Clinic App</div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-dibide mt-3">
+
+    <!-- Sidebar User Info -->
+    <li class="nav-item sidebar-brand d-flex align-items-center justify-content-center no-arrow">
+        <a class="nav-link" href="/booking/openUserBookingList">
+            <img class="ml-4" src="/image/brie.jpg" style="width: 120px; height: 120px; justify-content: center" alt="">
+            <br>
+            <div class="sidebar-brand-text mx-3 my-5" th:text="th">${user}</div>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-dibide mt-5">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Appointment
+    </div>
+
+    <!-- Nav Item - Manage my appointment -->
+    <li class="nav-item">
+        <a class="nav-link" href="/booking/newBooking">
+            <i class="fas fa-clinic-medical"></i>
+            <span>Book a new appointment</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-dibide mt-2">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Management
+    </div>
+
+    <!-- Nav Item - Manage my appointment -->
+    <li class="nav-item">
+        <a class="nav-link" href="/booking/openUserBookingList">
+            <i class="fas fa-clinic-medical"></i>
+            <span>My appointment</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - Edit Profile -->
+    <li class="nav-item">
+        <a class="nav-link" href="/user/profile">
+            <i class="fas fa-clinic-medical"></i>
+            <span>My Profile</span>
+        </a>
+    </li>
+
+</ul>
+</body>

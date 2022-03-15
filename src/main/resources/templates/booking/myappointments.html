@@ -23,7 +23,21 @@
 	<!-- Custom styles for this template -->
 	<link th:href="@{/css/user.css}" rel="stylesheet"/>
 	
-	<script type="text/javascript">
+	<script defer type="text/javascript">
+        alert("go");
+        $(document).ready(function(){
+            $.ajax({
+                type: "get",
+                url: "/booking/sideBar",
+                success: function(html) {
+                    $('#sideBar').html(html);
+                },
+                error: function(err) {
+                    alert(err);
+                }
+            })
+        });
+
 	</script>
 	
 </head>
@@ -33,76 +47,79 @@
     <div id="wrapper">
 
         <!-- Sidebar-->
-        <ul class="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
-            
-            <!-- Sidebar - Brand -->
-           <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/booking/home.do">
-                <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Barunmom</div>
-            </a>
-    
-            <!-- Divider -->
-            <hr class="sidebar-dibide mt-3">
+        <div id="sideBar" >
 
-            <!-- Sidebar User Info -->
-            <li class="nav-item sidebar-brand d-flex align-items-center justify-content-center no-arrow">
-                <a class="nav-link" href="#">
-                    <img class="ml-4" src="/image/brie.jpg" style="width: 120px; height: 120px; justify-content: center" alt="">
-                    <br>
-                    <div class="sidebar-brand-text mx-3 my-5">Client Name</div>
-                </a>
-            </li>
+        </div>
+<!--        <ul class="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">-->
+<!--            -->
+<!--            &lt;!&ndash; Sidebar - Brand &ndash;&gt;-->
+<!--           <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/booking/openUserBookingList">-->
+<!--                <div class="sidebar-brand-icon rotate-n-15">-->
+<!--                <i class="fas fa-laugh-wink"></i>-->
+<!--                </div>-->
+<!--                <div class="sidebar-brand-text mx-3">Clinic App</div>-->
+<!--            </a>-->
+<!--    -->
+<!--            &lt;!&ndash; Divider &ndash;&gt;-->
+<!--            <hr class="sidebar-dibide mt-3">-->
 
-            <!-- Divider -->
-            <hr class="sidebar-dibide mt-5">
+<!--            &lt;!&ndash; Sidebar User Info &ndash;&gt;-->
+<!--            <li class="nav-item sidebar-brand d-flex align-items-center justify-content-center no-arrow">-->
+<!--                <a class="nav-link" href="/booking/openUserBookingList">-->
+<!--                    <img class="ml-4" src="/image/brie.jpg" style="width: 120px; height: 120px; justify-content: center" alt="">-->
+<!--                    <br>-->
+<!--                    <div class="sidebar-brand-text mx-3 my-5">Client Name</div>-->
+<!--                </a>-->
+<!--            </li>-->
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Appointment
-            </div>
-    
-            <!-- Nav Item - Manage my appointment -->
-            <li class="nav-item">
-                <a class="nav-link" href="/booking/newBooking.do">
-                    <i class="fas fa-clinic-medical"></i>
-                    <span>Book a new appointment</span>
-                </a>
-            </li>
+<!--            &lt;!&ndash; Divider &ndash;&gt;-->
+<!--            <hr class="sidebar-dibide mt-5">-->
 
-            <!-- Divider -->
-            <hr class="sidebar-dibide mt-2">
-    
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Management
-            </div>
-    
-            <!-- Nav Item - Manage my appointment -->
-            <li class="nav-item">
-                <a class="nav-link" href="/booking/userBookingList.do">
-                    <i class="fas fa-clinic-medical"></i>
-                    <span>My appointment</span>
-                </a>
-            </li>
+<!--            &lt;!&ndash; Heading &ndash;&gt;-->
+<!--            <div class="sidebar-heading">-->
+<!--                Appointment-->
+<!--            </div>-->
+<!--    -->
+<!--            &lt;!&ndash; Nav Item - Manage my appointment &ndash;&gt;-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="/booking/newBooking">-->
+<!--                    <i class="fas fa-clinic-medical"></i>-->
+<!--                    <span>Book a new appointment</span>-->
+<!--                </a>-->
+<!--            </li>-->
 
-            <!-- Nav Item - Edit Profile -->
-            <li class="nav-item">
-                <a class="nav-link" href="/bookiing/userProfile.do">
-                    <i class="fas fa-clinic-medical"></i>
-                    <span>My Profile</span>
-                </a>
-            </li>
-    
-            <!-- Nav Item - Delete Account Request -->
-            <!-- <li class="nav-item">
-                <a class="nav-link collapsed" href="clients.html" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                        <i class="fas fa-burn"></i>
-                        <span>Clients</span>
-                </a>
-            </li> -->
-        </ul>
+<!--            &lt;!&ndash; Divider &ndash;&gt;-->
+<!--            <hr class="sidebar-dibide mt-2">-->
+<!--    -->
+<!--            &lt;!&ndash; Heading &ndash;&gt;-->
+<!--            <div class="sidebar-heading">-->
+<!--                Management-->
+<!--            </div>-->
+<!--    -->
+<!--            &lt;!&ndash; Nav Item - Manage my appointment &ndash;&gt;-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="/booking/openUserBookingList">-->
+<!--                    <i class="fas fa-clinic-medical"></i>-->
+<!--                    <span>My appointment</span>-->
+<!--                </a>-->
+<!--            </li>-->
+
+<!--            &lt;!&ndash; Nav Item - Edit Profile &ndash;&gt;-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="/user/profile">-->
+<!--                    <i class="fas fa-clinic-medical"></i>-->
+<!--                    <span>My Profile</span>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--    -->
+<!--            &lt;!&ndash; Nav Item - Delete Account Request &ndash;&gt;-->
+<!--            &lt;!&ndash; <li class="nav-item">-->
+<!--                <a class="nav-link collapsed" href="clients.html" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">-->
+<!--                        <i class="fas fa-burn"></i>-->
+<!--                        <span>Clients</span>-->
+<!--                </a>-->
+<!--            </li> &ndash;&gt;-->
+<!--        </ul>-->
         <!-- End of Sidebar -->
     
         <!-- Content Wrapper -->

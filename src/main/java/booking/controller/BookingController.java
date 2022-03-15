@@ -35,6 +35,14 @@ public class BookingController {
 	private BookingService bookingService;
 	@Autowired
 	private EmployeeService employeeService;
+
+	@RequestMapping(value = "/sideBar", method = RequestMethod.GET)
+	public ModelAndView openSideBar() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		ModelAndView mv = new ModelAndView("booking/sidebar");
+		mv.addObject("user", authentication.getName());
+		return mv;
+	}
 	
 	@RequestMapping("/openUserBookingList")
 	public ModelAndView openUserBookingList(HttpServletRequest request) throws Exception {
