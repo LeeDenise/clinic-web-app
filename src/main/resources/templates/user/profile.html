@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Account</title>
+    <title>My Profile</title>
 
     <!-- font awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
@@ -33,7 +33,7 @@
         <ul class="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
             
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -46,7 +46,7 @@
             <!-- Sidebar User Info -->
             <li class="nav-item sidebar-brand d-flex align-items-center justify-content-center no-arrow">
                 <a class="nav-link" href="#">
-                    <div class="sidebar-brand-text mx-3"><span sec:authentication="name"></span></div>
+                    <div class="sidebar-brand-text mx-4">welcome, <br><span sec:authentication="name"></span></div>
                 </a>
             </li>
 
@@ -60,8 +60,8 @@
     
             <!-- Nav Item - Manage my appointment -->
             <li class="nav-item">
-                <a class="nav-link" href="myappointment.html">
-                    <i class="fas fa-edit"></i>
+                <a class="nav-link" href="/booking/newBooking">
+                    <i class="fas fa-clinic-medical"></i>
                     <span>Book a new appointment</span>
                 </a>
             </li>
@@ -76,7 +76,7 @@
     
             <!-- Nav Item - Manage my appointment -->
             <li class="nav-item">
-                <a class="nav-link" href="myappointment.html">
+                <a class="nav-link" href="/booking/openUserBookingList">
                     <i class="fas fa-edit"></i>
                     <span>My appointment</span>
                 </a>
@@ -84,7 +84,7 @@
 
             <!-- Nav Item - Edit Profile -->
             <li class="nav-item">
-                <a class="nav-link" href="editprofile.html">
+                <a class="nav-link" href="/user/profile">
                     <i class="fas fa-edit"></i>
                     <span>My Profile</span>
                 </a>
@@ -187,5 +187,6 @@
         <!-- End of Content Wrapper -->
     </div>
     <!-- End of Page Wrapper -->
+    </div>
 </body>
 </html>
