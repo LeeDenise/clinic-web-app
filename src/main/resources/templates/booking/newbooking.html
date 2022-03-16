@@ -147,8 +147,8 @@
 
         <!-- Sidebar User Info -->
         <li class="nav-item sidebar-brand d-flex align-items-center justify-content-center no-arrow">
-            <a class="nav-link" href="#">
-                <div class="sidebar-brand-text mx-4">welcome, <br><span sec:authentication="name"></span></div>
+            <a class="nav-link text-center" href="#">
+                <div class="sidebar-brand-text">welcome, <br><span sec:authentication="name"></span></div>
             </a>
         </li>
 
@@ -181,8 +181,8 @@
     <div id="content-wrapper" class="d-flex flex-column">
 
         <!-- Main Content -->
-        <div id="content">
-            <div id="container-fluid">
+        <div id="content"class="w-100 d-flex flex-column flex-nowrap align-content-stretch align-items-stretch">
+<!--            <div id="container-fluid">-->
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between m-4">
                     <div th:if="${param.bookingId} ne null">
@@ -240,7 +240,7 @@
                                                    th:value="${param.bookingId}">
                                         </div>
                                     </div>
-                                    <div class="row mt-lg-3">
+                                    <div class="row mt-lg-3" style="justify-content: space-between;">
 
                                         <div class="col-sm-4">
                                             <button type="button" id="btn01" data-toggle="modal" data-target="#saveChanges"
@@ -303,7 +303,7 @@
         </div>
         <!-- End of Content Wrapper -->
     </div>
-</div>
+<!--</div>-->
 <!-- End of Page Wrapper -->
 </body>
 </html>

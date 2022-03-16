@@ -47,8 +47,8 @@
 
         <!-- Sidebar User Info -->
         <li class="nav-item sidebar-brand d-flex align-items-center justify-content-center no-arrow">
-            <a class="nav-link" href="#">
-                <div class="sidebar-brand-text mx-4">welcome, <br><span sec:authentication="name"></span></div>
+            <a class="nav-link text-center" href="#">
+                <div class="sidebar-brand-text ">welcome, <br><span sec:authentication="name"></span></div>
             </a>
         </li>
 
@@ -107,7 +107,7 @@
 
         <!-- Main Content -->
         <div id="content">
-            <div id="container-fluid">
+            <div id="container-fluid" >
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between m-4">
                     <h1 class="h3 mb-0 text-gray-800">My Profile</h1>
@@ -150,7 +150,8 @@
                                     <hr>
 
                                     <div>
-                                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#saveChanges">
+                                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+                                                data-target="#saveChanges">
                                             Save Changes
                                         </button>
                                         <!-- Modal -->
@@ -177,12 +178,13 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <button type="button" class="btn btn-secondary btn-lg float-right" data-toggle="modal"
+                                                data-target="#deleteAccount">
+                                            Delete Account
+                                        </button>
                                     </div>
-
                                 </form>
-                                <button type="button" class="btn btn-secondary btn-lg float-right" data-toggle="modal" data-target="#deleteAccount">
-                                    Delete Account
-                                </button>
+
                             </div>
                             <!-- Modal -->
                             <div class="modal" id="deleteAccount" tabindex="-1" role="dialog"
@@ -219,21 +221,20 @@
 
         <!-- Content Row : Booking List -->
 
-
-    </div>
-    <!-- Footer -->
-    <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-                <span>Copyright &copy;Clinic Web App</span>
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white"
+                style="">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy;Clinic Web App</span>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
+
     <!-- End of Footer -->
 </div>
 <!-- End of Content Wrapper -->
-</div>
 <!-- End of Page Wrapper -->
-</div>
 </body>
 </html>
