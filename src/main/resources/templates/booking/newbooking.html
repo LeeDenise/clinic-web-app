@@ -7,264 +7,303 @@
     <title>My Account</title>
 
     <!-- font awesome -->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"/>
 
     <!-- Custom fonts for this template -->
-<!--     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
+    <!--     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+          type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
-	<link rel="stylesheet" th:href="@{/css/bootstrap.css}">
-	<script th:src="@{/js/jquery-3.3.1.js}"></script>
-	<script th:src="@{/js/popper.js}"></script>
-	<script th:src="@{/js/bootstrap.js}"></script>
-	
-	<!-- Custom styles for this template -->
-	<link th:href="@{/css/user.css}" rel="stylesheet"/>
-	
-	<script type="text/javascript">
-	$(document).ready(function() {
-		$("#seltherapist").on("change", function() {
-			let obj = {};
-			obj.empId=$("#seltherapist>option:selected").val();
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <script th:src="@{/js/jquery-3.3.1.js}"></script>
+    <script th:src="@{/js/popper.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
 
-            let toDate = new Date();
-            toDate = toDate.setMonth(toDate.getMonth() + 1);
-            toDate = new Date(toDate);
-            toDate = toDate.setDate(toDate.getDate() - 1);
-            toDate = new Date(toDate);
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/user.css}" rel="stylesheet"/>
 
-            for(let i=0; i<7; i++) {
-                toDate = toDate.setDate(toDate.getDate() + 1);
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#seltherapist").on("change", function () {
+                let obj = {};
+                obj.empId = $("#seltherapist>option:selected").val();
+
+                let toDate = new Date();
+                toDate = toDate.setMonth(toDate.getMonth() + 1);
+                toDate = new Date(toDate);
+                toDate = toDate.setDate(toDate.getDate() - 1);
                 toDate = new Date(toDate);
 
-                let days = toDate.getDay();
-
-                if (days == 0) {
+                for (let i = 0; i < 7; i++) {
                     toDate = toDate.setDate(toDate.getDate() + 1);
                     toDate = new Date(toDate);
-                }
-                else if (days == 6) {
-                    toDate = toDate.setDate(toDate.getDate() + 2);
-                    toDate = new Date(toDate);
-                }
 
-                let yyyy = toDate.getFullYear();
-                let mm = toDate.getMonth();
-                let dd = toDate.getDate();
+                    let days = toDate.getDay();
 
-                if(dd<10) { dd= '0' + dd }
-                if(mm<10) { mm = '0' + mm }
+                    if (days == 0) {
+                        toDate = toDate.setDate(toDate.getDate() + 1);
+                        toDate = new Date(toDate);
+                    } else if (days == 6) {
+                        toDate = toDate.setDate(toDate.getDate() + 2);
+                        toDate = new Date(toDate);
+                    }
 
-                $("#seldate").append("<option>" + yyyy + "-" + mm + "-" + dd +"</option>");
+                    let yyyy = toDate.getFullYear();
+                    let mm = toDate.getMonth();
+                    let dd = toDate.getDate();
+
+                    if (dd < 10) {
+                        dd = '0' + dd
+                    }
+                    if (mm < 10) {
+                        mm = '0' + mm
+                    }
+
+                    $("#seldate").append("<option>" + yyyy + "-" + mm + "-" + dd + "</option>");
                 }
             });
 
-		$("#seldate").on("change", function() {
-			let obj = {};
-			obj.empId = $("#seltherapist>option:selected").val();
-			obj.selDate=$("#seldate>option:selected").text();
-			$.ajax({
-				type: "post",
-				url: "/booking/getAvailableTimes",
-				data: obj,
-				dataType:"json",
-				success: function(bookingList) {
-                    $("#seltime option").remove();
+            $("#seldate").on("change", function () {
+                let obj = {};
+                obj.empId = $("#seltherapist>option:selected").val();
+                obj.selDate = $("#seldate>option:selected").text();
+                $.ajax({
+                    type: "post",
+                    url: "/booking/getAvailableTimes",
+                    data: obj,
+                    dataType: "json",
+                    success: function (bookingList) {
+                        $("#seltime option").remove();
 
-                    let unavailableHours = bookingList.bookingList;
-                    let availableHours = [9, 10, 11, 12, 13, 14, 15, 16, 17];
+                        let unavailableHours = bookingList.bookingList;
+                        let availableHours = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 
-                    for(let time=9; time <17; time++) {
-                        unavailableHours.forEach(hour => {
-                            if (parseInt(hour) == time) {
-                                availableHours.splice(availableHours.indexOf(time), 1);
+                        for (let time = 9; time < 17; time++) {
+                            unavailableHours.forEach(hour => {
+                                if (parseInt(hour) == time) {
+                                    availableHours.splice(availableHours.indexOf(time), 1);
+                                }
+                            })
+                        }
+
+                        availableHours.forEach(hour => {
+                            if (hour < 10) {
+                                $("#seltime").append("<option value=0" + hour + ">" + hour + ":00 ~ " + (hour + 1) + ":00 </option>")
+                            } else {
+                                $("#seltime").append("<option value=" + hour + ">" + hour + ":00 ~ " + (hour + 1) + ":00 </option>")
                             }
                         })
+                    },
+                    error: function () {
+                        alert("error");
                     }
+                });
+            });
 
-                    availableHours.forEach(hour => {
-                        if (hour < 10) {
-                            $("#seltime").append("<option value=0" + hour + ">" + hour +":00 ~ " + (hour+1) + ":00 </option>")
-                        }
-                        else {
-                            $("#seltime").append("<option value=" + hour + ">" + hour +":00 ~ " + (hour+1) + ":00 </option>")
-                        }
-                    })
-				},
-				error : function() {
-					alert("error");
-				}
-			});
-		});
+            $("#btn01").on("click", function () {
+                let date = $("#seldate>option:selected").text();
+                let time = $("#seltime>option:selected").val();
 
-        $("#btn01").on("click", function() {
-			let date = $("#seldate>option:selected").text();
-			let time = $("#seltime>option:selected").val();
+                $("#sessionStart").val(date + " " + time + ":00:00");
 
-            $("#sessionStart").val(date + " " + time + ":00:00");
+                let frm = $("#frm")[0];
+                frm.action = "/booking/insertBooking";
+                frm.submit();
+            });
 
-            let frm = $("#frm")[0];
-            frm.action = "/booking/insertBooking";
-            frm.submit();
-		});
+            $("#btn03").on("click", function () {
+                let obj = {};
+                obj.bookingId = $("#bookingId").val();
 
-        $("#btn03").on("click", function() {
-            let obj = {};
-            obj.bookingId = $("#bookingId").val();
-
-            let frm = $("#frm")[0];
-            frm.action = "/booking/cancelBooking";
-            frm.submit();
+                let frm = $("#frm")[0];
+                frm.action = "/booking/cancelBooking";
+                frm.submit();
+            });
         });
-	});
-	</script>
+    </script>
 </head>
 <body id="page-top">
 
-    <!-- Page Wrapper -->
-    <div id="wrapper">
+<!-- Page Wrapper -->
+<div id="wrapper">
 
-        <!-- Sidebar-->
-        <ul class="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
-            
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
-                <div class="sidebar-brand-icon rotate-n-15">
-                	<i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Barunmom</div>
-            </a>
-    
-            <!-- Divider -->
-            <hr class="sidebar-dibide mt-3">
+    <!-- Sidebar-->
+    <ul class="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <!-- Sidebar User Info -->
-<!--            <li class="nav-item sidebar-brand d-flex align-items-center justify-content-center no-arrow">-->
-<!--                <a class="nav-link" href="#">-->
-<!--                    <img class="ml-4" src="/image/brie.jpg" style="width: 120px; height: 120px; justify-content: center" alt="">-->
-<!--                    <br>-->
-<!--                </a>-->
-<!--            </li>-->
-    
-            <!-- Divider -->
-            <hr class="sidebar-dibide mt-2">
-    
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Management
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
             </div>
-    
-            <!-- Nav Item - Manage my appointment -->
-            <li class="nav-item">
-                <a class="nav-link" href="/booking/openUserBookingList">
-                    <i class="fas fa-clinic-medical"></i>
-                    <span>My appointment</span>
-                </a>
-            </li>
+            <div class="sidebar-brand-text mx-3">Barunmom</div>
+        </a>
 
-            <!-- Nav Item - Edit Profile -->
-            <li class="nav-item">
-                <a class="nav-link" href="/user/profile">
-                    <i class="fas fa-clinic-medical"></i>
-                    <span>My Profile</span>
-                </a>
-            </li>
-        </ul> <!-- End of Sidebar -->
-    
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Divider -->
+        <hr class="sidebar-dibide my-0">
 
-            <!-- Main Content -->
-            <div id="content">
-                <div id="container-fluid">
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between m-4">
-                        <div th:if="${param.bookingId} ne null">
-                            <h1 class="display-4 h3 mb-0 text-gray-800">Update your appointment</h1>
-                        </div>
-                        <div th:if="${param.bookingId == null}">
-                            <h1 class="display-4 h3 mb-0 text-gray-800">New Appointment</h1>
-                        </div>
+        <!-- Sidebar User Info -->
+        <li class="nav-item sidebar-brand d-flex align-items-center justify-content-center no-arrow">
+            <a class="nav-link" href="#">
+                <div class="sidebar-brand-text mx-4">welcome, <br><span sec:authentication="name"></span></div>
+            </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-dibide mt-3">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Management
+        </div>
+
+        <!-- Nav Item - Manage my appointment -->
+        <li class="nav-item">
+            <a class="nav-link" href="/booking/openUserBookingList">
+                <i class="fas fa-edit"></i>
+                <span>My appointment</span>
+            </a>
+        </li>
+
+        <!-- Nav Item - Edit Profile -->
+        <li class="nav-item">
+            <a class="nav-link" href="/user/profile">
+                <i class="fas fa-edit"></i>
+                <span>My Profile</span>
+            </a>
+        </li>
+    </ul> <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+            <div id="container-fluid">
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between m-4">
+                    <div th:if="${param.bookingId} ne null">
+                        <h1 class="display-4 h3 mb-0 text-gray-800">Update your appointment</h1>
                     </div>
-        
-                    <!-- Content Row : Cards-->
-                    <div class="row">
+                    <div th:if="${param.bookingId == null}">
+                        <h1 class="display-4 h3 mb-0 text-gray-800">New Appointment</h1>
+                    </div>
+                </div>
+
+                <!-- Content Row : Cards-->
+                <div class="row">
                     <div class="col-lg-10 col-xl-9 mx-auto">
                         <div class="card card-signin flex-row my-3">
-                        <div class="card-img-left d-none d-md-flex">
-                            <!-- Background image for card set in CSS! -->
-                        </div>
-                        <div class="card-body">
-                            <form id="frm" class="form-signin" method="POST" action="/booking/insertBooking">
-                                <div th:if="${param.bookingId} ne null" class="col-sm-3">
-                                    <div class="form-label-group">
-                                        <label>Booking No.</label>
-                                        <p th:text="${booking.bookingId}"></p>
+                            <div class="card-img-left d-none d-md-flex">
+                                <!-- Background image for card set in CSS! -->
+                            </div>
+                            <div class="card-body">
+                                <form id="frm" class="form-signin" method="POST" action="/booking/insertBooking">
+                                    <div th:if="${param.bookingId} ne null" class="col-sm-3">
+                                        <div class="form-label-group">
+                                            <label>Booking No.</label>
+                                            <p th:text="${booking.bookingId}"></p>
+                                        </div>
+                                        <div class="form-label-group">
+                                            <label>Status</label>
+                                            <p th:text="${booking.status}"></p>
+                                        </div>
                                     </div>
-                                    <div class="form-label-group">
-                                        <label>Status</label>
-                                        <p th:text="${booking.status}"></p>
+                                    <div class="form-label-group dropdown row">
+                                        <div class="col-sm-5">
+                                            <label>Select Therapist</label><br>
+                                            <select class="form-control" id="seltherapist" name="empId">
+                                                <option selected="selected">Therapist</option>
+                                                <option th:if="${#lists.size(list)} > 0" th:each="list : ${list}"
+                                                        th:text="|${list.firstName} ${list.lastName}|"
+                                                        th:value="${list.empId}"></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label>Select Date</label><br>
+                                            <select class="form-control" id="seldate" name="seldate">
+                                                <option selected="selected">Date</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label>Select Time</label><br>
+                                            <select class="form-control" id="seltime" name="seltime">
+                                                <option selected="selected">Time</option>
+                                            </select>
+                                        </div>
+                                        <input type="hidden" id="sessionStart" name="sessionStart">
+                                        <div th:if="${param.bookingId} ne null">
+                                            <input type="hidden" id="bookingId" name="bookingId"
+                                                   th:value="${param.bookingId}">
+                                        </div>
                                     </div>
-                                </div>
-							   <div class="form-label-group dropdown row">
-									<div class="col-sm-5">
-	                    				<label>Select Therapist</label><br>
-									    <select class="form-control" id="seltherapist" name="empId">
-                                            <option selected="selected">Therapist</option>
-                                            <option th:if="${#lists.size(list)} > 0" th:each="list : ${list}" th:text="|${list.firstName} ${list.lastName}|" th:value="${list.empId}"></option>
-									    </select>
-									</div>
-									<div class="col-sm-4">
-	                    				<label>Select Date</label><br>
-									    <select class="form-control" id="seldate" name="seldate">
-                                            <option selected="selected">Date</option>
-									    </select>
-									</div>
-									<div class="col-sm-3">
-	                    				<label>Select Time</label><br>
-									    <select class="form-control" id="seltime" name="seltime">
-									    	<option selected="selected">Time</option>
-									    </select>
-									</div>
-									<input type="hidden" id="sessionStart" name="sessionStart">
-                                    <div th:if="${param.bookingId} ne null">
-                                        <input type="hidden" id="bookingId" name="bookingId" th:value="${param.bookingId}" >
-                                    </div>
-							   </div>
-                                <div class="row mt-lg-3">
-                                    <div class="col-sm-4">
-                                        <button type="submit" id="btn01" class="btn btn-lg btn-primary btn-block text-uppercase">Save</button>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <button type="reset" id="btn02" class="btn btn-lg btn-secondary btn-block text-uppercase">Reset</button>
-                                    </div>
-                                    <div th:if="${param.bookingId} ne null" class="col-sm-4">
-                                        <button type="submit" id="btn03" class="btn btn-lg btn-warning btn-block text-uppercase">Delete</button>
-                                    </div>
-                                </div>
-                            </form>
+                                    <div class="row mt-lg-3">
 
-                        </div>
+                                        <div class="col-sm-4">
+                                            <button type="button" id="btn01" data-toggle="modal" data-target="#saveChanges"
+                                                    class="btn btn-lg btn-primary btn-block text-uppercase">Save
+                                            </button>
+                                            <!-- Modal -->
+                                            <div class="modal" id="saveChanges" tabindex="-1" role="dialog"
+                                                 aria-labelledby="saveChanges" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Save Changes</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Are you sure you want to save your changes?</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-primary">Confirm
+                                                            </button>
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Cancel
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <button type="reset" id="btn02"
+                                                    class="btn btn-lg btn-secondary btn-block text-uppercase">Reset
+                                            </button>
+                                        </div>
+                                        <div th:if="${param.bookingId} ne null" class="col-sm-4">
+                                            <button type="submit" id="btn03"
+                                                    class="btn btn-lg btn-warning btn-block text-uppercase">Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
                         </div>
                     </div>
-                    </div>
+                </div>
             </div>
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
-                  <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Clinic Web App</span>
-                  </div>
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Clinic Web App</span>
+                    </div>
                 </div>
             </footer>
             <!-- End of Footer -->
         </div>
         <!-- End of Content Wrapper -->
     </div>
-    </div>
-    <!-- End of Page Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
 </body>
 </html>

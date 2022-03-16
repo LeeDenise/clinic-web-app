@@ -7,167 +7,186 @@
     <title>My Profile</title>
 
     <!-- font awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+          type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
-	<link rel="stylesheet" th:href="@{/css/bootstrap.css}">
-	<script th:src="@{/js/jquery-3.3.1.js}"></script>
-	<script th:src="@{/js/popper.js}"></script>
-	<script th:src="@{/js/bootstrap.js}"></script>
-	
-	<!-- Custom styles for this template -->
-	<link th:href="@{/css/user.css}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <script th:src="@{/js/jquery-3.3.1.js}"></script>
+    <script th:src="@{/js/popper.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/user.css}" rel="stylesheet"/>
 </head>
 <body id="page-top">
 
-    <!-- Page Wrapper -->
-    <div id="wrapper">
+<!-- Page Wrapper -->
+<div id="wrapper">
 
-        <!-- Sidebar-->
-        <ul class="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
-            
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
-                <div class="sidebar-brand-icon rotate-n-15">
+    <!-- Sidebar-->
+    <ul class="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+            <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Barunmom</div>
+            </div>
+            <div class="sidebar-brand-text mx-3">Barunmom</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-dibide my-0">
+
+        <!-- Sidebar User Info -->
+        <li class="nav-item sidebar-brand d-flex align-items-center justify-content-center no-arrow">
+            <a class="nav-link" href="#">
+                <div class="sidebar-brand-text mx-4">welcome, <br><span sec:authentication="name"></span></div>
             </a>
-    
-            <!-- Divider -->
-            <hr class="sidebar-dibide my-0">
+        </li>
 
-            <!-- Sidebar User Info -->
-            <li class="nav-item sidebar-brand d-flex align-items-center justify-content-center no-arrow">
-                <a class="nav-link" href="#">
-                    <div class="sidebar-brand-text mx-4">welcome, <br><span sec:authentication="name"></span></div>
-                </a>
-            </li>
+        <!-- Divider -->
+        <hr class="sidebar-dibide mt-3">
 
-            <!-- Divider -->
-            <hr class="sidebar-dibide mt-3">
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Appointment
+        </div>
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Appointment
-            </div>
-    
-            <!-- Nav Item - Manage my appointment -->
-            <li class="nav-item">
-                <a class="nav-link" href="/booking/newBooking">
-                    <i class="fas fa-clinic-medical"></i>
-                    <span>Book a new appointment</span>
-                </a>
-            </li>
+        <!-- Nav Item - Manage my appointment -->
+        <li class="nav-item">
+            <a class="nav-link" href="/booking/newBooking">
+                <i class="fas fa-clinic-medical"></i>
+                <span>Book a new appointment</span>
+            </a>
+        </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-dibide my-0">
-    
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Management
-            </div>
-    
-            <!-- Nav Item - Manage my appointment -->
-            <li class="nav-item">
-                <a class="nav-link" href="/booking/openUserBookingList">
-                    <i class="fas fa-edit"></i>
-                    <span>My appointment</span>
-                </a>
-            </li>
+        <!-- Divider -->
+        <hr class="sidebar-dibide my-0">
 
-            <!-- Nav Item - Edit Profile -->
-            <li class="nav-item">
-                <a class="nav-link" href="/user/profile">
-                    <i class="fas fa-edit"></i>
-                    <span>My Profile</span>
-                </a>
-            </li>
-    
-            <!-- Nav Item - Delete Account Request -->
-            <!-- <li class="nav-item">
-                <a class="nav-link collapsed" href="clients.html" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                        <i class="fas fa-burn"></i>
-                        <span>Clients</span>
-                </a>
-            </li> -->
-        </ul>
-        <!-- End of Sidebar -->
-    
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Management
+        </div>
 
-            <!-- Main Content -->
-            <div id="content">
-                <div id="container-fluid">
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between m-4">
-                            <h1 class="h3 mb-0 text-gray-800">My Profile</h1>
-                    </div>
-        
-                    <!-- Content Row : Cards-->
-                    <div class="row">
+        <!-- Nav Item - Manage my appointment -->
+        <li class="nav-item">
+            <a class="nav-link" href="/booking/openUserBookingList">
+                <i class="fas fa-edit"></i>
+                <span>My appointment</span>
+            </a>
+        </li>
+
+        <!-- Nav Item - Edit Profile -->
+        <li class="nav-item">
+            <a class="nav-link" href="/user/profile">
+                <i class="fas fa-edit"></i>
+                <span>My Profile</span>
+            </a>
+        </li>
+
+        <!-- Nav Item - Delete Account Request -->
+        <!-- <li class="nav-item">
+            <a class="nav-link collapsed" href="clients.html" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-burn"></i>
+                    <span>Clients</span>
+            </a>
+        </li> -->
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+            <div id="container-fluid">
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between m-4">
+                    <h1 class="h3 mb-0 text-gray-800">My Profile</h1>
+                </div>
+
+                <!-- Content Row : Cards-->
+                <div class="row">
                     <div class="col-lg-10 col-xl-9 mx-auto">
                         <div class="card card-signin flex-row my-3">
-                        <div class="card-img-left d-none d-md-flex">
-                            <!-- Background image for card set in CSS! -->
-                        </div>
-                        <div class="card-body">
-                            <form class="form-signin" method="POST" action="/user/update">
-                                <div class="form-label-group">
-                                    <label>Email address</label>
-                                    <input type="email" id="email" name="email" th:value="${userInfo.email}" class="form-control" placeholder="Email address" required>
-                                </div>
+                            <div class="card-img-left d-none d-md-flex">
+                                <!-- Background image for card set in CSS! -->
+                            </div>
+                            <div class="card-body">
+                                <form class="form-signin" method="POST" action="/user/update">
+                                    <div class="form-label-group">
+                                        <label>Email address</label>
+                                        <input type="email" id="email" name="email" th:value="${userInfo.email}"
+                                               class="form-control" placeholder="Email address" required>
+                                    </div>
 
-                                <div class="form-label-group">
-                                    <label>Fist name</label>
-                                    <input type="text" id="firstName" name="firstName" th:value="${userInfo.firstName}" class="form-control" placeholder="First name" required autofocus>
-                                </div>
-            
-                                <div class="form-label-group">
-                                    <label>Last name</label>
-                                    <input type="text" id="lastName" name="lastName" th:value="${userInfo.lastName}" class="form-control" placeholder="Last name" required autofocus>
-                                </div>
-            
-                                <div class="form-label-group">
-                                    <label>Phone number</label>
-                                    <input type="text" id="phone" name="phone" th:value="${userInfo.phone}" class="form-control" placeholder="Phone number" required autofocus>
-                                </div>
+                                    <div class="form-label-group">
+                                        <label>Fist name</label>
+                                        <input type="text" id="firstName" name="firstName"
+                                               th:value="${userInfo.firstName}" class="form-control"
+                                               placeholder="First name" required autofocus>
+                                    </div>
 
-                                <hr>
+                                    <div class="form-label-group">
+                                        <label>Last name</label>
+                                        <input type="text" id="lastName" name="lastName" th:value="${userInfo.lastName}"
+                                               class="form-control" placeholder="Last name" required autofocus>
+                                    </div>
 
-                                <div>
-                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#saveChanges">Save Changes</button>
-                                    <!-- Modal -->
-                                    <div class="modal" id="saveChanges" tabindex="-1" role="dialog" aria-labelledby="saveChanges" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Save Changes</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Are you sure you want to save your changes?</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-primary">Confirm</button>
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <div class="form-label-group">
+                                        <label>Phone number</label>
+                                        <input type="text" id="phone" name="phone" th:value="${userInfo.phone}"
+                                               class="form-control" placeholder="Phone number" required autofocus>
+                                    </div>
+
+                                    <hr>
+
+                                    <div>
+                                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#saveChanges">
+                                            Save Changes
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="modal" id="saveChanges" tabindex="-1" role="dialog"
+                                             aria-labelledby="saveChanges" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Save Changes</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Are you sure you want to save your changes?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary">Confirm</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Cancel
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                            </form>
-                            <button type="button" class="btn btn-secondary btn-lg float-right" data-toggle="modal" data-target="#deleteAccount">Delete Account</button></div>
+
+                                </form>
+                                <button type="button" class="btn btn-secondary btn-lg float-right" data-toggle="modal" data-target="#deleteAccount">
+                                    Delete Account
+                                </button>
+                            </div>
                             <!-- Modal -->
-                            <div class="modal" id="deleteAccount" tabindex="-1" role="dialog" aria-labelledby="deleteAccount" aria-hidden="true">
+                            <div class="modal" id="deleteAccount" tabindex="-1" role="dialog"
+                                 aria-labelledby="deleteAccount" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -181,37 +200,40 @@
                                         </div>
                                         <div class="modal-footer">
                                             <form method="DELETE" action="/user/delete">
-                                                <input type="hidden" id="clientId" name="clientId" th:value="${session.clientId}">
+                                                <input type="hidden" id="clientId" name="clientId"
+                                                       th:value="${session.clientId}">
                                                 <button type="delete" class="btn btn-primary">Confirm</button>
                                             </form>
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                Cancel
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        </div>
-                        </div>
                     </div>
-                    </div>                    
-                    
-                    <!-- Content Row : Booking List -->
-                    
-
-            </div>
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                  <div class="copyright text-center my-auto">
-                    <span>Copyright &copy;Clinic Web App</span>
-                  </div>
                 </div>
-            </footer>
-            <!-- End of Footer -->
+            </div>
         </div>
-        <!-- End of Content Wrapper -->
+
+        <!-- Content Row : Booking List -->
+
+
     </div>
-    <!-- End of Page Wrapper -->
-    </div>
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy;Clinic Web App</span>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+</div>
+<!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
+</div>
 </body>
 </html>
