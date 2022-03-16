@@ -56,9 +56,9 @@ public class UserController {
 	}
 
 	@RequestMapping("/delete")
-	public String deleteMyProfile(@RequestParam long userId) throws Exception {
-		userService.deleteUser(userId);
-		return "redirect:/";
+	public String deleteMyProfile(String userEmail) throws Exception {
+		userService.deleteUser(userEmail);
+		return "redirect:/logout";
 	}
 	
 //	@RequestMapping("/booking/deleteClient")

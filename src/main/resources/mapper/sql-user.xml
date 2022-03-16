@@ -80,13 +80,11 @@
 	</update>
 
     <!-- deleteClient.do -->
-    <delete id="deleteClient" parameterType="int">
-		<![CDATA[
+    <delete id="deleteUser" parameterType="String">
         DELETE FROM
-            client
+            users
         WHERE
-            client_no = #{clientNo}
-        ]]>
+            email = #{userEmail}
 	</delete>
 
 </mapper>

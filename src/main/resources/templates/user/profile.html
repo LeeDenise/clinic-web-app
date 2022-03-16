@@ -198,13 +198,13 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Are you sure you want to delete your account?</p>
+                                            <p>Are you sure you want to delete your account?<br>
+                                            Once you delete your account, you can't use same email address to sign up for 30 days.</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <form method="DELETE" action="/user/delete">
-                                                <input type="hidden" id="clientId" name="clientId"
-                                                       th:value="${session.clientId}">
-                                                <button type="delete" class="btn btn-primary">Confirm</button>
+                                            <form method="POST" action="/user/delete">
+                                                <input type="hidden" id="userEmail" name="userEmail" th:value="${userInfo.email}">
+                                                <button type="submit" class="btn btn-primary">Confirm</button>
                                             </form>
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">
                                                 Cancel
