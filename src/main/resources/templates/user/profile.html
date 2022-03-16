@@ -141,8 +141,9 @@
                                 </div>
 
                                 <hr>
-<!--                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Save</button>-->
-                                <div><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#saveChanges">Save Changes</button>
+
+                                <div>
+                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#saveChanges">Save Changes</button>
                                     <!-- Modal -->
                                     <div class="modal" id="saveChanges" tabindex="-1" role="dialog" aria-labelledby="saveChanges" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
@@ -163,8 +164,32 @@
                                             </div>
                                         </div>
                                     </div>
-                                <button type="button" class="btn btn-secondary btn-lg float-right">Delete Account</button></div>
                             </form>
+                            <button type="button" class="btn btn-secondary btn-lg float-right" data-toggle="modal" data-target="#deleteAccount">Delete Account</button></div>
+                            <!-- Modal -->
+                            <div class="modal" id="deleteAccount" tabindex="-1" role="dialog" aria-labelledby="deleteAccount" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Delete Account</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Are you sure you want to delete your account?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <form method="DELETE" action="/user/delete">
+                                                <input type="hidden" id="clientId" name="clientId" th:value="${session.clientId}">
+                                                <button type="delete" class="btn btn-primary">Confirm</button>
+                                            </form>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         </div>
                         </div>
                     </div>

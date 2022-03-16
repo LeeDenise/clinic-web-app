@@ -53,6 +53,12 @@ public class UserController {
 		userService.updateUser(updateUserDto);
 		return "redirect:/user/profile";
 	}
+
+	@RequestMapping("/delete")
+	public String deleteMyProfile(@RequestParam long userId) throws Exception {
+		userService.deleteUser(userId);
+		return "redirect:/";
+	}
 	
 //	@RequestMapping("/booking/deleteClient")
 //	public String deleteClient(@RequestParam int clientNo) throws Exception {
