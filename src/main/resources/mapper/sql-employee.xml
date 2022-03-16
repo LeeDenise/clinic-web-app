@@ -13,25 +13,13 @@
 			employees
 	</select>
 
-    <!-- openTherapistList.do -->
-    <select id="openTherapistList" resultType="booking.models.EmployeeDto">
-		<![CDATA[
+    <select id="selectTherapist" parameterType="long" resultType="booking.models.EmployeeDto">
         SELECT
-            emp_no,
-            emp_pwd,
-            first_name,
-            last_name,
-            email,
-            phone,
-            address,
-            birthday,
-            from_date,
-            to_date,
-            employed_yn
+            *
         FROM
-            therapist
-        ORDER BY emp_no DESC
-        ]]>
+            employees
+        WHERE
+			emp_Id = #{empId}
 	</select>
 
     <!-- insertTherapist.do -->
@@ -104,19 +92,5 @@
             emp_no = #{empNo}
         ]]>
 	</update>
-
-    <select id="selectUserInfoYN" resultType="booking.models.SecurityUser">
-		<![CDATA[
-        SELECT
-            client_id, first_name, last_name, phone, email
-        FROM
-            client
-        WHERE
-            client_id = #{clientId}
-          AND
-            client_pwd = #{clientPwd}
-            LIMIT 1
-        ]]>
-	</select>
 
 </mapper>

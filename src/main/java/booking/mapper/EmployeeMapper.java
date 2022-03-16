@@ -8,4 +8,5 @@ import java.util.List;
 @Mapper
 public interface EmployeeMapper {
     List<EmployeeDto> selectTherapistList() throws Exception;
+    EmployeeDto selectTherapist(long empId);
 }

@@ -10,8 +10,11 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     properties.hibernate.hbm2ddl.auto: update
     showSql: true
+    open-in-view: false
   thymeleaf:
     cache: false
+    prefix: classpath:/templates/
+    suffix: .html
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
   configuration:
