@@ -26,21 +26,21 @@
 	
 	<script>
 	$(document).ready(function() {
-	   $("#btn01").on("click", function() {
-	      location.href="openTherapistList.do";
-	   });
-	   
-	   $("#btn02").on("click", function() {
-	      var frm = $("#frm")[0];
-	      frm.action = "updateTherapist.do";
-	      frm.submit();
-	   });
-	   
-	   $("#btn03").on("click", function() {
-	      var frm = $("#frm")[0];
-	      frm.action = "deleteTherapist.do";
-	      frm.submit();
-	   });
+        $("#btn01").on("click", function() {
+	        location.href="openTherapistList.do";
+        });
+
+        $("#btn02").on("click", function() {
+            var frm = $("#frm")[0];
+            frm.action = "updateTherapist.do";
+            frm.submit();
+        });
+
+        $("#btn03").on("click", function() {
+            var frm = $("#frm")[0];
+            frm.action = "deleteTherapist.do";
+            frm.submit();
+        });
 	});
 	</script>
 
@@ -58,7 +58,7 @@
                 <form id="frm" class="form-signin" method="POST" action="/booking/insertTherapist.do">
                 
                 	<div class="form-label-group">
-                        <input type="text" id="empNo" name="empNo" class="form-control" placeholder="Employee Number" required th:value="${list.empNo}">
+                        <input type="text" id="empNo" name="empNo" class="form-control" placeholder="Employee Number" required th:value="${list.empId}">
                         <label for="empNo">Employee Number</label>
                     </div>
                     
@@ -73,45 +73,8 @@
                     </div>
 
                     <div class="form-label-group">
-                        <input type="text" id="phone" name="phone" class="form-control" placeholder="Phone" required autofocus th:value="${list.phone}">
-                        <label for="phone">Phone</label>
-                    </div>
-
-                    <div class="form-label-group">
                         <input type="email" id="email" name="email" class="form-control" placeholder="Email" required th:value="${list.email}">
                         <label for="email">Email</label>
-                    </div>
-                    
-                    <div class="form-label-group">
-                        <input type="text" id="address" name="address" class="form-control" placeholder="Address" required autofocus th:value="${list.address}">
-                        <label for="address">Address</label>
-                    </div>
-                    
-                    <div class="form-label-group">
-                        <input type="text" id="birthday" name="birthday" class="form-control" placeholder="Birthday" required autofocus th:value="${list.birthday}">
-                        <label for="birthday">Birthday</label>
-                    </div>
-                    
-                    <div class="form-label-group">
-                        <input type="text" id="fromDate" name="fromDate" class="form-control" placeholder="FromDate" required autofocus th:value="${list.fromDate}">
-                        <label for="fromDate">From Date</label>
-                    </div>
-                    
-                    <div class="form-label-group">
-                        <input type="text" id="toDate" name="toDate" class="form-control" placeholder="ToDate" required autofocus th:value="${list.toDate}">
-                        <label for="toDate">To Date</label>
-                    </div>
-                    
-                    <hr>
-        
-                    <div class="form-label-group">
-                        <input type="password" id="empPwd" name="empPwd" class="form-control" placeholder="Password" required th:value="${list.empPwd}">
-                        <label for="empPwd">Password</label>
-                    </div>
-                    
-                    <div class="form-label-group">
-                        <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Password" required>
-                        <label for="inputConfirmPassword">Confirm password</label>
                     </div>
         
                     <button id="btn01" class="btn btn-lg btn-google btn-block text-uppercase" >To List</button>

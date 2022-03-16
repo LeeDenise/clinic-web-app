@@ -13,22 +13,22 @@ public class TemplateController {
 
 	@RequestMapping("")
 	public String home() throws Exception {
-		return "/home";
+		return "home";
 	}
 
 	@GetMapping("/login")
 	public String login() throws Exception {
-		return "/user/login";
+		return "user/login";
 	}
 
 	@GetMapping("/signup")
 	public String singup() throws Exception {
-		return "/user/signup";
+		return "user/signup";
 	}
 	
 	// USER DASHBOARD
 	@RequestMapping("/booking/user")
 	public String user() throws Exception {
-		return "/booking/user";
+		return "booking/user";
 	}
 }

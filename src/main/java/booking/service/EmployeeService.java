@@ -20,4 +20,8 @@ public class EmployeeService {
     public List<EmployeeDto> selectTherapistList() throws Exception {
         return employeeMapper.selectTherapistList();
     }
+
+    public EmployeeDto selectTherapist(long empId) {
+        return employeeMapper.selectTherapist(empId);
+    }
 }
