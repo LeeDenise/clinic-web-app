@@ -181,7 +181,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <form method="DELETE" action="/user/delete">
-                                                <input type="hidden" th:value="${userInfo.userId}">
+                                                <input type="hidden" id="clientId" name="clientId" th:value="${session.clientId}">
                                                 <button type="delete" class="btn btn-primary">Confirm</button>
                                             </form>
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
