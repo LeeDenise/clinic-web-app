@@ -10,9 +10,8 @@ import java.util.Optional;
 @Mapper
 public interface UserMapper {
     List<UserDto> selectAllUsers() throws Exception;
-    Optional<UserDto> selectUserByUserId(String email);
+    Optional<UserDto> selectUserByUserEmail(String email);
     void insertUser(UserDto userDto);
     void updateUser(UpdateUserDto updateUserDto) throws Exception;
-    void deleteUser(String userEmail) throws Exception;
-    SecurityUser clientDetail(int clientNo) throws Exception;
+    void disableUser(String userEmail);
 }

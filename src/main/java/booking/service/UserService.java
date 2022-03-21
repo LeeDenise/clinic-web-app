@@ -27,7 +27,6 @@ public class UserService implements UserDetailsService {
     public void insertUser(UserDto userDto){
         // TODO: add a logic to separate client and admin & change it to builder pattern.
         userDto.setRole("USER");
-        // TODO: confirm password
         userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
         userMapper.insertUser(userDto);
     }
@@ -36,13 +35,12 @@ public class UserService implements UserDetailsService {
         userMapper.updateUser(updateUserDto);
     }
 
-    public void deleteUser(String email) throws Exception {
-        userMapper.deleteUser(email);
+    public void disableUser(String userEmail) {
+        userMapper.disableUser(userEmail);
     }
 
-
     public Optional<UserDto> selectUserByUserEmail(String email) {
-        return userMapper.selectUserByUserId(email);
+        return userMapper.selectUserByUserEmail(email);
     }
 
     @Override
@@ -58,6 +56,7 @@ public class UserService implements UserDetailsService {
                             securityUser.setPassword(userDto.getPassword());
                             securityUser.setPhone(userDto.getPhone());
                             securityUser.setAuthorities(userDto.getRole());
+                            securityUser.setDisabled(userDto.isDisabled());
                             return securityUser;
                         }
                 )
@@ -65,5 +64,4 @@ public class UserService implements UserDetailsService {
                 new UsernameNotFoundException(String.format("Username %s not found", email))
         );
     }
-
 }

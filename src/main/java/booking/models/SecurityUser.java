@@ -18,6 +18,7 @@ public class SecurityUser implements UserDetails {
 	private String firstName;
 	private String lastName;
 	private String phone;
+	private boolean disabled;
 
 	public void setAuthorities(String role) {
 		grantedAuthorities = new HashSet<SimpleGrantedAuthority>();
@@ -40,6 +41,11 @@ public class SecurityUser implements UserDetails {
 	}
 
 	@Override
+	public boolean isEnabled() {
+		return this.disabled;
+	}
+
+	@Override
 	public boolean isAccountNonExpired() {
 		return true;
 	}
@@ -54,8 +60,5 @@ public class SecurityUser implements UserDetails {
 		return true;
 	}
 
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
+
 }

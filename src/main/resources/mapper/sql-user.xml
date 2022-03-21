@@ -16,7 +16,7 @@
             users
 	</select>
 
-    <select id="selectUserByUserId" parameterType="String" resultType="booking.models.UserDto">
+    <select id="selectUserByUserEmail" parameterType="String" resultType="booking.models.UserDto">
         SELECT
             user_id,
             email,
@@ -24,7 +24,8 @@
             first_name,
             last_name,
             phone,
-            role
+            role,
+            disabled
         FROM
             users
         WHERE
@@ -46,27 +47,6 @@
                 #{role})
     </insert>
 
-
-    <!-- clientDetail.do -->
-    <select id="clientDetail" parameterType="int" resultType="booking.models.SecurityUser">
-		<![CDATA[
-        SELECT
-            client_no,
-            client_id,
-            first_name,
-            last_name,
-            email,
-            client_pwd,
-            phone,
-            reg_date,
-            edit_date
-        FROM
-            client
-        WHERE
-            client_no = #{clientNo}
-        ]]>
-	</select>
-
     <update id="updateUser" parameterType="booking.models.UpdateUserDto">
         UPDATE
             users
@@ -79,12 +59,13 @@
             email = #{email}
 	</update>
 
-    <!-- deleteClient.do -->
-    <delete id="deleteUser" parameterType="String">
-        DELETE FROM
+    <update id="disableUser" parameterType="String">
+        UPDATE
             users
+        SET
+            disabled = false
         WHERE
             email = #{userEmail}
-	</delete>
+	</update>
 
 </mapper>
