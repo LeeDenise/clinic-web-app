@@ -13,6 +13,6 @@ public interface UserMapper {
     Optional<UserDto> selectUserByUserId(String email);
     void insertUser(UserDto userDto);
     void updateUser(UpdateUserDto updateUserDto) throws Exception;
-    void deleteUser(long userId) throws Exception;
+    void deleteUser(String userEmail) throws Exception;
     SecurityUser clientDetail(int clientNo) throws Exception;
 }
