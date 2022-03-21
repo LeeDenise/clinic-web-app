@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Slf4j
 @Controller
@@ -31,4 +32,12 @@ public class TemplateController {
 	public String user() throws Exception {
 		return "booking/user";
 	}
+
+	@GetMapping("/helloworld/long-process")
+	@ResponseBody
+	public String pause() throws InterruptedException {
+		Thread.sleep(10000);
+		return "Process finished";
+	}
+
 }
