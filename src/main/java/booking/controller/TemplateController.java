@@ -27,7 +27,6 @@ public class TemplateController {
 		return "user/signup";
 	}
 	
-	// USER DASHBOARD
 	@RequestMapping("/booking/user")
 	public String user() throws Exception {
 		return "booking/user";

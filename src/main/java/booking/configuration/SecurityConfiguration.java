@@ -46,8 +46,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
                 .and()
-                .exceptionHandling().accessDeniedPage("/error/403.html")
-                .and()
                 .formLogin()
                 .usernameParameter("username")
                 .passwordParameter("password")
