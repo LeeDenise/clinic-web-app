@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Account</title>
+    <title>My Appointments</title>
 
     <!-- font awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
@@ -127,7 +127,6 @@
     </script>
 </head>
 <body id="page-top">
-
 <!-- Page Wrapper -->
 <div id="wrapper">
 
@@ -175,135 +174,137 @@
                 <span>My Profile</span>
             </a>
         </li>
-    </ul> <!-- End of Sidebar -->
+    </ul>
+    <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
         <!-- Main Content -->
-        <div id="content"class="w-100 d-flex flex-column flex-nowrap align-content-stretch align-items-stretch">
-<!--            <div id="container-fluid">-->
-                <!-- Page Heading -->
-                <div class="d-sm-flex align-items-center justify-content-between m-4">
-                    <div th:if="${param.bookingId} ne null">
-                        <h1 class="display-4 h3 mb-0 text-gray-800">Update your appointment</h1>
-                    </div>
-                    <div th:if="${param.bookingId == null}">
-                        <h1 class="display-4 h3 mb-0 text-gray-800">New Appointment</h1>
-                    </div>
+        <div id="content" class="w-100 d-flex flex-column flex-nowrap align-content-stretch align-items-stretch">
+            <!--            <div id="container-fluid">-->
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between m-4">
+                <div th:if="${param.bookingId} ne null">
+                    <h1 class="display-4 h3 mb-0 text-gray-800">Update your appointment</h1>
                 </div>
+                <div th:if="${param.bookingId == null}">
+                    <h1 class="display-4 h3 mb-0 text-gray-800">New Appointment</h1>
+                </div>
+            </div>
 
-                <!-- Content Row : Cards-->
-                <div class="row">
-                    <div class="col-lg-10 col-xl-9 mx-auto">
-                        <div class="card card-signin flex-row my-3">
-                            <div class="card-img-left d-none d-md-flex">
-                                <!-- Background image for card set in CSS! -->
-                            </div>
-                            <div class="card-body">
-                                <form id="frm" class="form-signin" method="POST" action="/booking/insertBooking">
-                                    <div th:if="${param.bookingId} ne null" class="col-sm-3">
-                                        <div class="form-label-group">
-                                            <label>Booking No.</label>
-                                            <p th:text="${booking.bookingId}"></p>
-                                        </div>
-                                        <div class="form-label-group">
-                                            <label>Status</label>
-                                            <p th:text="${booking.status}"></p>
-                                        </div>
+            <!-- Content Row : Cards-->
+            <div class="row">
+                <div class="col-lg-10 col-xl-9 mx-auto">
+                    <div class="card card-signin flex-row my-3">
+                        <div class="card-img-left d-none d-md-flex">
+                            <!-- Background image for card set in CSS! -->
+                        </div>
+                        <div class="card-body">
+                            <form id="frm" class="form-signin" method="POST" action="/booking/insertBooking">
+                                <div th:if="${param.bookingId} ne null" class="col-sm-3">
+                                    <div class="form-label-group">
+                                        <label>Booking No.</label>
+                                        <p th:text="${booking.bookingId}"></p>
                                     </div>
-                                    <div class="form-label-group dropdown row">
-                                        <div class="col-sm-5">
-                                            <label>Select Therapist</label><br>
-                                            <select class="form-control" id="seltherapist" name="empId">
-                                                <option selected="selected">Therapist</option>
-                                                <option th:if="${#lists.size(list)} > 0" th:each="list : ${list}"
-                                                        th:text="|${list.firstName} ${list.lastName}|"
-                                                        th:value="${list.empId}"></option>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <label>Select Date</label><br>
-                                            <select class="form-control" id="seldate" name="seldate">
-                                                <option selected="selected">Date</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <label>Select Time</label><br>
-                                            <select class="form-control" id="seltime" name="seltime">
-                                                <option selected="selected">Time</option>
-                                            </select>
-                                        </div>
-                                        <input type="hidden" id="sessionStart" name="sessionStart">
-                                        <div th:if="${param.bookingId} ne null">
-                                            <input type="hidden" id="bookingId" name="bookingId"
-                                                   th:value="${param.bookingId}">
-                                        </div>
+                                    <div class="form-label-group">
+                                        <label>Status</label>
+                                        <p th:text="${booking.status}"></p>
                                     </div>
-                                    <div class="row mt-lg-3" style="justify-content: space-between;">
+                                </div>
+<!--                                hr appears in edit booking too-->
+                                <div class="form-label-group dropdown row">
+                                    <div class="col-sm-5">
+                                        <label>Select Therapist</label><br>
+                                        <select class="form-control" id="seltherapist" name="empId">
+                                            <option selected="selected">Therapist</option>
+                                            <option th:if="${#lists.size(list)} > 0" th:each="list : ${list}"
+                                                    th:text="|${list.firstName} ${list.lastName}|"
+                                                    th:value="${list.empId}"></option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label>Select Date</label><br>
+                                        <select class="form-control" id="seldate" name="seldate">
+                                            <option selected="selected">Date</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label>Select Time</label><br>
+                                        <select class="form-control" id="seltime" name="seltime">
+                                            <option selected="selected">Time</option>
+                                        </select>
+                                    </div>
+                                    <input type="hidden" id="sessionStart" name="sessionStart">
+                                    <div th:if="${param.bookingId} ne null">
+                                        <input type="hidden" id="bookingId" name="bookingId"
+                                               th:value="${param.bookingId}">
+                                    </div>
+                                </div>
 
-                                        <div class="col-sm-4">
-                                            <button type="button" id="btn01" data-toggle="modal" data-target="#saveChanges"
-                                                    class="btn btn-lg btn-primary btn-block text-uppercase">Save
-                                            </button>
-                                            <!-- Modal -->
-                                            <div class="modal" id="saveChanges" tabindex="-1" role="dialog"
-                                                 aria-labelledby="saveChanges" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">Save Changes</h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p>Are you sure you want to save your changes?</p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="submit" class="btn btn-primary">Confirm
-                                                            </button>
-                                                            <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Cancel
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-4">
-                                            <button type="reset" id="btn02"
-                                                    class="btn btn-lg btn-secondary btn-block text-uppercase">Reset
+                                <hr>
+                                <!--buttons-->
+                                <div class="row px-2 float-right">
+                                    <!--make appointment-->
+                                    <button type="submit" class="btn btn-primary btn-lg mr-1" id="btn01">
+                                        Confirm Appointment
+                                    </button>
+                                    <!--delete button in edit appointment-->
+                                    <div th:if="${param.bookingId} ne null">
+                                        <button type="button" class="btn btn-danger btn-lg" data-toggle="modal"
+                                                data-target="#deleteAppointment">
+                                            Delete Appointment
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- Modal -->
+                            <div class="modal" id="deleteAppointment" tabindex="-1" role="dialog"
+                                 aria-labelledby="deleteAppointment" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Delete Appointment</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <div th:if="${param.bookingId} ne null" class="col-sm-4">
-                                            <button type="submit" id="btn03"
-                                                    class="btn btn-lg btn-warning btn-block text-uppercase">Delete
+                                        <div class="modal-body">
+                                            <p>Are you sure you want to delete your appointment?<br>
+                                                Once you delete your appointment, your appointment will be
+                                                immediately cancelled.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary" id="btn03">Confirm
+                                            </button>
+                                            <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">
+                                                Cancel
                                             </button>
                                         </div>
                                     </div>
-                                </form>
-
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Clinic Web App</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
         </div>
-        <!-- End of Content Wrapper -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Clinic Web App</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
     </div>
-<!--</div>-->
+    <!-- End of Content Wrapper -->
+</div>
 <!-- End of Page Wrapper -->
 </body>
 </html>
