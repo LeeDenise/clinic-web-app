@@ -12,6 +12,7 @@ import booking.models.BookingDto;
 @Mapper
 public interface BookingMapper {
 	BookingDto selectABooking(Long bookingId);
+	List<BookingListDto> selectAllBookings();
 	List<BookingListDto> selectUserBookingList(String userEmail) throws Exception;
 	List<String> selectBookingTime(@Param("empId") int empId, @Param("selDate") String selDate) throws Exception;
 	void insertBooking(BookingDto booking) throws Exception;

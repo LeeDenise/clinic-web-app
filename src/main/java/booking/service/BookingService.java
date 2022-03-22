@@ -16,6 +16,10 @@ public class BookingService {
 	@Autowired
 	private final BookingMapper bookingMapper;
 
+	public List<BookingListDto> selectAllBookings() {
+		return bookingMapper.selectAllBookings();
+	}
+
 	public BookingDto selectBooking(Long bookingId) {
 		return bookingMapper.selectABooking(bookingId);
 	}
@@ -37,6 +41,8 @@ public class BookingService {
 	}
 
 	public void cancelBooking(Long bookingId) throws Exception {
-bookingMapper.cancelBooking(bookingId);
+		bookingMapper.cancelBooking(bookingId);
 	}
+
+
 }

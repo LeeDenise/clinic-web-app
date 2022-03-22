@@ -1,7 +1,12 @@
 package booking.controller;
 
+import booking.models.BookingDto;
+import booking.models.BookingListDto;
 import booking.models.EmployeeDto;
+import booking.models.UserDto;
+import booking.service.BookingService;
 import booking.service.EmployeeService;
+import booking.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -21,26 +26,20 @@ import java.util.List;
 public class AdminController {
 
     @Autowired
-    private final EmployeeService employeeService;
+    private final BookingService bookingService;
+    @Autowired
+    private final UserService userService;
 
     @RequestMapping
-    public String openAdminPage() {
-        return "admin/admin";
-    }
+    public ModelAndView openAdminPage() throws Exception {
+        ModelAndView mv = new ModelAndView("admin/admin");
 
-    @RequestMapping(value = "/therapist", method = RequestMethod.GET)
-    public ModelAndView openEmployeeList() throws Exception {
-        ModelAndView mv = new ModelAndView("admin/therapistlist");
-        List<EmployeeDto> therapistList = employeeService.selectTherapistList();
-        mv.addObject("list", therapistList);
-        return mv;
-    }
+        List<BookingListDto> allBookings = bookingService.selectAllBookings();
+        mv.addObject("bookings", allBookings);
 
-    @RequestMapping(value = "/thrapistdetail")
-    public ModelAndView openEmployeeDetail(@RequestParam String empId) throws Exception {
-        ModelAndView mv = new ModelAndView("admin/therapistdetail");
-        EmployeeDto therapist = employeeService.selectTherapist(Long.parseLong(empId));
-        mv.addObject("list", therapist);
+        List<UserDto> allUsers = userService.selectAllUsers();
+        mv.addObject("users", allUsers);
         return mv;
+
     }
 }
