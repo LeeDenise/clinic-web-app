@@ -1,6 +1,7 @@
 package booking.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import booking.models.*;
 
@@ -56,14 +57,9 @@ public class UserController {
 	}
 
 	@RequestMapping("/delete")
-	public String deleteMyProfile(String userEmail) throws Exception {
-		userService.deleteUser(userEmail);
-		return "redirect:/logout";
+	public String disableMyProfile(@RequestParam String userEmail) {
+		userService.disableUser(userEmail);
+		SecurityContextHolder.clearContext();
+		return "redirect:/";
 	}
-	
-//	@RequestMapping("/booking/deleteClient")
-//	public String deleteClient(@RequestParam int clientNo) throws Exception {
-//		bookingService.deleteClient(clientNo);
-//		return "redirect:/booking/openClientList";
-//	}
 }
