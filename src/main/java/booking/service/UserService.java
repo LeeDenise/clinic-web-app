@@ -56,7 +56,7 @@ public class UserService implements UserDetailsService {
                             securityUser.setPassword(userDto.getPassword());
                             securityUser.setPhone(userDto.getPhone());
                             securityUser.setAuthorities(userDto.getRole());
-                            securityUser.setDisabled(userDto.isDisabled());
+                            securityUser.setEnabled(userDto.isEnabled());
                             return securityUser;
                         }
                 )

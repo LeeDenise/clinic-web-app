@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `cwadb`.`users` (
 	`last_name` VARCHAR(50) NOT NULL,
     `phone` VARCHAR(15) NULL DEFAULT NULL,
     `role` VARCHAR(10) NOT NULL,
-    `disabled` BOOLEAN NOT NULL default 1,
+    `enabled` BOOLEAN NOT NULL DEFAULT 1,
     
     PRIMARY KEY (`user_id`))
 AUTO_INCREMENT = 1;

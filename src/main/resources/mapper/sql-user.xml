@@ -25,7 +25,7 @@
             last_name,
             phone,
             role,
-            disabled
+            enabled
         FROM
             users
         WHERE
@@ -63,7 +63,7 @@
         UPDATE
             users
         SET
-            disabled = false
+            enabled = false
         WHERE
             email = #{userEmail}
 	</update>
