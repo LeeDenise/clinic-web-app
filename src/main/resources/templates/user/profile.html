@@ -122,26 +122,26 @@
                             </div>
                             <div class="card-body">
                                 <form class="form-signin" method="POST" action="/user/update">
-                                    <div class="form-label-group">
+                                    <div class="form-label-group ">
                                         <label>Email address</label>
                                         <input type="email" id="email" name="email" th:value="${userInfo.email}"
                                                class="form-control" placeholder="Email address" required>
                                     </div>
 
-                                    <div class="form-label-group">
-                                        <label>Fist name</label>
+                                    <div class="form-label-group my-3">
+                                        <label>First name</label>
                                         <input type="text" id="firstName" name="firstName"
                                                th:value="${userInfo.firstName}" class="form-control"
                                                placeholder="First name" required autofocus>
                                     </div>
 
-                                    <div class="form-label-group">
+                                    <div class="form-label-group my-3">
                                         <label>Last name</label>
                                         <input type="text" id="lastName" name="lastName" th:value="${userInfo.lastName}"
                                                class="form-control" placeholder="Last name" required autofocus>
                                     </div>
 
-                                    <div class="form-label-group">
+                                    <div class="form-label-group my-3">
                                         <label>Phone number</label>
                                         <input type="text" id="phone" name="phone" th:value="${userInfo.phone}"
                                                class="form-control" placeholder="Phone number" required autofocus>
