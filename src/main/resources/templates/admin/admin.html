@@ -7,243 +7,255 @@
     <title>Admin Dashboard</title>
 
     <!-- font awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+          type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
-	<link rel="stylesheet" th:href="@{/css/bootstrap.css}">
-	<script th:src="@{/js/jquery-3.3.1.js}"></script>
-	<script th:src="@{/js/popper.js}"></script>
-	<script th:src="@{/js/bootstrap.js}"></script>
-	
-	<!-- Custom styles for this template -->
-	<link th:href="@{/css/admin.css}" rel="stylesheet"/>
-	
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <script th:src="@{/js/jquery-3.3.1.js}"></script>
+    <script th:src="@{/js/popper.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/admin.css}" rel="stylesheet"/>
+
 </head>
 <body id="page-top">
 
-    <!-- Page Wrapper -->
-    <div id="wrapper">
+<!-- Page Wrapper -->
+<div id="wrapper">
 
-        <!-- Sidebar-->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-            
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
-                <div class="sidebar-brand-icon rotate-n-15">
+    <!-- Sidebar-->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+            <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Clinic App</div>
+            </div>
+            <div class="sidebar-brand-text mx-3">Clinic App</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-dibide mt-3">
+
+        <!-- Sidebar User Info -->
+        <li class="nav-item sidebar-brand d-flex align-items-center justify-content-center no-arrow">
+            <a class="nav-link dropdown-toggle" href="/user/profile" id="userDropdown" role="button"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img class="ml-4" src="/image/christine.jpg"
+                     style="width: 120px; height: 120px; justify-content: center" alt="">
+                <br>
+                <div class="sidebar-brand-text mx-4 my-5">Admin</div>
             </a>
-    
-            <!-- Divider -->
-            <hr class="sidebar-dibide mt-3">
-
-            <!-- Sidebar User Info -->
-            <li class="nav-item sidebar-brand d-flex align-items-center justify-content-center no-arrow">
-                <a class="nav-link dropdown-toggle" href="/user/profile" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="ml-4" src="/image/christine.jpg" style="width: 120px; height: 120px; justify-content: center" alt="">
-                    <br>
-                    <div class="sidebar-brand-text mx-4 my-5">Admin</div>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu shadow" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="userprofile.html">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profile
                 </a>
-                <!-- Dropdown - User Information -->
-                <div class="dropdown-menu shadow" aria-labelledby="userDropdown">
-                    <a  class="dropdown-item" href="userprofile.html">
-                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Profile
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Logout
-                    </a>
-                </div>
-            </li>
-    
-            <!-- Divider -->
-            <hr class="sidebar-dibide mt-5">
-    
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Management
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                </a>
             </div>
-    
-            <!-- Nav Item - Therapists Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="/booking/openTherapistList.do">
-                    <i class="fas fa-clinic-medical"></i>
-                    <span>Therapist</span>
-                </a>
-            </li>
-    
-            <!-- Nav Item - Clients Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="/booking/openClientList.do">
-                        <i class="fas fa-burn"></i>
-                        <span>Clients</span>
-                </a>
-            </li>
-    
-            <!-- Nav Item - Booking Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="/booking/openAdminBookingList.do">
-                    <i class="far fa-calendar-check"></i>
-                    <span>Booking</span>
-                </a>
-            </li>
-    
-            <!-- Nav Item - Report Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-flag"></i>
-                    <span>Report</span>
-                </a>
-            </li>
-        </ul>
-        <!-- End of Sidebar -->
-    
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+        </li>
 
-            <!-- Main Content -->
-            <div id="content">
-                <div id="container-fluid">
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between m-4">
-                            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-                    </div>
-        
-                    <!-- Content Row : Cards-->
-                    <div class="row m-1">
-                        <!-- Report (Weekly Total) -->
-                        <div class="col-xl-4 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Weekly Total</div>
-                                            <div class="h5 mb-0 font-weight text-gray-800">50</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fab fa-weebly text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <!-- Divider -->
+        <hr class="sidebar-dibide mt-5">
 
-                        <!-- Report(Monthly Total) -->
-                        <div class="col-xl-4 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Monthly Total</div>
-                                            <div class="h5 mb-0 font-weight text-gray-800">240</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Report (Yearly Total) -->
-                        <div class="col-xl-4 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Yearly Total</div>
-                                            <div class="h5 mb-0 font-weight text-gray-800">2800</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- Content Row : Booking chart -->
-                    <div class="row m-1">
-                            <table class="table table-hover table-striped">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Booking Id</th>
-                                    <th scope="col">Therapist</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">User Email</th>
-                                    <th scope="col">Status</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:if="${#lists.size(bookings)} > 0" th:each="bookings : ${bookings}">
-                                    <td th:if="${bookings.status != 'cancelled'}">
-                                        <a href="/booking/bookingDetail?bookingId=" th:attrappend="href=${bookings.bookingId}"
-                                           th:text="${bookings.bookingId}"></a>
-                                    </td>
-                                    <td th:if="${bookings.status == 'cancelled'}" th:text="${bookings.bookingId}"></td>
-                                    <td th:text="|${bookings.firstName} ${bookings.lastName}|"></td>
-                                    <td th:text="${bookings.sessionStart}"></td>
-                                    <td th:text="${bookings.userEmail}"></td>
-                                    <td th:text="${bookings.status}"></td>
-                                </tr>
-                                <tr th:if="${#lists.size(bookings)} == 0">
-                                    <td colspan="4">No Result</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                    </div>
-                    <!-- Content Row : User List -->
-                    <div class="row m-1">
-                                <table class="table table-hover table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">User Id</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">First Name</th>
-                                        <th scope="col">Last Name</th>
-                                        <th scope="col">Phone</th>
-                                        <th scope="col">Disabled</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr th:if="${#lists.size(users)} > 0" th:each="users : ${users}">
-                                        <td th:text="${users.userId}"></td>
-                                        <td th:text="${users.email}"></td>
-                                        <td th:text="${users.firstName}"></td>
-                                        <td th:text="${users.lastName}"></td>
-                                        <td th:text="${users.phone}"></td>
-                                        <td th:text="${users.enabled}"></td>
-                                    </tr>
-                                    <tr th:if="${#lists.size(users)} == 0">
-                                        <td colspan="4">No Result</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-            </div>
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                  <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2019</span>
-                  </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Management
         </div>
-        <!-- End of Content Wrapper -->
+
+        <!-- Nav Item - Therapists Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link" href="/booking/openTherapistList.do">
+                <i class="fas fa-clinic-medical"></i>
+                <span>Therapist</span>
+            </a>
+        </li>
+
+        <!-- Nav Item - Clients Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link" href="/booking/openClientList.do">
+                <i class="fas fa-burn"></i>
+                <span>Clients</span>
+            </a>
+        </li>
+
+        <!-- Nav Item - Booking Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link" href="/booking/openAdminBookingList.do">
+                <i class="far fa-calendar-check"></i>
+                <span>Booking</span>
+            </a>
+        </li>
+
+        <!-- Nav Item - Report Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fas fa-flag"></i>
+                <span>Report</span>
+            </a>
+        </li>
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content" class="w-100 d-flex flex-column flex-nowrap align-content-stretch align-items-stretch" style="justify-content: space-between;">
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between m-4">
+                    <h1 class="display-4 h3 mb-0 text-gray-800">Dashboard</h1>
+                    <!--<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
+                </div>
+
+                <!-- Content Row : Cards-->
+                <div class="row m-1">
+                    <!-- Report (Weekly Total) -->
+                    <div class="col-xl-4 col-md-6 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Weekly
+                                            Total
+                                        </div>
+                                        <div class="h5 mb-0 font-weight text-gray-800">50</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fab fa-weebly text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Report(Monthly Total) -->
+                    <div class="col-xl-4 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Monthly
+                                            Total
+                                        </div>
+                                        <div class="h5 mb-0 font-weight text-gray-800">240</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Report (Yearly Total) -->
+                    <div class="col-xl-4 col-md-6 mb-4">
+                        <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Yearly
+                                            Total
+                                        </div>
+                                        <div class="h5 mb-0 font-weight text-gray-800">2800</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Content Row : Booking chart -->
+                <div class="row d-sm-flex align-items-center justify-content-between m-3">
+                    <h1 class="display-6 h3 mb-2 text-gray-800">Booking List</h1>
+                    <table class="table table-hover table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Booking Id</th>
+                            <th scope="col">Therapist</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">User Email</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:if="${#lists.size(bookings)} > 0" th:each="bookings : ${bookings}">
+                            <td th:if="${bookings.status != 'cancelled'}">
+                                <a href="/booking/bookingDetail?bookingId=" th:attrappend="href=${bookings.bookingId}"
+                                   th:text="${bookings.bookingId}"></a>
+                            </td>
+                            <td th:if="${bookings.status == 'cancelled'}" th:text="${bookings.bookingId}"></td>
+                            <td th:text="|${bookings.firstName} ${bookings.lastName}|"></td>
+                            <td th:text="${bookings.sessionStart}"></td>
+                            <td th:text="${bookings.userEmail}"></td>
+                            <td th:text="${bookings.status}"></td>
+                        </tr>
+                        <tr th:if="${#lists.size(bookings)} == 0">
+                            <td colspan="5" style="text-align: center">No Result</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Content Row : User List -->
+                <div class="row d-sm-flex align-items-center justify-content-between m-3">
+                    <h1 class="display-6 h3 mb-2 text-gray-800">User List</h1>
+                    <table class="table table-hover table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">User Id</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Disabled</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:if="${#lists.size(users)} > 0" th:each="users : ${users}">
+                            <td th:text="${users.userId}"></td>
+                            <td th:text="${users.email}"></td>
+                            <td th:text="${users.firstName}"></td>
+                            <td th:text="${users.lastName}"></td>
+                            <td th:text="${users.phone}"></td>
+                            <td th:text="${users.enabled}"></td>
+                        </tr>
+                        <tr th:if="${#lists.size(users)} == 0">
+                            <td colspan="4">No Result</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Footer -->
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; Clinic Web App</span>
+                        </div>
+                    </div>
+                </footer>
+                <!-- End of Footer -->
+
+            </div>
+            <!-- End of Content Wrapper -->
+        </div>
+        <!-- End of Page Wrapper -->
     </div>
-    <!-- End of Page Wrapper -->
 </body>
 </html>
