@@ -24,7 +24,3 @@ cloud:
   aws:
     credentials:
       profile-name: cwa
-
-
-
-

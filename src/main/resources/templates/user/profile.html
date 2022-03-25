@@ -80,7 +80,7 @@
         <li class="nav-item">
             <a class="nav-link" href="/booking/openUserBookingList">
                 <i class="fas fa-edit"></i>
-                <span>My appointment</span>
+                <span>My appointments</span>
             </a>
         </li>
 
@@ -98,114 +98,114 @@
     <div id="content-wrapper" class="d-flex flex-column">
 
         <!-- Main Content -->
-        <div id="content"  class="w-100 d-flex flex-column flex-nowrap align-content-stretch align-items-stretch" style="justify-content: space-between;">
-<!--            <div id="container-fluid">-->
-                <!-- Page Heading -->
-                <div class="d-sm-flex align-items-center justify-content-between m-4">
-                    <h1 class="display-4 h3 mb-0 text-gray-800">My Profile</h1>
-                </div>
+        <div id="content" class="w-100 d-flex flex-column flex-nowrap align-content-stretch align-items-stretch"
+             style="justify-content: space-between;">
+            <!--            <div id="container-fluid">-->
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between m-4">
+                <h1 class="display-4 h3 mb-0 text-gray-800">My Profile</h1>
+            </div>
 
-                <!-- Content Row : Cards-->
-                <div class="row" style="flex-grow: 1;">
-                    <div class="col-lg-10 col-xl-9 mx-auto">
-                        <div class="card card-signin flex-row my-3">
-                            <div class="card-img-left d-none d-md-flex">
-                                <!-- Background image for card set in CSS! -->
-                            </div>
-                            <div class="card-body">
-                                <form class="form-signin" method="POST" action="/user/update">
-                                    <div class="form-label-group ">
-                                        <label>Email address</label>
-                                        <input type="email" id="email" name="email" th:value="${userInfo.email}"
-                                               class="form-control" placeholder="Email address" required>
-                                    </div>
+            <!-- Content Row : Cards-->
+            <div class="row" style="flex-grow: 1;">
+                <div class="col-lg-10 col-xl-9 mx-auto">
+                    <div class="card card-signin flex-row my-3">
+                        <div class="card-img-left d-none d-md-flex">
+                            <!-- Background image for card set in CSS! -->
+                        </div>
+                        <div class="card-body">
+                            <form class="form-signin" method="POST" action="/user/update">
+                                <div class="form-label-group ">
+                                    <label>Email address</label>
+                                    <input type="email" id="email" name="email" th:value="${userInfo.email}"
+                                           class="form-control" placeholder="Email address" required>
+                                </div>
 
-                                    <div class="form-label-group my-3">
-                                        <label>First name</label>
-                                        <input type="text" id="firstName" name="firstName"
-                                               th:value="${userInfo.firstName}" class="form-control"
-                                               placeholder="First name" required autofocus>
-                                    </div>
+                                <div class="form-label-group my-3">
+                                    <label>First name</label>
+                                    <input type="text" id="firstName" name="firstName"
+                                           th:value="${userInfo.firstName}" class="form-control"
+                                           placeholder="First name" required autofocus>
+                                </div>
 
-                                    <div class="form-label-group my-3">
-                                        <label>Last name</label>
-                                        <input type="text" id="lastName" name="lastName" th:value="${userInfo.lastName}"
-                                               class="form-control" placeholder="Last name" required autofocus>
-                                    </div>
+                                <div class="form-label-group my-3">
+                                    <label>Last name</label>
+                                    <input type="text" id="lastName" name="lastName" th:value="${userInfo.lastName}"
+                                           class="form-control" placeholder="Last name" required autofocus>
+                                </div>
 
-                                    <div class="form-label-group my-3">
-                                        <label>Phone number</label>
-                                        <input type="text" id="phone" name="phone" th:value="${userInfo.phone}"
-                                               class="form-control" placeholder="Phone number" required autofocus>
-                                    </div>
+                                <div class="form-label-group my-3">
+                                    <label>Phone number</label>
+                                    <input type="text" id="phone" name="phone" th:value="${userInfo.phone}"
+                                           class="form-control" placeholder="Phone number" required autofocus>
+                                </div>
 
-                                    <hr>
-                                    <!--buttons-->
-                                    <div class="float-right">
-                                        <!--save changes-->
-                                        <button type="button" class="btn btn-primary btn-lg"
-                                                data-toggle="modal" data-target="#saveChanges">
-                                            Save Changes
-                                        </button>
-                                        <!-- Modal -->
-                                        <div class="modal" id="saveChanges" tabindex="-1" role="dialog"
-                                             aria-labelledby="saveChanges" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Save Changes</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p>Are you sure you want to save your changes?</p>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-primary">Confirm</button>
-                                                        <button type="button" class="btn btn-secondary"
-                                                                data-dismiss="modal">Cancel
-                                                        </button>
-                                                    </div>
+                                <hr>
+                                <!--buttons-->
+                                <div class="float-right">
+                                    <!--save changes-->
+                                    <button type="button" class="btn btn-primary btn-lg"
+                                            data-toggle="modal" data-target="#saveChanges">
+                                        Save Changes
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal" id="saveChanges" tabindex="-1" role="dialog"
+                                         aria-labelledby="saveChanges" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Save Changes</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Are you sure you want to save your changes?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary">Confirm</button>
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Cancel
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--delete account-->
-                                        <button type="button" class="btn btn-danger btn-lg" data-toggle="modal"
-                                                data-target="#deleteAccount">
-                                            Delete Account
-                                        </button>
                                     </div>
-                                </form>
+                                    <!--delete account-->
+                                    <button type="button" class="btn btn-danger btn-lg" data-toggle="modal"
+                                            data-target="#deleteAccount">
+                                        Delete Account
+                                    </button>
+                                </div>
+                            </form>
 
-                                <!-- Modal -->
-                                <div class="modal" id="deleteAccount" tabindex="-1" role="dialog"
-                                     aria-labelledby="deleteAccount" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Delete Account</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>Are you sure you want to delete your account?<br>
-                                                    Once you delete your account, you can't use same email address to
-                                                    sign up for 30 days.</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <form method="POST" action="/user/delete">
-                                                    <input type="hidden" id="userEmail" name="userEmail"
-                                                           th:value="${userInfo.email}">
-                                                    <button type="submit" class="btn btn-primary">Confirm</button>
-                                                </form>
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                    Cancel
-                                                </button>
-                                            </div>
+                            <!-- Modal -->
+                            <div class="modal" id="deleteAccount" tabindex="-1" role="dialog"
+                                 aria-labelledby="deleteAccount" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Delete Account</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Are you sure you want to delete your account?<br>
+                                                Once you delete your account, you can't use same email address to
+                                                sign up for 30 days.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <form method="POST" action="/user/delete">
+                                                <input type="hidden" id="userEmail" name="userEmail"
+                                                       th:value="${userInfo.email}">
+                                                <button type="submit" class="btn btn-primary">Confirm</button>
+                                            </form>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                Cancel
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -213,20 +213,21 @@
                         </div>
                     </div>
                 </div>
-                <!-- Footer -->
-                <footer class="sticky-footer bg-white">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; Clinic Web App</span>
-                        </div>
-                    </div>
-                </footer>
-                <!-- End of Footer -->
             </div>
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Clinic Web App</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
         </div>
-        <!-- End of Content Wrapper -->
     </div>
-    <!-- End of Page Wrapper -->
+    <!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
 </div>
 </body>
 </html>
