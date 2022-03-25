@@ -1,6 +1,6 @@
 # Welcome to Clinic Web App v.2 🏥
 
-**<mark>Go Live! ▶️ [here] (http://ec2-35-172-114-155.compute-1.amazonaws.com:8080/)</mark>**
+**<mark>Go Live! ▶️ <a href="http://ec2-35-172-114-155.compute-1.amazonaws.com:8080/">here</a></mark>**
 
 
 ## What this app is?
