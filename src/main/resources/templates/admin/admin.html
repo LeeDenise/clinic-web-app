@@ -40,74 +40,58 @@
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">Clinic App</div>
+            <div class="sidebar-brand-text mx-3">Barunmom</div>
         </a>
 
         <!-- Divider -->
-        <hr class="sidebar-dibide mt-3">
+        <hr class="sidebar-dibide my-0">
 
         <!-- Sidebar User Info -->
         <li class="nav-item sidebar-brand d-flex align-items-center justify-content-center no-arrow">
-            <a class="nav-link dropdown-toggle" href="/user/profile" id="userDropdown" role="button"
-               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img class="ml-4" src="/image/christine.jpg"
-                     style="width: 120px; height: 120px; justify-content: center" alt="">
-                <br>
-                <div class="sidebar-brand-text mx-4 my-5">Admin</div>
+            <a class="nav-link text-center" href="#">
+                <div class="sidebar-brand-text">hi, <br><span sec:authentication="name"></span></div>
             </a>
-            <!-- Dropdown - User Information -->
-            <div class="dropdown-menu shadow" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="userprofile.html">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Profile
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Logout
-                </a>
-            </div>
         </li>
 
         <!-- Divider -->
-        <hr class="sidebar-dibide mt-5">
+        <hr class="sidebar-dibide mt-3">
 
         <!-- Heading -->
         <div class="sidebar-heading">
             Management
         </div>
 
-        <!-- Nav Item - Therapists Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link" href="/booking/openTherapistList.do">
-                <i class="fas fa-clinic-medical"></i>
-                <span>Therapist</span>
-            </a>
-        </li>
-
-        <!-- Nav Item - Clients Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link" href="/booking/openClientList.do">
-                <i class="fas fa-burn"></i>
-                <span>Clients</span>
-            </a>
-        </li>
-
         <!-- Nav Item - Booking Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link" href="/booking/openAdminBookingList.do">
+            <a class="nav-link" href="#">
                 <i class="far fa-calendar-check"></i>
                 <span>Booking</span>
             </a>
         </li>
 
-        <!-- Nav Item - Report Collapse Menu -->
+        <!-- Nav Item - Clients Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link" href="#">
-                <i class="fas fa-flag"></i>
-                <span>Report</span>
+                <i class="fas fa-burn"></i>
+                <span>Clients</span>
             </a>
         </li>
+
+<!--        &lt;!&ndash; Nav Item - Therapists Collapse Menu &ndash;&gt;-->
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link" href="/booking/openTherapistList.do">-->
+<!--                <i class="fas fa-clinic-medical"></i>-->
+<!--                <span>Therapist</span>-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        -->
+<!--        &lt;!&ndash; Nav Item - Report Collapse Menu &ndash;&gt;-->
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link" href="#">-->
+<!--                <i class="fas fa-flag"></i>-->
+<!--                <span>Report</span>-->
+<!--            </a>-->
+<!--        </li>-->
     </ul>
     <!-- End of Sidebar -->
 
@@ -204,7 +188,7 @@
                             <td th:text="|${bookings.firstName} ${bookings.lastName}|"></td>
                             <td th:text="${bookings.sessionStart}"></td>
                             <td th:text="${bookings.userEmail}"></td>
-                            <td th:text="${bookings.status}"></td>
+                            <td th:text="${bookings.status.toUpperCase()}"></td>
                         </tr>
                         <tr th:if="${#lists.size(bookings)} == 0">
                             <td colspan="5" style="text-align: center">No Result</td>
