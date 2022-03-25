@@ -102,6 +102,7 @@
                         alert("error");
                     }
                 });
+                document.getElementById("btn01").disabled = false;
             });
 
             $("#btn01").on("click", function () {
@@ -246,16 +247,9 @@
                                 <!--buttons-->
                                 <div class="row px-2 float-right">
                                     <!--make appointment-->
-                                    <button type="submit" class="btn btn-primary btn-lg mr-1" disabled>
+                                    <button type="submit" class="btn btn-primary btn-lg mr-1" id="btn01" disabled>
                                         Confirm Appointment
                                     </button>
-                                    <!--todo-->
-                                    <!--enable make appointment button-->
-                                    <div th:if="${#seldate} ne null">
-                                        <button type="submit" class="btn btn-primary btn-lg mr-1" id="btn01">
-                                            Confirm Appointment
-                                        </button>
-                                    </div>
                                     <!--delete button in edit appointment-->
                                     <div th:if="${param.bookingId} ne null">
                                         <button type="button" class="btn btn-danger btn-lg" data-toggle="modal"
