@@ -1,7 +1,7 @@
 
 DROP SCHEMA IF EXISTS `cwadb` ;
 
-CREATE SCHEMA IF NOT EXISTS `cwadb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+CREATE SCHEMA IF NOT EXISTS `cwadb` DEFAULT CHARACTER SET utf8mb4;
 USE `cwadb` ;
 
 -- -----------------------------------------------------
@@ -80,13 +80,3 @@ VALUES ('david.mcdevitt@clinic.ca', 'David', 'McDevitt');
 
 INSERT INTO employees (email, first_name, last_name)
 VALUES ('christine.belle@clinic.ca', 'Christine', 'Belle');
-
--- -----------------------------------------------------
--- Inserting bookings
--- -----------------------------------------------------
-#
-# INSERT INTO bookings (session_start, session_end, status, user_email, emp_id)
-# VALUES (NOW()+ INTERVAL 1 day, NOW()+ INTERVAL 1 day + INTERVAL 1 hour , 'scheduled', 'john@test.com', 1);
-#
-# INSERT INTO bookings (session_start, session_end, status, user_email, emp_id)
-# VALUES (NOW()+ INTERVAL 1 day, NOW()+ INTERVAL 1 day + INTERVAL 1 hour , 'scheduled', 'john@test.com', 1);
