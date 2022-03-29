@@ -5,7 +5,7 @@
 
 ## What this app is?
 
-> This is a web application for clinic, providing basic information about ABC clinic and make reservation and manage it.
+> This is a web application for clinic, providing basic information and the management and reservation system.
 >
 > - Make reservation
 > - Cancel reservation
@@ -15,14 +15,16 @@
 
 ## What's the differences from v.1?
 
-- [x] blah blah
-- [x] to do list
-- [x] wala wala
+- [x] Fixed broken signup/signin function.
+- [x] Upgraded the designs can prevent user errors.
+- [x] Improved the web security using Spring Security 5.
+- [x] Added the role for admin and the admin's dashboard. 
+- [x] Automated the deployment process using Nginx and Jenkins.
 
 ## Made with
 
 ![Spring Boot](img.jpg)<br>
-Spring Boot, Spring Security 5, Bootstrap, AWS EC2 & RDS, MySQL, JavaScript, AJAX and ❤️
+Spring Boot, Spring Security 5, Bootstrap 4, AWS EC2, MySQL, JavaScript, AJAX, and ❤️
 
 ## Authors
 
