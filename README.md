@@ -29,10 +29,10 @@ Spring Boot, Spring Security 5, Bootstrap 4, AWS EC2, MySQL, JavaScript, AJAX, a
 ## Authors
 
 - Denise Lee
-  - Website:
-  - Github:
-  - LinkedIn:
-  - Email:
+  - Website: https://leedenise.github.io/
+  - Github: https://github.com/LeeDenise/
+  - LinkedIn: https://www.linkedin.com/in/denise-dohui-lee/
+  - Email: deniselee.dev@gmail.com
 ---
 - Nova Kim
   - Website:
