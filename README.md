@@ -56,8 +56,7 @@ However, if you have permission, you can see this page which shows all the booki
 
 ## Made with
 
-![Spring Boot](img.jpg)<br>
-Spring Boot, Spring Security 5, Bootstrap 4, AWS EC2, MySQL, JavaScript, AJAX, and ❤️
+[Spring Boot](https://spring.io/projects/spring-boot), [Spring Security 5](https://spring.io/projects/spring-security), [Bootstrap 4](https://getbootstrap.com/docs/4.0/getting-started/introduction/), [AWS EC2](https://aws.amazon.com/ec2/), [MySQL](https://www.mysql.com/), [JavaScript](https://www.javascript.com/), [AJAX](https://api.jquery.com/jquery.ajax/), and ❤️
 
 ## Authors
 
